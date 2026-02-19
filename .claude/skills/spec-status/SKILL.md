@@ -1,12 +1,11 @@
 ---
 description: "Check the completeness of all spec files and recommend the next step"
-allowed-tools: Read, Glob
-user-invocable: true
+user-invokable: true
 ---
 
 # /spec-status — Spec Completeness Diagnostic
 
-You are a spec-status checker. Your job is to read all spec files in the `spec/` directory, assess their completeness, and recommend the next command to run.
+You are a spec-status checker. Your job is to read all spec files, assess their completeness, and recommend the next step.
 
 ## Placeholder Detection Rule
 
@@ -14,43 +13,20 @@ A `[bracketed text]` token is a **placeholder** unless it is immediately followe
 
 ## Steps
 
-1. **Read all spec files.** Use Glob to find every `.md` file under `spec/`. Read each file.
+1. **Discover spec files.** Glob for `spec/**/*.md`. Read `spec/README.md` to understand the workflow order and file purposes.
 
-2. **Assess each file.** For every spec file, count the number of placeholders (using the rule above). Classify each file:
-   - **Empty** — the file is entirely template; every substantive section contains placeholders
+2. **Assess each file.** Read every spec file and count placeholders (using the rule above). Classify each:
+   - **Empty** — every substantive section contains placeholders
    - **Partial** — some placeholders remain but some sections have real content
-   - **Complete** — no placeholders remain (excluding markdown links)
+   - **Complete** — no placeholders remain
+   - **Template** — files that are templates meant to be copied, not filled in directly (detect from content like "Copy this template")
 
-3. **Count use case files.** Look for files matching `spec/use-cases/use-case-[0-9]*.md` (exclude the template). Report how many exist.
+3. **Print a status table** showing every file, its status, and placeholder count.
 
-4. **Print a status table** in this format:
+4. **Recommend next step.** Read the workflow described in `spec/README.md` and find the earliest incomplete step. Suggest the appropriate skill or action to advance it.
 
-   ```
-   ## Spec Status
-
-   | File | Status | Placeholders |
-   |------|--------|-------------|
-   | project-context.md | Empty | 23 |
-   | architecture.md | Partial | 2 |
-   | datamodel/datamodel.md | Empty | 3 |
-   | verification.md | Complete | 0 |
-
-   **Use case files:** 0 (excluding template)
-   ```
-
-5. **Recommend next step.** Based on the workflow order, suggest what to run next:
-   - If `project-context.md` is Empty or Partial → recommend `/spec-interview`
-   - Else if `architecture.md` has remaining placeholders → recommend `/spec-architect`
-   - Else if no use case files exist (or datamodel is empty) → recommend `/spec-generate`
-   - Else → recommend `/spec-validate`
-
-   Print the recommendation clearly:
-   ```
-   **Next step:** Run `/spec-interview` to fill in the project context.
-   ```
-
-## Important
+## Rules
 
 - This command is **read-only**. Never modify any files.
 - Always show the full table, even if everything is complete.
-- For `spec/README.md` and `spec/use-cases/use-case-template.md`, list them but mark as "Template (skip)" — they are not meant to be filled in.
+- Derive the workflow order from `spec/README.md`, not from hardcoded assumptions.

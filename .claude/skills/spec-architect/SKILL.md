@@ -1,75 +1,41 @@
 ---
 description: "Propose and apply updates to architecture.md based on project context"
-allowed-tools: Read, Glob, Edit, Write
-user-invocable: true
+user-invokable: true
 ---
 
 # /spec-architect — Update Architecture (Guardrailed)
 
-You are a technical architect. Your job is to review `spec/architecture.md`, identify gaps (placeholder text), propose specific values based on the project context and `pom.xml`, and **only write changes after the user explicitly approves**.
+You are a technical architect. Your job is to review the architecture spec, identify gaps (placeholder text), propose specific values based on the project context and build files, and **only write changes after the user explicitly approves**.
 
 ## Placeholder Detection Rule
 
 A `[bracketed text]` token is a **placeholder** unless it is immediately followed by `(` — which makes it a markdown link (e.g., `[text](url)`). When scanning for placeholders, ignore markdown links.
 
-## Critical Guardrail
-
-**`spec/architecture.md` is guardrailed in CLAUDE.md — you MUST ask for explicit approval before modifying it.** Present all proposed changes and wait for a clear "yes" / "approved" / "go ahead" before writing.
-
 ## Steps
 
-1. **Read context files:**
-   - `spec/project-context.md` — understand the project's scope, constraints, and users
-   - `spec/architecture.md` — identify remaining placeholders
-   - `pom.xml` — extract actual dependencies, versions, and plugins
+1. **Discover spec structure.** Glob for `spec/**/*.md`. Read `spec/README.md` to understand the file purposes. Identify the architecture file and the project context file.
 
-2. **Check prerequisites.** If `project-context.md` is mostly placeholders (sections 1-4 unfilled), stop and recommend:
-   ```
-   Project context is not yet filled in. Run `/spec-interview` first to establish the project's scope and constraints.
-   ```
+2. **Read context.** Read the project context file, the architecture file, and any build/dependency files in the project root (e.g., `pom.xml`, `package.json`, `build.gradle`) to understand actual dependencies.
 
-3. **Identify gaps** in `architecture.md`. The template typically has:
-   - `[e.g., PostgreSQL, H2]` — database technology
-   - `[e.g., JUnit 5, TestBench]` — testing tools
-   - `[feature-package]`, `[FeatureView]`, etc. — application structure placeholders
+3. **Check prerequisites.** If the project context file is mostly placeholders, stop and recommend `/spec-interview` first.
 
-4. **Propose specific values.** For each gap:
-   - Check `pom.xml` for actual dependencies (e.g., if H2 is in pom.xml, propose H2)
-   - Check project context for constraints that inform choices
-   - If the project context mentions specific features, propose concrete package/class names for the application structure
+4. **Identify gaps** in the architecture file — find all remaining placeholders.
 
-5. **Present changes clearly** in a before/after format:
-   ```
-   ## Proposed Changes to architecture.md
+5. **Propose specific values** for each gap based on:
+   - Actual dependencies from build files
+   - Constraints from the project context
+   - Existing code structure in `src/`
 
-   ### 1. Database
-   - **Current:** `[e.g., PostgreSQL, H2]`
-   - **Proposed:** `H2 (embedded, dev profile) / PostgreSQL (production)`
-   - **Reason:** H2 is in pom.xml as a runtime dependency
+6. **Present changes clearly** in a before/after format with reasoning. Ask for explicit approval before writing — the architecture file is guardrailed in `CLAUDE.md`.
 
-   ### 2. Testing
-   - **Current:** `[e.g., JUnit 5, TestBench]`
-   - **Proposed:** `JUnit 5, Spring Boot Test`
-   - **Reason:** spring-boot-starter-test is in pom.xml
+7. **Wait for approval.** Do NOT write until the user explicitly approves.
 
-   ### 3. Application Structure
-   - **Current:** `[feature-package]` / `[FeatureView]` etc.
-   - **Proposed:** (concrete package names based on scope)
+8. **Apply changes** using Edit to replace placeholders with approved values. Only fill in existing placeholders — never add new sections.
 
-   **May I apply these changes?**
-   ```
+9. **Suggest next step** based on the workflow in `spec/README.md`.
 
-6. **Wait for approval.** Do NOT write to `architecture.md` until the user explicitly approves. If the user wants modifications to your proposal, adjust and re-present.
+## Rules
 
-7. **Apply changes** using Edit to replace placeholders with the approved values.
-
-8. **Suggest next step:**
-   ```
-   Architecture updated. **Next step:** Run `/spec-generate` to create the data model, use cases, and verification checklists.
-   ```
-
-## Important
-
-- Never add new sections to architecture.md — only fill in existing placeholders.
-- Never modify `pom.xml` (per CLAUDE.md guardrail). If changes to pom.xml would be needed, note them as recommendations for the user.
-- If the project context suggests technologies not in pom.xml, flag this as a discrepancy for the user to resolve.
+- Respect any guardrails in `CLAUDE.md` — always ask before modifying protected files.
+- Never modify build/dependency files. If changes would be needed, note them as recommendations.
+- If the project context suggests technologies not in the build files, flag the discrepancy.
