@@ -11,7 +11,7 @@ import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.RolesAllowed;
 import java.time.format.DateTimeFormatter;
 
-@Route("admin/bookings")
+@Route(value = "admin/bookings", layout = AdminLayout.class)
 @PageTitle("View Bookings")
 @RolesAllowed("ADMIN")
 public class BookingsAdminView extends VerticalLayout {

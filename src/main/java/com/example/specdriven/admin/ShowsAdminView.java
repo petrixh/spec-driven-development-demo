@@ -23,7 +23,7 @@ import jakarta.annotation.security.RolesAllowed;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-@Route("admin/shows")
+@Route(value = "admin/shows", layout = AdminLayout.class)
 @PageTitle("Manage Shows")
 @RolesAllowed("ADMIN")
 public class ShowsAdminView extends VerticalLayout {

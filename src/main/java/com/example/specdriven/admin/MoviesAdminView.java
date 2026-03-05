@@ -22,7 +22,7 @@ import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
 import jakarta.annotation.security.RolesAllowed;
 
-@Route("admin/movies")
+@Route(value = "admin/movies", layout = AdminLayout.class)
 @PageTitle("Manage Movies")
 @RolesAllowed("ADMIN")
 public class MoviesAdminView extends VerticalLayout {
