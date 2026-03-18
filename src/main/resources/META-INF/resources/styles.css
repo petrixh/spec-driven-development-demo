@@ -30,6 +30,7 @@
 .movies-container h1 {
   margin-bottom: 1.5rem;
   font-size: 1.75rem;
+  color: #e5e5e5;
 }
 
 .movies-loading {
@@ -41,7 +42,7 @@
 
 .movies-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 1.5rem;
 }
 
@@ -92,6 +93,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  color: #e5e5e5;
 }
 
 .movie-duration {
@@ -103,7 +105,7 @@
 
 @media (max-width: 640px) {
   .movies-grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: 1rem;
   }
 
@@ -113,6 +115,12 @@
 }
 
 @media (min-width: 641px) and (max-width: 1024px) {
+  .movies-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1400px) {
   .movies-grid {
     grid-template-columns: repeat(3, 1fr);
   }
