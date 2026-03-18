@@ -38,3 +38,11 @@ com.example.specdriven/
   - Use `navigate(ViewClass.class)` to render views
   - Use `$(ComponentClass.class)` to query components, `test(component)` to interact
 - **Visual Verification**: Playwright MCP during development (not automated)
+
+---
+
+## 4. Deployment
+
+- **Fly.io** — used for manual testing deployments
+- Deployed via `Dockerfile` (multi-stage build: JDK 21 build, JRE 21 Alpine runtime)
+- H2 file-persisted database (non-persistent across deploys — acceptable for manual testing)
