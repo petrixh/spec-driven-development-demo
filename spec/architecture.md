@@ -6,7 +6,7 @@
 
 ## 1. Technology Stack
 
-- Vaadin Flow (Aura theme) — server-side Java UI
+- Vaadin — server-side Java UI for admin views, client-side React for public views
 - Spring Boot — auto-configuration, embedded Tomcat
 - Java
 - Maven (wrapper included)
