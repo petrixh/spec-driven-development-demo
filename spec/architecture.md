@@ -11,6 +11,7 @@
 - Java
 - Maven (wrapper included)
 - Database: H2 (embedded, file-persisted in dev, in-memory for tests)
+- Routing: Vaadin Hilla file-based routing only (`src/main/frontend/views/`). Do not use `src/main/frontend/routes.tsx`.
 - Testing: JUnit 5, Vaadin Browserless Tests (`browserless-test-junit6`)
 
 ---
