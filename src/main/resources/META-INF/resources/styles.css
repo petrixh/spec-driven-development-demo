@@ -101,6 +101,131 @@
   color: #b3b3b3;
 }
 
+/* Movie Detail Page */
+
+.movie-detail-header {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.movie-detail-poster {
+  flex-shrink: 0;
+  width: 300px;
+  aspect-ratio: 2 / 3;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #2a2a2a;
+}
+
+.movie-detail-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.movie-detail-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.movie-detail-info h1 {
+  font-size: 2rem;
+  margin: 0;
+  color: #e5e5e5;
+}
+
+.movie-detail-duration {
+  font-size: 1rem;
+  color: #b3b3b3;
+}
+
+.movie-detail-description {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #d4d4d4;
+  margin-top: 0.5rem;
+}
+
+/* Showtimes */
+
+.showtimes-section h2 {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #e5e5e5;
+}
+
+.showtime-date-group {
+  margin-bottom: 1.5rem;
+}
+
+.showtime-date {
+  font-size: 1.1rem;
+  color: #b3b3b3;
+  margin-bottom: 0.75rem;
+  border-bottom: 1px solid #2a2a2a;
+  padding-bottom: 0.5rem;
+}
+
+.showtime-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.showtime-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  padding: 0.75rem 1.25rem;
+  border-radius: 8px;
+  min-width: 140px;
+  text-decoration: none;
+}
+
+.showtime-available {
+  background-color: #1f1f1f;
+  color: inherit;
+  transition: background-color 0.2s, transform 0.2s;
+  cursor: pointer;
+}
+
+.showtime-available:hover {
+  background-color: #2a2a2a;
+  transform: translateY(-2px);
+}
+
+.showtime-sold-out {
+  background-color: #1a1a1a;
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.showtime-time {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #e5e5e5;
+}
+
+.showtime-room {
+  font-size: 0.85rem;
+  color: #b3b3b3;
+}
+
+.showtime-seats {
+  font-size: 0.85rem;
+  color: #4caf50;
+}
+
+.showtime-seats.sold-out {
+  color: #E50914;
+}
+
+.no-showtimes {
+  color: #b3b3b3;
+}
+
 /* Responsive */
 
 @media (max-width: 640px) {
@@ -111,6 +236,20 @@
 
   .cinema-main {
     padding: 1rem;
+  }
+
+  .movie-detail-header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .movie-detail-poster {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  .movie-detail-info {
+    text-align: center;
   }
 }
 
