@@ -47,6 +47,11 @@ com.example.specdriven/
   - Tests live in `src/test/java/`, same as browserless tests
   - Annotate with `@SpringBootTest`, autowire the endpoint
   - Test business rules, validation, and data returned to the frontend
+- **Test Coverage Requirements**: Every use case with a view must have both endpoint tests and view tests
+  - React views (`@BrowserCallable` endpoints): Endpoint tests (JUnit) + View tests (Vitest)
+  - Vaadin Flow views: Endpoint tests (JUnit) + Browserless view tests
+  - Endpoint tests cover business rules, validation, and data contracts
+  - View tests cover rendering, user interactions, and navigation
 - **Visual Verification**: Playwright MCP during development (not automated)
 
 ---
