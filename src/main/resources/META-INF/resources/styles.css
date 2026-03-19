@@ -226,6 +226,245 @@
   color: #b3b3b3;
 }
 
+/* Seat Selection Page */
+
+.seat-selection {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.show-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.show-header h1 {
+  font-size: 1.75rem;
+  margin: 0 0 0.5rem 0;
+  color: #e5e5e5;
+}
+
+.show-info {
+  color: #b3b3b3;
+  font-size: 1rem;
+}
+
+.seat-map-container {
+  margin-bottom: 2rem;
+}
+
+.screen-indicator {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  padding: 0.5rem 2rem;
+  background: linear-gradient(180deg, #444 0%, #222 100%);
+  border-radius: 4px 4px 50% 50%;
+  color: #999;
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.seat-map {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  overflow-x: auto;
+  padding: 1rem 0;
+}
+
+.seat-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.row-label {
+  width: 1.5rem;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #666;
+  flex-shrink: 0;
+}
+
+.seat {
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s, background-color 0.15s;
+  color: #fff;
+}
+
+.seat-available {
+  background-color: #2E7D32;
+}
+
+.seat-available:hover {
+  background-color: #388E3C;
+  transform: scale(1.1);
+}
+
+.seat-selected {
+  background-color: #1565C0;
+}
+
+.seat-selected:hover {
+  background-color: #1976D2;
+  transform: scale(1.1);
+}
+
+.seat-sold {
+  background-color: #424242;
+  cursor: not-allowed;
+  color: #666;
+}
+
+.seat-legend {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: #b3b3b3;
+}
+
+.legend-swatch {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 3px;
+  cursor: default;
+}
+
+.legend-swatch:hover {
+  transform: none;
+}
+
+.purchase-section {
+  background-color: #1f1f1f;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+
+.selected-count {
+  margin: 0 0 1rem 0;
+  color: #e5e5e5;
+  font-size: 1rem;
+}
+
+.purchase-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+}
+
+.form-input {
+  flex: 1;
+  min-width: 180px;
+  padding: 0.6rem 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background-color: #2a2a2a;
+  color: #e5e5e5;
+  font-size: 0.95rem;
+}
+
+.form-input::placeholder {
+  color: #777;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #1565C0;
+}
+
+.btn-purchase {
+  padding: 0.6rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #E50914;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-purchase:hover:not(:disabled) {
+  background-color: #B2070F;
+}
+
+.btn-purchase:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.purchase-error {
+  margin-top: 0.75rem;
+  color: #E50914;
+  font-size: 0.9rem;
+}
+
+.purchase-confirmation {
+  text-align: center;
+  padding: 3rem 1rem;
+}
+
+.purchase-confirmation h2 {
+  color: #4caf50;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.confirmation-message {
+  color: #e5e5e5;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
+}
+
+.confirmation-details {
+  background-color: #1f1f1f;
+  border-radius: 8px;
+  padding: 1.5rem;
+  display: inline-block;
+  text-align: left;
+  color: #d4d4d4;
+  line-height: 1.8;
+}
+
+.confirmation-seats {
+  color: #4caf50;
+  font-weight: 600;
+}
+
+.btn-back {
+  display: inline-block;
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.5rem;
+  border-radius: 6px;
+  background-color: #1f1f1f;
+  color: #e5e5e5;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.btn-back:hover {
+  background-color: #2a2a2a;
+}
+
 /* Responsive */
 
 @media (max-width: 640px) {
@@ -250,6 +489,19 @@
 
   .movie-detail-info {
     text-align: center;
+  }
+
+  .purchase-form {
+    flex-direction: column;
+  }
+
+  .form-input {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .btn-purchase {
+    width: 100%;
   }
 }
 
