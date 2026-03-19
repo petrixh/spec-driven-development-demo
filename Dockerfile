@@ -27,4 +27,5 @@ RUN --mount=type=cache,target=/root/.m2 \
 
 FROM eclipse-temurin:21-jre-alpine
 COPY --from=build /app/target/*.jar app.jar
+COPY --from=build /app/posters /posters
 ENTRYPOINT ["java", "-jar", "/app.jar", "--spring.profiles.active=prod"]
