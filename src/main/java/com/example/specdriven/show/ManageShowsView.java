@@ -48,6 +48,7 @@ public class ManageShowsView extends VerticalLayout {
         this.screeningRoomRepository = screeningRoomRepository;
         this.ticketRepository = ticketRepository;
 
+        addClassName("admin-view");
         setSizeFull();
         add(new H2("Manage Shows"));
 
@@ -105,6 +106,7 @@ public class ManageShowsView extends VerticalLayout {
         });
 
         HorizontalLayout content = new HorizontalLayout();
+        content.addClassName("admin-content");
         content.setSizeFull();
 
         VerticalLayout gridContainer = new VerticalLayout(addButton, grid);

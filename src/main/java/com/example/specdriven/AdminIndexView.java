@@ -11,6 +11,7 @@ import jakarta.annotation.security.RolesAllowed;
 public class AdminIndexView extends VerticalLayout {
 
     public AdminIndexView() {
+        addClassName("admin-view");
         add(new H2("Admin"));
         add(new Anchor("admin/movies", "Manage Movies"));
         add(new Anchor("admin/shows", "Manage Shows"));
