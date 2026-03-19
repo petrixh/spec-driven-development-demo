@@ -29,7 +29,24 @@ Use the Playwright MCP server to visually verify each use case after implementat
 
 ---
 
-## 2. Per-Use-Case Verification Checklist
+## 2. Automated Testing
+
+Every use case must have browserless tests before it is considered implemented. See `architecture.md` § Testing for setup conventions.
+
+### Requirements
+
+- Each acceptance criterion should be covered by at least one test
+- Business rules must have dedicated tests (especially edge cases like limits, validation, and error handling)
+- Tests must pass in CI (`./mvnw test`) before the use case status is set to **Implemented**
+
+### Test Naming
+
+- Test class: `[FeatureName]Test.java` (e.g., `BrowseMoviesTest`, `BuyTicketsTest`)
+- Test methods: descriptive names that map to acceptance criteria or business rules (e.g., `onlyMoviesWithFutureShowsAreDisplayed`, `maximumSixSeatsPerTransaction`)
+
+---
+
+## 3. Per-Use-Case Verification Checklist
 
 > Copy this section for each use case. Name it: **UC-[NNN]: [Feature Title]**
 
@@ -38,6 +55,12 @@ Use the Playwright MCP server to visually verify each use case after implementat
 **Use case spec:** [`use-case-NNN-name.md`](use-cases/use-case-NNN-name.md)
 **Verified by:** [Name/Agent]
 **Date:** [YYYY-MM-DD]
+
+#### Automated Tests
+
+- [ ] Test class exists and all tests pass (`./mvnw test -Dtest=ClassName`)
+- [ ] Acceptance criteria covered by tests
+- [ ] Business rule edge cases tested
 
 #### Functional
 
