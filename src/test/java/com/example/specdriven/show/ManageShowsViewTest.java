@@ -193,6 +193,67 @@ class ManageShowsViewTest extends SpringBrowserlessTest {
         assertFalse(movieField.isEnabled()); // BR-04
     }
 
+    @Test
+    @SuppressWarnings("unchecked")
+    void saveWithoutRoomShowsError() {
+        navigate(ManageShowsView.class);
+
+        test($(Button.class).withText("Add Show").single()).click();
+
+        test((ComboBox<Movie>) $(ComboBox.class)
+                .withPropertyValue(ComboBox::getLabel, "Movie").single()).selectItem(movie.getTitle());
+        test($(DateTimePicker.class).single()).setValue(LocalDateTime.now().plusDays(5));
+
+        test($(Button.class).withText("Save").single()).click();
+
+        assertTrue($(Notification.class).exists());
+        assertEquals("Screening room is required", test($(Notification.class).single()).getText());
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    void saveWithoutDateTimeShowsError() {
+        navigate(ManageShowsView.class);
+
+        test($(Button.class).withText("Add Show").single()).click();
+
+        test((ComboBox<Movie>) $(ComboBox.class)
+                .withPropertyValue(ComboBox::getLabel, "Movie").single()).selectItem(movie.getTitle());
+        test((ComboBox<ScreeningRoom>) $(ComboBox.class)
+                .withPropertyValue(ComboBox::getLabel, "Screening Room").single()).selectItem(room.getName());
+
+        test($(Button.class).withText("Save").single()).click();
+
+        assertTrue($(Notification.class).exists());
+        assertEquals("Date and time are required", test($(Notification.class).single()).getText());
+    }
+
+    @Test
+    @SuppressWarnings("unchecked")
+    void editShowUpdatesDateTimeAndRoom() {
+        // AC: Admin can edit date/time and room of a show
+        ScreeningRoom roomB = screeningRoomRepository.save(new ScreeningRoom("Room B", 3, 6));
+        Show show = showRepository.save(new Show(LocalDateTime.now().plusDays(1), movie, room));
+
+        navigate(ManageShowsView.class);
+
+        Grid<Show> showGrid = $(Grid.class).single();
+        showGrid.asSingleSelect().setValue(show);
+
+        LocalDateTime newTime = LocalDateTime.now().plusDays(10);
+        test((ComboBox<ScreeningRoom>) $(ComboBox.class)
+                .withPropertyValue(ComboBox::getLabel, "Screening Room").single()).selectItem(roomB.getName());
+        test($(DateTimePicker.class).single()).setValue(newTime);
+
+        test($(Button.class).withText("Save").single()).click();
+
+        assertTrue($(Notification.class).exists());
+        assertEquals("Show saved", test($(Notification.class).single()).getText());
+
+        Show updated = showRepository.findById(show.getId()).orElseThrow();
+        assertEquals("Room B", updated.getScreeningRoom().getName());
+    }
+
     // --- Delete show ---
 
     @Test
