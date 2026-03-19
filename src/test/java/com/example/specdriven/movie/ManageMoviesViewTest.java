@@ -22,6 +22,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.test.context.support.WithMockUser;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -202,6 +203,56 @@ class ManageMoviesViewTest extends SpringBrowserlessTest {
         assertTrue($(Notification.class).exists());
         assertEquals("A movie with this title already exists", test($(Notification.class).single()).getText());
         assertEquals(1, movieRepository.count());
+    }
+
+    @Test
+    void durationFieldHasMinimumOfOne() {
+        // BR-02: Duration must be a positive number — enforced at field level
+        navigate(ManageMoviesView.class);
+
+        IntegerField durationField = $(IntegerField.class)
+                .withPropertyValue(IntegerField::getLabel, "Duration (minutes)").single();
+        assertEquals(1, durationField.getMin());
+        assertTrue(durationField.isRequired());
+    }
+
+    @Test
+    void saveWithNullDurationShowsError() {
+        // BR-02: Duration must be a positive number
+        navigate(ManageMoviesView.class);
+
+        test($(Button.class).withText("Add Movie").single()).click();
+
+        test($(TextField.class).withPropertyValue(TextField::getLabel, "Title").single())
+                .setValue("Test Movie");
+        // Don't set duration — leave null
+
+        test($(Button.class).withText("Save").single()).click();
+
+        assertTrue($(Notification.class).exists());
+        assertEquals("Duration must be a positive number", test($(Notification.class).single()).getText());
+        assertEquals(0, movieRepository.count());
+    }
+
+    @Test
+    void posterUploadAcceptsPngAndJpgOnly() {
+        // BR-04: Poster upload accepts PNG and JPG, max 2 MB
+        navigate(ManageMoviesView.class);
+
+        Upload upload = $(Upload.class).single();
+        List<String> accepted = upload.getAcceptedFileTypes();
+        String joined = String.join(",", accepted);
+        assertTrue(joined.contains("image/png") || joined.contains(".png"));
+        assertTrue(joined.contains("image/jpeg") || joined.contains(".jpg") || joined.contains(".jpeg"));
+    }
+
+    @Test
+    void posterUploadMaxSize2MB() {
+        // BR-04: max 2 MB
+        navigate(ManageMoviesView.class);
+
+        Upload upload = $(Upload.class).single();
+        assertEquals(2 * 1024 * 1024, upload.getMaxFileSize());
     }
 
     // --- Delete movie flow ---
