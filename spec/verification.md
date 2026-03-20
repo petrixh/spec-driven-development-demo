@@ -13,7 +13,7 @@ Use the Playwright MCP server to visually verify **every view** after implementa
 
 - After implementing a use case
 - After changing styles, theme, or layout
-- After adding Spring Security or any change that affects routing/rendering
+- After any change that affects routing/rendering
 
 ### Steps
 
@@ -41,6 +41,24 @@ Every use case must have UI tests before it is considered implemented. See `arch
 - Tests must pass (`./mvnw test`) before the use case status is set to **Implemented**
 
 ### How to Write Tests
+
+#### Browserless Tests (Vaadin Flow views)
+
+- Tests live in `src/test/java/`, mirroring the main package structure
+- Extend `SpringBrowserlessTest`, annotate with `@SpringBootTest`
+- Use `@WithMockUser(roles = "ADMIN")` for admin views
+- Use `@WithAnonymousUser` for access control tests
+- Use `navigate(ViewClass.class)` to render views
+- Use `$(ComponentClass.class)` to query components, `test(component)` to interact
+
+#### React View Tests (Vitest)
+
+- Tests live in `src/test/frontend/`, mirroring the view structure
+- Mock `@BrowserCallable` endpoint calls
+- Test component rendering, user interactions, and navigation
+- Run via `npx vitest run`
+
+### Naming Conventions
 
 - **Test class**: `[FeatureName]Test.java` or `[FeatureName].test.tsx` (e.g., `BrowseMoviesTest`, `BuyTickets.test.tsx`)
 - **Test methods**: descriptive names that map to acceptance criteria or business rules (e.g., `onlyItemsWithFutureEventsAreDisplayed`, `maximumSixItemsPerTransaction`)
