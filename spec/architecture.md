@@ -10,7 +10,7 @@
 - Spring Boot — auto-configuration, embedded Tomcat
 - Java
 - Maven (wrapper included)
-- Database: [e.g., PostgreSQL, H2]
+- Database: H2 (embedded, file-persisted in dev, in-memory for tests)
 - Routing: Vaadin Flow views use `@Route`. Hilla React views use file-based routing (`src/main/frontend/views/`), not `src/main/frontend/routes.tsx`.
 - Testing: JUnit 5, Vaadin Browserless Tests (`browserless-test-junit6`), Vitest for React views
 
@@ -59,6 +59,16 @@ com.example.specdriven/
 ## 4. Security & Admin
 
 - **Spring Security** with `VaadinSecurityConfigurer`
+- In-memory admin user (`admin`/`admin`, role `ADMIN`) for development
 - Public views: `@AnonymousAllowed` (React Hilla endpoints, public routes)
 - Admin views: `@RolesAllowed("ADMIN")` (Vaadin Flow views)
 - Login: Vaadin `LoginForm` at `/login`
+- Admin index: `/admin` — links to all admin views (Manage Movies, Manage Shows)
+
+---
+
+## 5. Deployment
+
+- **Fly.io** — used for manual testing deployments
+- Deployed via `Dockerfile` (multi-stage build: JDK 21 build, JRE 21 Alpine runtime)
+- H2 file-persisted database (non-persistent across deploys — acceptable for manual testing)
