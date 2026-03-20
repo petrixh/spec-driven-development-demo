@@ -8,8 +8,11 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+import jakarta.persistence.UniqueConstraint;
 
 @Entity
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = { "show_id", "seatRow", "seatNumber" }))
 public class Ticket {
 
     @Id
