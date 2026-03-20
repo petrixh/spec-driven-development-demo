@@ -6,6 +6,10 @@
 app = 'ai-cinema-codex'
 primary_region = 'arn'
 
+[deploy]
+  strategy = 'immediate'
+  ha = false
+
 [build]
 
 [http_service]
