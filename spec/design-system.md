@@ -15,8 +15,12 @@
 
 | Token | Value | Usage |
 |-------|-------|-------|
-| [e.g., `--primary`] | [e.g., `#1676F3`] | [Primary actions, links] |
-| [e.g., `--error`] | [e.g., `#E53935`] | [Error states, destructive actions] |
+| `--primary` | `#2E7D32` (green) | Pay button, success states |
+| `--primary-light` | `#4CAF50` | Hover states for primary actions |
+| `--secondary` | `#1565C0` (blue) | Employee mode actions |
+| `--warning` | `#F57C00` (orange) | Call Employee button, employee mode indicator |
+| `--error` | `#D32F2F` (red) | Error messages, delete actions |
+| `--surface` | `#FAFAFA` | Background for checkout view |
 
 ---
 
@@ -24,16 +28,17 @@
 
 | Element | Font / Size | Notes |
 |---------|-------------|-------|
-| [Headings] | [e.g., Aura defaults] | [Usage guidance] |
-| [Body text] | [e.g., Aura defaults] | [Usage guidance] |
+| Total price | 2.5rem, bold | Must be readable from a distance at the checkout terminal |
+| Item list | Aura defaults (1rem) | Clear and scannable |
+| Headings | Aura defaults | Standard section headings |
 
 ---
 
 ## 4. Spacing & Layout
 
-- [Grid or layout system — e.g., Vaadin VerticalLayout / HorizontalLayout defaults]
-- [Standard spacing units — e.g., Lumo spacing tokens]
-- [Max content width, if any]
+- Checkout view: Full-viewport layout, no scrolling needed for typical transactions (up to ~10 items, then scroll the item list)
+- Admin view: Standard Vaadin VerticalLayout with Aura spacing
+- Touch targets: Minimum 48×48px for all buttons on the checkout view (touch-friendly)
 
 ---
 
@@ -43,9 +48,12 @@
 
 | Component | When to Use | Notes |
 |-----------|-------------|-------|
-| [e.g., `Button`] | [Primary and secondary actions] | [Use `ButtonVariant.LUMO_PRIMARY` for main CTA] |
-| [e.g., `Grid`] | [Tabular data display] | [Always enable column sorting] |
-| [e.g., `Notification`] | [User feedback] | [Use appropriate position and duration] |
+| `Button` | Pay, Call Employee, Paid by Cash | Use `ButtonVariant.PRIMARY` for Pay, distinct styling for employee actions |
+| `Grid` | Product admin list | Sortable columns, inline editing |
+| `Dialog` | Payment overlay, employee code input, delete confirmation | Modal dialogs for focused interactions |
+| `TextField` | Barcode input, product form fields | Hidden barcode input on checkout auto-focuses |
+| `Notification` | Scan feedback, errors, confirmation | Brief duration, appropriate positioning |
+| `NumberField` | Price input in admin | Ensures numeric input |
 
 ---
 

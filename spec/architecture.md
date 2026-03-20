@@ -6,13 +6,13 @@
 
 ## 1. Technology Stack
 
-- Vaadin — server-side Java UI for admin views, client-side React for public views
+- Vaadin Flow — server-side Java UI for all views (admin and public)
 - Spring Boot — auto-configuration, embedded Tomcat
 - Java
 - Maven (wrapper included)
-- Database: [e.g., PostgreSQL, H2]
-- Routing: Vaadin Flow views use `@Route`. Hilla React views use file-based routing (`src/main/frontend/views/`), not `src/main/frontend/routes.tsx`.
-- Testing: JUnit 5, Vaadin Browserless Tests (`browserless-test-junit6`), Vitest for React views
+- Database: H2 (embedded, file-based for persistence across restarts)
+- Routing: All views use Vaadin Flow `@Route`
+- Testing: JUnit 5, Vaadin Browserless Tests (`browserless-test-junit6`)
 
 ---
 
