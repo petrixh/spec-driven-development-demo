@@ -42,6 +42,15 @@
 
 ---
 
+## Tests
+
+> Write UI tests that verify the acceptance criteria above. See `architecture.md` § Testing for conventions.
+
+- [ ] [Test class name — e.g., `BrowseMoviesTest`]
+- [ ] [What each test covers — map to acceptance criteria and business rules]
+
+---
+
 ## UI / Routes
 
 [Describe layout or interaction requirements. Reference a mockup if available.]

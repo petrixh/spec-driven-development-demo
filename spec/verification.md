@@ -1,18 +1,28 @@
 # Verification
 
 > Visual verification process using Playwright MCP, plus a per-use-case checklist.
-> Copy the checklist (section 2) for each implemented use case.
+> Copy the checklist (section 3) for each implemented use case.
 
 ---
 
 ## 1. Visual Verification Process
 
-Use the Playwright MCP server to visually verify each use case after implementation.
+Use the Playwright MCP server to visually verify **every view** after implementation.
+
+### When to Verify
+
+- After implementing a use case
+- After changing styles, theme, or layout
+- After any change that affects routing/rendering
+
+### Default Browser Resolution
+
+Unless the use case specifies a particular resolution or size, use **1920x1080** as the default browser resolution for all visual verification.
 
 ### Steps
 
 1. **Ensure the application is running**
-2. **Navigate to the route** — open the page defined in the use case's UI/Routes section
+2. **Navigate to every route** defined in the use case's UI/Routes section
 3. **Walk through the main flow** — perform each step from the use case's Main Flow
 4. **Take screenshots** — capture the page state at key interaction points
 5. **Check visual appearance:**
@@ -24,7 +34,43 @@ Use the Playwright MCP server to visually verify each use case after implementat
 
 ---
 
-## 2. Per-Use-Case Verification Checklist
+## 2. Automated Testing
+
+Every use case must have UI tests before it is considered implemented. See `architecture.md` § Testing for tool setup and which test type to use per view type.
+
+### Coverage Requirements
+
+- Each acceptance criterion should be covered by at least one test
+- Business rules must have dedicated tests (especially edge cases like limits, validation, and error handling)
+- Tests must pass (`./mvnw test`) before the use case status is set to **Implemented**
+
+### How to Write Tests
+
+#### Browserless Tests (Vaadin Flow views)
+
+- Tests live in `src/test/java/`, mirroring the main package structure
+- Extend `SpringBrowserlessTest`, annotate with `@SpringBootTest`
+- Use `@WithMockUser(roles = "ADMIN")` for admin views
+- Use `@WithAnonymousUser` for access control tests
+- Use `navigate(ViewClass.class)` to render views
+- Use `$(ComponentClass.class)` to query components, `test(component)` to interact
+
+#### React View Tests (Vitest)
+
+- Tests live in `src/test/frontend/`, mirroring the view structure
+- Mock `@BrowserCallable` endpoint calls
+- Test component rendering, user interactions, and navigation
+- Run via `npx vitest run`
+
+### Naming Conventions
+
+- **Test class**: `[FeatureName]Test.java` or `[FeatureName].test.tsx` (e.g., `BrowseMoviesTest`, `BuyTickets.test.tsx`)
+- **Test methods**: descriptive names that map to acceptance criteria or business rules (e.g., `onlyItemsWithFutureEventsAreDisplayed`, `maximumSixItemsPerTransaction`)
+- **Structure**: one test class per use case, with individual test methods for each acceptance criterion and business rule edge case
+
+---
+
+## 3. Per-Use-Case Verification Checklist
 
 > Copy this section for each use case. Name it: **UC-[NNN]: [Feature Title]**
 
@@ -33,6 +79,12 @@ Use the Playwright MCP server to visually verify each use case after implementat
 **Use case spec:** [`use-case-NNN-name.md`](use-cases/use-case-NNN-name.md)
 **Verified by:** [Name/Agent]
 **Date:** [YYYY-MM-DD]
+
+#### Automated Tests
+
+- [ ] Test class exists and all tests pass (`./mvnw test -Dtest=ClassName`)
+- [ ] Acceptance criteria covered by tests
+- [ ] Business rule edge cases tested
 
 #### Functional
 

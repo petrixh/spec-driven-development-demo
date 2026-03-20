@@ -22,3 +22,4 @@ Status lifecycle: **Draft** → **Approved** → **Implemented**
 3. **Specify features** — Copy `use-cases/use-case-template.md` once per feature.
 4. **Implement** — Build each use case, referencing its spec for acceptance criteria.
 5. **Verify** — Follow `verification.md` checklists for each implemented use case.
+6. **Write Tests** — Write UI tests covering acceptance criteria and business rules. Tests must pass before marking as Implemented.
