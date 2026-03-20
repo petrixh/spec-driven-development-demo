@@ -22,6 +22,7 @@
 |----|------|
 | BR-01 | Only movies with at least one future show are displayed |
 | BR-02 | Movies are sorted alphabetically by title |
+| BR-03 | Poster images served via `/api/posters/` must use `Cache-Control: no-cache` with `ETag` so browsers cache but revalidate every request (304 if unchanged) |
 
 ---
 
