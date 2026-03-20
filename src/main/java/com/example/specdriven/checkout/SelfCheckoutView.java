@@ -47,6 +47,11 @@ public class SelfCheckoutView extends VerticalLayout {
     final Button exitEmployeeModeButton;
     final Button callEmployeeButton;
 
+    // Printer components
+    final Button connectPrinterButton;
+    final Span printerStatus;
+    boolean printerConnected = false;
+
     public SelfCheckoutView(CheckoutService checkoutService) {
         this.checkoutService = checkoutService;
 
@@ -120,6 +125,16 @@ public class SelfCheckoutView extends VerticalLayout {
         exitEmployeeModeButton.addClassName("exit-employee-button");
         exitEmployeeModeButton.setVisible(false);
 
+        connectPrinterButton = new Button("Connect Printer", e -> connectPrinter());
+        connectPrinterButton.addClassName("connect-printer-button");
+        connectPrinterButton.getStyle().set("background-color", "#1565C0");
+        connectPrinterButton.getStyle().set("color", "white");
+        connectPrinterButton.setVisible(false);
+
+        printerStatus = new Span("Printer: Not connected");
+        printerStatus.addClassName("printer-status");
+        printerStatus.setVisible(false);
+
         callEmployeeButton = new Button("Call Employee", e -> openEmployeeCodeDialog());
         callEmployeeButton.addClassName("call-employee-button");
         callEmployeeButton.getStyle().set("background-color", "#F57C00");
@@ -127,6 +142,7 @@ public class SelfCheckoutView extends VerticalLayout {
 
         VerticalLayout actionPanel = new VerticalLayout(
                 totalSection, payButton, paidByCashButton, selectCustomerButton,
+                connectPrinterButton, printerStatus,
                 callEmployeeButton, exitEmployeeModeButton
         );
         actionPanel.setAlignItems(FlexComponent.Alignment.STRETCH);
@@ -264,6 +280,8 @@ public class SelfCheckoutView extends VerticalLayout {
         paidByCashButton.setVisible(true);
         selectCustomerButton.setVisible(true);
         exitEmployeeModeButton.setVisible(true);
+        connectPrinterButton.setVisible(true);
+        printerStatus.setVisible(true);
         callEmployeeButton.setVisible(false);
         updateButtonStates();
         barcodeInput.focus();
@@ -275,6 +293,8 @@ public class SelfCheckoutView extends VerticalLayout {
         paidByCashButton.setVisible(false);
         selectCustomerButton.setVisible(false);
         exitEmployeeModeButton.setVisible(false);
+        connectPrinterButton.setVisible(false);
+        printerStatus.setVisible(false);
         callEmployeeButton.setVisible(true);
         barcodeInput.focus();
     }
@@ -288,6 +308,10 @@ public class SelfCheckoutView extends VerticalLayout {
     }
 
     private void showCashConfirmation() {
+        if (printerConnected) {
+            printReceipt(buildReceiptText("Cash"));
+        }
+
         Dialog confirmDialog = new Dialog();
         confirmDialog.setHeaderTitle("Transaction Complete");
         confirmDialog.setCloseOnOutsideClick(false);
@@ -296,7 +320,7 @@ public class SelfCheckoutView extends VerticalLayout {
         Span message = new Span("Cash payment received. Transaction complete.");
         message.addClassName("confirmation-message");
 
-        Span receiptNote = new Span("No receipt can be printed.");
+        Span receiptNote = new Span(printerConnected ? "Receipt printed." : "No receipt can be printed.");
         receiptNote.addClassName("receipt-note");
 
         Button doneButton = new Button("Done", e -> {
@@ -362,6 +386,96 @@ public class SelfCheckoutView extends VerticalLayout {
         dialog.open();
     }
 
+    // --- Printer ---
+
+    private void connectPrinter() {
+        getElement().executeJs(
+            "if (!navigator.bluetooth) { " +
+            "  this.$server.onPrinterError('Web Bluetooth is not supported in this browser.'); " +
+            "  return; " +
+            "} " +
+            "navigator.bluetooth.requestDevice({ " +
+            "  filters: [{ services: ['000018f0-0000-1000-8000-00805f9b34fb'] }], " +
+            "  acceptAllDevices: false " +
+            "}).catch(() => " +
+            "  navigator.bluetooth.requestDevice({ acceptAllDevices: true }) " +
+            ").then(device => { " +
+            "  window._printerDevice = device; " +
+            "  return device.gatt.connect(); " +
+            "}).then(server => { " +
+            "  window._printerServer = server; " +
+            "  return server.getPrimaryService('000018f0-0000-1000-8000-00805f9b34fb'); " +
+            "}).then(service => { " +
+            "  return service.getCharacteristic('00002af1-0000-1000-8000-00805f9b34fb'); " +
+            "}).then(characteristic => { " +
+            "  window._printerCharacteristic = characteristic; " +
+            "  this.$server.onPrinterConnected(); " +
+            "}).catch(err => { " +
+            "  this.$server.onPrinterError(err.message || 'Failed to connect'); " +
+            "});"
+        );
+    }
+
+    @com.vaadin.flow.component.ClientCallable
+    public void onPrinterConnected() {
+        printerConnected = true;
+        printerStatus.setText("Printer: Connected");
+        printerStatus.getStyle().set("color", "#2E7D32");
+        Notification.show("Printer connected", 3000, Notification.Position.MIDDLE);
+    }
+
+    @com.vaadin.flow.component.ClientCallable
+    public void onPrinterError(String message) {
+        Notification notification = Notification.show("Printer: " + message, 5000, Notification.Position.MIDDLE);
+        notification.addThemeVariants(NotificationVariant.LUMO_ERROR);
+    }
+
+    private void printReceipt(String receiptText) {
+        if (!printerConnected) {
+            return;
+        }
+        getElement().executeJs(
+            "if (window._printerCharacteristic) { " +
+            "  const encoder = new TextEncoder(); " +
+            "  const data = encoder.encode($0 + '\\n\\n\\n'); " +
+            "  const chunkSize = 100; " +
+            "  async function sendChunks() { " +
+            "    for (let i = 0; i < data.length; i += chunkSize) { " +
+            "      const chunk = data.slice(i, i + chunkSize); " +
+            "      await window._printerCharacteristic.writeValue(chunk); " +
+            "    } " +
+            "  } " +
+            "  sendChunks().catch(err => console.error('Print failed:', err)); " +
+            "}",
+            receiptText
+        );
+    }
+
+    private String buildReceiptText(String paymentMethod) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("================================\n");
+        sb.append("        BuyBuy Receipt\n");
+        sb.append("================================\n\n");
+
+        for (TransactionItem item : items) {
+            sb.append(String.format("%-20s x%d\n", item.getProduct().getName(), item.getQuantity()));
+            sb.append(String.format("%28s\n", formatPrice(item.getLineTotal())));
+        }
+
+        sb.append("--------------------------------\n");
+        java.math.BigDecimal total = items.stream()
+                .map(TransactionItem::getLineTotal)
+                .reduce(java.math.BigDecimal.ZERO, java.math.BigDecimal::add);
+        sb.append(String.format("TOTAL: %21s\n", formatPrice(total)));
+        sb.append(String.format("Payment: %19s\n", paymentMethod));
+        sb.append(String.format("Date: %22s\n", java.time.LocalDateTime.now()
+                .format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))));
+        sb.append("================================\n");
+        sb.append("      Thank you!\n");
+
+        return sb.toString();
+    }
+
     // --- Payment Dialog (customer self-pay) ---
 
     private void openPaymentDialog() {
@@ -423,6 +537,10 @@ public class SelfCheckoutView extends VerticalLayout {
     }
 
     private void showConfirmation(Customer customer) {
+        if (printerConnected) {
+            printReceipt(buildReceiptText("Card"));
+        }
+
         Dialog confirmDialog = new Dialog();
         confirmDialog.setHeaderTitle("Transaction Complete");
         confirmDialog.setCloseOnOutsideClick(false);
@@ -432,7 +550,7 @@ public class SelfCheckoutView extends VerticalLayout {
         Span message = new Span("Thank you, " + customer.getName() + "! Your purchase is complete.");
         message.addClassName("confirmation-message");
 
-        Span receiptNote = new Span("No receipt can be printed.");
+        Span receiptNote = new Span(printerConnected ? "Receipt printed." : "No receipt can be printed.");
         receiptNote.addClassName("receipt-note");
 
         Button doneButton = new Button("Done", e -> {

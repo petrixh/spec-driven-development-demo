@@ -118,3 +118,15 @@
     min-height: 48px;
     cursor: pointer;
 }
+
+.connect-printer-button {
+    min-height: 48px;
+    font-size: var(--aura-font-size-l);
+    cursor: pointer;
+}
+
+.printer-status {
+    text-align: center;
+    font-size: var(--aura-font-size-s);
+    color: var(--vaadin-text-color-secondary);
+}
