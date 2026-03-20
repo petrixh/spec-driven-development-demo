@@ -1,7 +1,0 @@
-MovieBrowserEndpoint.ts
-com/example/specdriven/catalog/application/MovieDetailsDto.ts
-com/example/specdriven/catalog/application/MovieCardDto.ts
-connect-client.default.ts
-endpoints.ts
-com/example/specdriven/catalog/application/MovieDetailsDtoModel.ts
-com/example/specdriven/catalog/application/MovieCardDtoModel.ts
