@@ -51,7 +51,7 @@
 
 ## 6. Responsive Behavior
 
-- [Breakpoints — e.g., mobile < 640px, tablet < 1024px, desktop >= 1024px]
-- [Layout changes at breakpoints]
-- [Components that adapt — e.g., Grid columns, navigation]
+- **Mobile** (< 640px): Single column, stacked layouts, full-width cards
+- **Tablet** (640–1024px): Two-column grid, side-by-side content
+- **Desktop** (> 1024px): Multi-column grid, admin grid+form side by side
 
