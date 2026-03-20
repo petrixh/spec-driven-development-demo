@@ -96,3 +96,25 @@
     font-style: italic;
     text-align: center;
 }
+
+/* Employee Mode */
+.employee-badge {
+    background-color: #1565C0;
+    color: white;
+    padding: 4px 12px;
+    border-radius: var(--vaadin-radius-m);
+    font-weight: bold;
+    font-size: var(--aura-font-size-s);
+}
+
+.paid-by-cash-button,
+.select-customer-button {
+    min-height: 48px;
+    font-size: var(--aura-font-size-l);
+    cursor: pointer;
+}
+
+.exit-employee-button {
+    min-height: 48px;
+    cursor: pointer;
+}

@@ -24,6 +24,8 @@ import java.util.Optional;
 @Route("")
 public class SelfCheckoutView extends VerticalLayout {
 
+    static final String EMPLOYEE_CODE = "112233";
+
     private final CheckoutService checkoutService;
 
     final List<TransactionItem> items = new ArrayList<>();
@@ -34,6 +36,14 @@ public class SelfCheckoutView extends VerticalLayout {
     final Button payButton;
     final TextField barcodeInput;
     boolean paymentMode = false;
+    boolean employeeMode = false;
+
+    // Employee mode components
+    final Span employeeBadge;
+    final Button paidByCashButton;
+    final Button selectCustomerButton;
+    final Button exitEmployeeModeButton;
+    final Button callEmployeeButton;
 
     public SelfCheckoutView(CheckoutService checkoutService) {
         this.checkoutService = checkoutService;
@@ -43,11 +53,19 @@ public class SelfCheckoutView extends VerticalLayout {
         setSpacing(false);
         addClassName("checkout-view");
 
-        // Header
+        // Header with employee mode badge
         H2 header = new H2("BuyBuy Self-Checkout");
         header.addClassName("checkout-header");
 
-        // Item grid - left/main area
+        employeeBadge = new Span("Employee Mode");
+        employeeBadge.addClassName("employee-badge");
+        employeeBadge.setVisible(false);
+
+        HorizontalLayout headerRow = new HorizontalLayout(header, employeeBadge);
+        headerRow.setAlignItems(FlexComponent.Alignment.CENTER);
+        headerRow.setWidthFull();
+
+        // Item grid
         itemGrid = new Grid<>();
         itemGrid.addColumn(item -> item.getProduct().getName())
                 .setHeader("Product")
@@ -65,7 +83,7 @@ public class SelfCheckoutView extends VerticalLayout {
         itemGrid.addClassName("item-grid");
         itemGrid.setSizeFull();
 
-        // Right panel - total and actions
+        // Right panel
         totalLabel = new Span("€0.00");
         totalLabel.addClassName("total-price");
 
@@ -83,23 +101,43 @@ public class SelfCheckoutView extends VerticalLayout {
         payButton.getStyle().set("--vaadin-button-primary-background", "#2E7D32");
         payButton.setEnabled(false);
 
-        Button callEmployeeButton = new Button("Call Employee");
+        // Employee mode buttons (hidden by default)
+        paidByCashButton = new Button("Paid by Cash", e -> handleCashPayment());
+        paidByCashButton.addClassName("paid-by-cash-button");
+        paidByCashButton.getStyle().set("background-color", "#1565C0");
+        paidByCashButton.getStyle().set("color", "white");
+        paidByCashButton.setVisible(false);
+
+        selectCustomerButton = new Button("Select Customer", e -> openSelectCustomerDialog());
+        selectCustomerButton.addClassName("select-customer-button");
+        selectCustomerButton.getStyle().set("background-color", "#1565C0");
+        selectCustomerButton.getStyle().set("color", "white");
+        selectCustomerButton.setVisible(false);
+
+        exitEmployeeModeButton = new Button("Exit Employee Mode", e -> exitEmployeeMode());
+        exitEmployeeModeButton.addClassName("exit-employee-button");
+        exitEmployeeModeButton.setVisible(false);
+
+        callEmployeeButton = new Button("Call Employee", e -> openEmployeeCodeDialog());
         callEmployeeButton.addClassName("call-employee-button");
         callEmployeeButton.getStyle().set("background-color", "#F57C00");
         callEmployeeButton.getStyle().set("color", "white");
 
-        VerticalLayout actionPanel = new VerticalLayout(totalSection, payButton, callEmployeeButton);
+        VerticalLayout actionPanel = new VerticalLayout(
+                totalSection, payButton, paidByCashButton, selectCustomerButton,
+                callEmployeeButton, exitEmployeeModeButton
+        );
         actionPanel.setAlignItems(FlexComponent.Alignment.STRETCH);
         actionPanel.setWidth("300px");
         actionPanel.addClassName("action-panel");
 
-        // Main content layout
+        // Main content
         HorizontalLayout content = new HorizontalLayout(itemGrid, actionPanel);
         content.setSizeFull();
         content.setFlexGrow(1, itemGrid);
         content.addClassName("checkout-content");
 
-        // Hidden barcode input
+        // Barcode input
         barcodeInput = new TextField();
         barcodeInput.addClassName("barcode-input");
         barcodeInput.setPlaceholder("Scan barcode...");
@@ -107,7 +145,7 @@ public class SelfCheckoutView extends VerticalLayout {
         barcodeInput.addKeyPressListener(Key.ENTER, e -> handleBarcodeScan());
         barcodeInput.setAutofocus(true);
 
-        add(header, barcodeInput, content);
+        add(headerRow, barcodeInput, content);
         setFlexGrow(1, content);
     }
 
@@ -120,7 +158,6 @@ public class SelfCheckoutView extends VerticalLayout {
         }
 
         if (paymentMode) {
-            // Ignore product scans during payment mode
             return;
         }
 
@@ -134,7 +171,6 @@ public class SelfCheckoutView extends VerticalLayout {
 
         Product product = productOpt.get();
 
-        // Check if product already in list - increment quantity (BR-02)
         Optional<TransactionItem> existingItem = items.stream()
                 .filter(item -> item.getProduct().getId().equals(product.getId()))
                 .findFirst();
@@ -149,7 +185,7 @@ public class SelfCheckoutView extends VerticalLayout {
 
         itemGrid.getDataProvider().refreshAll();
         updateTotal();
-        payButton.setEnabled(true);
+        updateButtonStates();
         barcodeInput.focus();
     }
 
@@ -159,6 +195,172 @@ public class SelfCheckoutView extends VerticalLayout {
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
         totalLabel.setText(formatPrice(total));
     }
+
+    private void updateButtonStates() {
+        boolean hasItems = !items.isEmpty();
+        payButton.setEnabled(hasItems);
+        paidByCashButton.setEnabled(hasItems);
+        selectCustomerButton.setEnabled(hasItems);
+    }
+
+    // --- Employee Mode ---
+
+    void openEmployeeCodeDialog() {
+        Dialog dialog = new Dialog();
+        dialog.setHeaderTitle("Employee Authentication");
+        dialog.addClassName("employee-code-dialog");
+
+        Span prompt = new Span("Enter employee code");
+        TextField codeInput = new TextField();
+        codeInput.setPlaceholder("Code...");
+        codeInput.setWidthFull();
+        codeInput.setAutofocus(true);
+
+        Span errorMsg = new Span();
+        errorMsg.addClassName("payment-error");
+        errorMsg.setVisible(false);
+
+        codeInput.addKeyPressListener(Key.ENTER, e -> {
+            String code = codeInput.getValue().trim();
+            if (EMPLOYEE_CODE.equals(code)) {
+                dialog.close();
+                enterEmployeeMode();
+            } else {
+                errorMsg.setText("Invalid code. Try again.");
+                errorMsg.setVisible(true);
+                codeInput.clear();
+                codeInput.focus();
+            }
+        });
+
+        Button submitButton = new Button("Submit", e -> {
+            String code = codeInput.getValue().trim();
+            if (EMPLOYEE_CODE.equals(code)) {
+                dialog.close();
+                enterEmployeeMode();
+            } else {
+                errorMsg.setText("Invalid code. Try again.");
+                errorMsg.setVisible(true);
+                codeInput.clear();
+                codeInput.focus();
+            }
+        });
+
+        Button cancelButton = new Button("Cancel", e -> dialog.close());
+
+        VerticalLayout dialogContent = new VerticalLayout(prompt, codeInput, errorMsg);
+        dialogContent.setAlignItems(FlexComponent.Alignment.CENTER);
+        dialog.add(dialogContent);
+        dialog.getFooter().add(cancelButton, submitButton);
+
+        dialog.open();
+    }
+
+    void enterEmployeeMode() {
+        employeeMode = true;
+        employeeBadge.setVisible(true);
+        paidByCashButton.setVisible(true);
+        selectCustomerButton.setVisible(true);
+        exitEmployeeModeButton.setVisible(true);
+        callEmployeeButton.setVisible(false);
+        updateButtonStates();
+        barcodeInput.focus();
+    }
+
+    void exitEmployeeMode() {
+        employeeMode = false;
+        employeeBadge.setVisible(false);
+        paidByCashButton.setVisible(false);
+        selectCustomerButton.setVisible(false);
+        exitEmployeeModeButton.setVisible(false);
+        callEmployeeButton.setVisible(true);
+        barcodeInput.focus();
+    }
+
+    private void handleCashPayment() {
+        if (items.isEmpty()) {
+            return;
+        }
+        checkoutService.completeCashTransaction(currentTransaction);
+        showCashConfirmation();
+    }
+
+    private void showCashConfirmation() {
+        Dialog confirmDialog = new Dialog();
+        confirmDialog.setHeaderTitle("Transaction Complete");
+        confirmDialog.setCloseOnOutsideClick(false);
+        confirmDialog.setCloseOnEsc(false);
+
+        Span message = new Span("Cash payment received. Transaction complete.");
+        message.addClassName("confirmation-message");
+
+        Span receiptNote = new Span("No receipt can be printed.");
+        receiptNote.addClassName("receipt-note");
+
+        Button doneButton = new Button("Done", e -> {
+            confirmDialog.close();
+            exitEmployeeMode();
+            resetView();
+        });
+        doneButton.addThemeVariants(ButtonVariant.AURA_PRIMARY);
+
+        VerticalLayout content = new VerticalLayout(message, receiptNote);
+        content.setAlignItems(FlexComponent.Alignment.CENTER);
+        confirmDialog.add(content);
+        confirmDialog.getFooter().add(doneButton);
+
+        confirmDialog.open();
+    }
+
+    // --- Select Customer Dialog ---
+
+    private void openSelectCustomerDialog() {
+        if (items.isEmpty()) {
+            return;
+        }
+
+        Dialog dialog = new Dialog();
+        dialog.setHeaderTitle("Select Customer");
+        dialog.setWidth("500px");
+
+        TextField searchField = new TextField();
+        searchField.setPlaceholder("Search by name or customer number...");
+        searchField.setWidthFull();
+
+        Grid<Customer> customerGrid = new Grid<>();
+        customerGrid.addColumn(Customer::getName).setHeader("Name").setFlexGrow(2);
+        customerGrid.addColumn(Customer::getCustomerNumber).setHeader("Card Number").setFlexGrow(1);
+        customerGrid.setItems(checkoutService.findCustomersBySearch(""));
+        customerGrid.setHeight("300px");
+
+        searchField.addValueChangeListener(e ->
+                customerGrid.setItems(checkoutService.findCustomersBySearch(e.getValue())));
+
+        Button confirmButton = new Button("Confirm", e -> {
+            customerGrid.getSelectedItems().stream().findFirst().ifPresent(customer -> {
+                checkoutService.completeTransaction(currentTransaction, customer);
+                dialog.close();
+                showConfirmation(customer);
+            });
+        });
+        confirmButton.addThemeVariants(ButtonVariant.AURA_PRIMARY);
+        confirmButton.setEnabled(false);
+
+        customerGrid.addSelectionListener(e ->
+                confirmButton.setEnabled(!e.getAllSelectedItems().isEmpty()));
+
+        Button cancelButton = new Button("Cancel", e -> dialog.close());
+
+        VerticalLayout dialogContent = new VerticalLayout(searchField, customerGrid);
+        dialogContent.setSpacing(true);
+        dialogContent.setPadding(false);
+        dialog.add(dialogContent);
+        dialog.getFooter().add(cancelButton, confirmButton);
+
+        dialog.open();
+    }
+
+    // --- Payment Dialog (customer self-pay) ---
 
     private void openPaymentDialog() {
         paymentMode = true;
@@ -197,7 +399,6 @@ public class SelfCheckoutView extends VerticalLayout {
                 return;
             }
 
-            // Complete transaction (BR-06)
             checkoutService.completeTransaction(currentTransaction, customerOpt.get());
             dialog.close();
             paymentMode = false;
@@ -234,6 +435,9 @@ public class SelfCheckoutView extends VerticalLayout {
 
         Button doneButton = new Button("Done", e -> {
             confirmDialog.close();
+            if (employeeMode) {
+                exitEmployeeMode();
+            }
             resetView();
         });
         doneButton.addThemeVariants(ButtonVariant.AURA_PRIMARY);
@@ -246,12 +450,12 @@ public class SelfCheckoutView extends VerticalLayout {
         confirmDialog.open();
     }
 
-    private void resetView() {
+    void resetView() {
         items.clear();
         currentTransaction = new Transaction();
         itemGrid.getDataProvider().refreshAll();
         updateTotal();
-        payButton.setEnabled(false);
+        updateButtonStates();
         barcodeInput.clear();
         barcodeInput.focus();
     }

@@ -3,8 +3,8 @@ package com.example.specdriven.checkout;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -37,5 +37,20 @@ public class CheckoutService {
         transaction.setStatus(Transaction.Status.COMPLETED);
         transaction.setCompletedAt(LocalDateTime.now());
         return transactionRepository.save(transaction);
+    }
+
+    @Transactional
+    public Transaction completeCashTransaction(Transaction transaction) {
+        transaction.setPaymentMethod(Transaction.PaymentMethod.CASH);
+        transaction.setStatus(Transaction.Status.COMPLETED);
+        transaction.setCompletedAt(LocalDateTime.now());
+        return transactionRepository.save(transaction);
+    }
+
+    public List<Customer> findCustomersBySearch(String search) {
+        if (search == null || search.isBlank()) {
+            return customerRepository.findAll();
+        }
+        return customerRepository.findByNameContainingIgnoreCaseOrCustomerNumberContainingIgnoreCase(search, search);
     }
 }
