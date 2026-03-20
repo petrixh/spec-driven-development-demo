@@ -12,6 +12,20 @@ export type MovieDetails = {
   description: string;
   durationMinutes: number;
   posterUrl: string;
+  showDates: ShowDateGroup[];
+};
+
+export type ShowTime = {
+  showId: number;
+  time: string;
+  screeningRoomName: string;
+  availableSeats: number;
+  soldOut: boolean;
+};
+
+export type ShowDateGroup = {
+  date: string;
+  showtimes: ShowTime[];
 };
 
 export async function fetchBrowseableMovies(): Promise<MovieCard[]> {
@@ -42,5 +56,6 @@ export async function fetchMovieDetails(movieId: number): Promise<MovieDetails> 
     description: movie.description,
     durationMinutes: movie.durationMinutes,
     posterUrl: movie.posterUrl,
+    showDates: movie.showDates,
   };
 }

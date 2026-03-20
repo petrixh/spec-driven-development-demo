@@ -13,6 +13,8 @@ import com.example.specdriven.catalog.domain.ScreeningRoom;
 import com.example.specdriven.catalog.domain.ScreeningRoomRepository;
 import com.example.specdriven.catalog.domain.Show;
 import com.example.specdriven.catalog.domain.ShowRepository;
+import com.example.specdriven.catalog.domain.Ticket;
+import com.example.specdriven.catalog.domain.TicketRepository;
 
 @Component
 public class DataInitializer implements CommandLineRunner {
@@ -20,17 +22,20 @@ public class DataInitializer implements CommandLineRunner {
     private final MovieRepository movieRepository;
     private final ScreeningRoomRepository screeningRoomRepository;
     private final ShowRepository showRepository;
+    private final TicketRepository ticketRepository;
     private final Clock clock;
 
     public DataInitializer(
             MovieRepository movieRepository,
             ScreeningRoomRepository screeningRoomRepository,
             ShowRepository showRepository,
+            TicketRepository ticketRepository,
             Clock clock
     ) {
         this.movieRepository = movieRepository;
         this.screeningRoomRepository = screeningRoomRepository;
         this.showRepository = showRepository;
+        this.ticketRepository = ticketRepository;
         this.clock = clock;
     }
 
@@ -67,7 +72,29 @@ public class DataInitializer implements CommandLineRunner {
         for (int index = 0; index < movies.size(); index++) {
             Movie movie = movies.get(index);
             ScreeningRoom room = rooms.get(index % rooms.size());
-            showRepository.save(new Show(baseTime.plusDays(index % 7L).plusHours(index * 2L), movie, room));
+            Show firstShow = showRepository.save(new Show(baseTime.plusDays(index % 3L).plusHours(index * 2L), movie, room));
+            showRepository.save(new Show(
+                    baseTime.plusDays((index % 3L) + 1).plusHours(index * 2L + 3),
+                    movie,
+                    rooms.get((index + 1) % rooms.size())));
+
+            if (index == 0) {
+                seedSoldOutTickets(firstShow, room, baseTime.minusHours(1));
+            }
+        }
+    }
+
+    private void seedSoldOutTickets(Show show, ScreeningRoom room, LocalDateTime purchasedAt) {
+        for (int row = 1; row <= room.getRows(); row++) {
+            for (int seat = 1; seat <= room.getSeatsPerRow(); seat++) {
+                ticketRepository.save(new Ticket(
+                        row,
+                        seat,
+                        "Sold Seat " + row + "-" + seat,
+                        "sold+" + row + "-" + seat + "@example.com",
+                        purchasedAt,
+                        show));
+            }
         }
     }
 }

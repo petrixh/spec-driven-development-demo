@@ -17,6 +17,27 @@ describe('MovieDetailView', () => {
       description: 'A suburban mystery sparked by one very suspicious flowerbed.',
       durationMinutes: 109,
       posterUrl: '/posters/gardening-incident.png',
+      showDates: [
+        {
+          date: '2026-03-21',
+          showtimes: [
+            {
+              showId: 11,
+              time: '18:30',
+              screeningRoomName: 'Room 1',
+              availableSeats: 12,
+              soldOut: false,
+            },
+            {
+              showId: 12,
+              time: '21:00',
+              screeningRoomName: 'Room 2',
+              availableSeats: 0,
+              soldOut: true,
+            },
+          ],
+        },
+      ],
     });
 
     render(
@@ -32,5 +53,8 @@ describe('MovieDetailView', () => {
     );
     expect(fetchMovieDetails).toHaveBeenCalledWith(3);
     expect(screen.getByText('109 min')).toBeInTheDocument();
+    expect(screen.getByText('Saturday, Mar 21')).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /18:30/i })).toHaveAttribute('href', '/show/11');
+    expect(screen.getByText('Sold out')).toBeInTheDocument();
   });
 });

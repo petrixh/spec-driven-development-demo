@@ -17,6 +17,8 @@ import com.example.specdriven.catalog.domain.ScreeningRoom;
 import com.example.specdriven.catalog.domain.ScreeningRoomRepository;
 import com.example.specdriven.catalog.domain.Show;
 import com.example.specdriven.catalog.domain.ShowRepository;
+import com.example.specdriven.catalog.domain.Ticket;
+import com.example.specdriven.catalog.domain.TicketRepository;
 
 @SpringBootTest
 @Transactional
@@ -34,8 +36,12 @@ class MovieBrowserEndpointTest {
     @Autowired
     private ScreeningRoomRepository screeningRoomRepository;
 
+    @Autowired
+    private TicketRepository ticketRepository;
+
     @BeforeEach
     void setUp() {
+        ticketRepository.deleteAll();
         showRepository.deleteAll();
         movieRepository.deleteAll();
         screeningRoomRepository.deleteAll();
@@ -71,5 +77,41 @@ class MovieBrowserEndpointTest {
         assertThat(details.title()).isEqualTo(movie.title());
         assertThat(details.posterUrl()).startsWith("/posters/");
         assertThat(details.durationMinutes()).isPositive();
+        assertThat(details.showDates()).isNotEmpty();
+    }
+
+    @Test
+    void returnsGroupedChronologicalShowtimesWithAvailabilityAndSoldOutState() {
+        ticketRepository.deleteAll();
+        showRepository.deleteAll();
+        movieRepository.deleteAll();
+        screeningRoomRepository.deleteAll();
+
+        ScreeningRoom roomOne = screeningRoomRepository.save(new ScreeningRoom("Room 1", 2, 2));
+        ScreeningRoom roomTwo = screeningRoomRepository.save(new ScreeningRoom("Room 2", 1, 3));
+        Movie movie = movieRepository.save(new Movie("Grouped Movie", "For showtime grouping", 110, "ai-developer-2.png"));
+
+        Show firstShow = showRepository.save(new Show(LocalDateTime.now().plusDays(1).withHour(12).withMinute(0), movie, roomOne));
+        Show soldOutShow = showRepository.save(new Show(LocalDateTime.now().plusDays(1).withHour(18).withMinute(30), movie, roomOne));
+        Show nextDayShow = showRepository.save(new Show(LocalDateTime.now().plusDays(2).withHour(10).withMinute(15), movie, roomTwo));
+        showRepository.save(new Show(LocalDateTime.now().minusHours(2), movie, roomTwo));
+
+        ticketRepository.saveAll(List.of(
+                new Ticket(1, 1, "A", "a@example.com", LocalDateTime.now(), firstShow),
+                new Ticket(1, 1, "B", "b@example.com", LocalDateTime.now(), soldOutShow),
+                new Ticket(1, 2, "C", "c@example.com", LocalDateTime.now(), soldOutShow),
+                new Ticket(2, 1, "D", "d@example.com", LocalDateTime.now(), soldOutShow),
+                new Ticket(2, 2, "E", "e@example.com", LocalDateTime.now(), soldOutShow)));
+
+        MovieDetailsDto details = endpoint.getMovieDetails(movie.getId());
+
+        assertThat(details.showDates()).hasSize(2);
+        assertThat(details.showDates().getFirst().date()).isLessThan(details.showDates().get(1).date());
+        assertThat(details.showDates().getFirst().showtimes())
+                .extracting(ShowTimeDto::time)
+                .containsExactly("12:00", "18:30");
+        assertThat(details.showDates().getFirst().showtimes().getFirst().availableSeats()).isEqualTo(3);
+        assertThat(details.showDates().getFirst().showtimes().get(1).soldOut()).isTrue();
+        assertThat(details.showDates().get(1).showtimes().getFirst().screeningRoomName()).isEqualTo("Room 2");
     }
 }

@@ -150,6 +150,78 @@ a {
   gap: 16px;
 }
 
+.showtime-section {
+  display: grid;
+  gap: 18px;
+  margin-top: 36px;
+}
+
+.showtime-group {
+  display: grid;
+  gap: 12px;
+}
+
+.showtime-group h2 {
+  margin: 0;
+  color: var(--text-primary);
+  font-size: 1.1rem;
+}
+
+.showtime-list {
+  display: grid;
+  gap: 12px;
+}
+
+.showtime-card {
+  display: grid;
+  gap: 10px;
+  padding: 16px 18px;
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), transparent), var(--surface-card);
+  color: var(--text-primary);
+  transition: transform 180ms ease, border-color 180ms ease;
+}
+
+.showtime-card:hover,
+.showtime-card:focus-visible {
+  transform: translateY(-2px);
+  border-color: rgba(255, 107, 114, 0.45);
+}
+
+.showtime-card.sold-out {
+  opacity: 0.72;
+  border-style: dashed;
+  cursor: not-allowed;
+}
+
+.showtime-primary,
+.showtime-secondary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.showtime-primary strong {
+  font-size: 1.1rem;
+}
+
+.showtime-primary span,
+.showtime-secondary span:first-child {
+  color: var(--text-secondary);
+}
+
+.showtime-status {
+  color: #ffd7d9;
+  font-weight: 700;
+}
+
+.showtime-status.sold-out {
+  color: #ff8a8f;
+}
+
 .back-link {
   color: var(--text-secondary);
   font-weight: 600;
@@ -179,5 +251,9 @@ a {
   .detail-layout {
     grid-template-columns: minmax(280px, 420px) minmax(0, 1fr);
     align-items: start;
+  }
+
+  .showtime-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }

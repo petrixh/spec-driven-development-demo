@@ -5,6 +5,7 @@ public record MovieDetailsDto(
         String title,
         String description,
         Integer durationMinutes,
-        String posterUrl
+        String posterUrl,
+        java.util.List<ShowDateGroupDto> showDates
 ) {
 }
