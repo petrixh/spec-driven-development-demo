@@ -22,6 +22,7 @@ import java.math.BigDecimal;
 public class ProductAdminView extends VerticalLayout {
 
     private final ProductService productService;
+    private final OpenFoodFactsService openFoodFactsService;
 
     final Grid<Product> productGrid;
     final TextField barcodeField;
@@ -29,12 +30,15 @@ public class ProductAdminView extends VerticalLayout {
     final NumberField priceField;
     final Button saveButton;
     final Button cancelButton;
+    final Button lookupButton;
     private final Button addButton;
+    private final VerticalLayout formLayout;
 
     private Product editingProduct;
 
-    public ProductAdminView(ProductService productService) {
+    public ProductAdminView(ProductService productService, OpenFoodFactsService openFoodFactsService) {
         this.productService = productService;
+        this.openFoodFactsService = openFoodFactsService;
 
         H2 header = new H2("Product Administration");
 
@@ -65,6 +69,12 @@ public class ProductAdminView extends VerticalLayout {
         priceField.setMin(0.01);
         priceField.setStep(0.01);
 
+        lookupButton = new Button("Lookup", e -> lookupBarcode());
+        HorizontalLayout barcodeRow = new HorizontalLayout(barcodeField, lookupButton);
+        barcodeRow.setAlignItems(Alignment.BASELINE);
+        barcodeRow.setWidthFull();
+        barcodeField.setWidth("100%");
+
         saveButton = new Button("Save", e -> saveProduct());
         saveButton.addThemeVariants(ButtonVariant.AURA_PRIMARY);
 
@@ -75,19 +85,30 @@ public class ProductAdminView extends VerticalLayout {
         addButton = new Button("Add Product", e -> startNewProduct());
         addButton.addThemeVariants(ButtonVariant.AURA_PRIMARY);
 
-        VerticalLayout form = new VerticalLayout(barcodeField, nameField, priceField, formButtons);
-        form.setWidth("400px");
-        form.setPadding(false);
-        form.setVisible(false);
-        form.addClassName("product-form");
+        formLayout = new VerticalLayout(barcodeRow, nameField, priceField, formButtons);
+        formLayout.setWidth("400px");
+        formLayout.setPadding(false);
+        formLayout.setVisible(false);
+        formLayout.addClassName("product-form");
 
-        HorizontalLayout content = new HorizontalLayout(productGrid, form);
+        HorizontalLayout content = new HorizontalLayout(productGrid, formLayout);
         content.setSizeFull();
         content.setFlexGrow(1, productGrid);
 
         add(header, addButton, content);
         setSizeFull();
         refreshGrid();
+    }
+
+    private void lookupBarcode() {
+        String barcode = barcodeField.getValue().trim();
+        if (barcode.isEmpty()) {
+            return;
+        }
+        openFoodFactsService.lookupProductName(barcode).ifPresent(name -> {
+            nameField.setValue(name);
+            Notification.show("Product name found: " + name, 3000, Notification.Position.MIDDLE);
+        });
     }
 
     private void startNewProduct() {
@@ -109,7 +130,7 @@ public class ProductAdminView extends VerticalLayout {
     }
 
     private void showForm(boolean visible) {
-        barcodeField.getParent().ifPresent(p -> ((VerticalLayout) p).setVisible(visible));
+        formLayout.setVisible(visible);
     }
 
     void saveProduct() {
