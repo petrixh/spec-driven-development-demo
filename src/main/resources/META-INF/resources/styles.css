@@ -1,1 +1,98 @@
-/* Add your styles here */
+/* BuyBuy POS - Design System Styles */
+
+.checkout-view {
+    background-color: #FAFAFA;
+    --primary: #2E7D32;
+    --primary-light: #4CAF50;
+    --secondary: #1565C0;
+    --warning: #F57C00;
+    --error: #D32F2F;
+}
+
+.checkout-header {
+    margin: 0 0 var(--vaadin-gap-m) 0;
+    color: var(--primary);
+}
+
+.barcode-input {
+    width: 100%;
+    margin-bottom: var(--vaadin-gap-s);
+}
+
+.checkout-content {
+    gap: var(--vaadin-gap-m);
+}
+
+.item-grid {
+    flex: 1;
+}
+
+.action-panel {
+    background: white;
+    border-radius: var(--vaadin-radius-l);
+    box-shadow: var(--aura-shadow-s);
+    padding: var(--vaadin-padding-l);
+    gap: var(--vaadin-gap-m);
+    align-items: stretch;
+}
+
+.total-caption {
+    font-size: var(--aura-font-size-l);
+    color: var(--vaadin-text-color-secondary);
+    text-align: center;
+}
+
+.total-price {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: var(--primary);
+    text-align: center;
+}
+
+.pay-button {
+    min-height: 48px;
+    font-size: var(--aura-font-size-xl);
+    background-color: var(--primary);
+    color: white;
+    cursor: pointer;
+}
+
+.pay-button:hover:not([disabled]) {
+    background-color: var(--primary-light);
+}
+
+.pay-button[disabled] {
+    opacity: 0.5;
+}
+
+.call-employee-button {
+    min-height: 48px;
+    font-size: var(--aura-font-size-l);
+    background-color: var(--warning);
+    color: white;
+    cursor: pointer;
+}
+
+.payment-prompt {
+    font-size: var(--aura-font-size-xl);
+    font-weight: bold;
+    text-align: center;
+    padding: var(--vaadin-padding-l) 0;
+}
+
+.payment-error {
+    color: var(--error);
+    font-weight: bold;
+}
+
+.confirmation-message {
+    font-size: var(--aura-font-size-xl);
+    text-align: center;
+    padding: var(--vaadin-padding-l) 0;
+}
+
+.receipt-note {
+    color: var(--vaadin-text-color-secondary);
+    font-style: italic;
+    text-align: center;
+}
