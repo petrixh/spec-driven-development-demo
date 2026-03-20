@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
+import com.example.specdriven.admin.LoginView;
 import com.vaadin.flow.spring.security.VaadinSecurityConfigurer;
 
 @Configuration
@@ -17,11 +18,9 @@ public class SecurityConfig {
 
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(VaadinSecurityConfigurer.getDefaultHttpSecurityPermitMatcher()).permitAll()
-                .requestMatchers(VaadinSecurityConfigurer.getDefaultWebSecurityIgnoreMatcher()).permitAll()
-                .requestMatchers("/posters/**", "/styles.css", "/favicon.ico").permitAll()
-                .anyRequest().permitAll());
+        http.with(VaadinSecurityConfigurer.vaadin(), configurer -> {
+            configurer.loginView(LoginView.class);
+        });
         return http.build();
     }
 

@@ -1,0 +1,4 @@
+/* Override grid cell text color — body:color=white from dark cinema theme bleeds in */
+[part~="cell"] {
+  color: var(--lumo-body-text-color, #1a1a1a);
+}

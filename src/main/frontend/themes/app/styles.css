@@ -1,0 +1,10 @@
+/* Theme overrides for Vaadin Flow admin views.
+   The global styles.css sets color:white on body for the dark cinema theme.
+   This restores proper text colors for Vaadin components. */
+:host {
+  --lumo-body-text-color: var(--lumo-primary-text-color, #1a1a1a);
+}
+
+vaadin-grid::part(cell) {
+  color: var(--lumo-body-text-color);
+}
