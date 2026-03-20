@@ -48,4 +48,9 @@ public class Show {
     public ScreeningRoom getScreeningRoom() {
         return screeningRoom;
     }
+
+    public void update(LocalDateTime dateTime, ScreeningRoom screeningRoom) {
+        this.dateTime = dateTime;
+        this.screeningRoom = screeningRoom;
+    }
 }

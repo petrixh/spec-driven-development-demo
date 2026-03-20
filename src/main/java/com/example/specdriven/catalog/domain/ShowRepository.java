@@ -9,5 +9,9 @@ public interface ShowRepository extends JpaRepository<Show, Long> {
 
     long countByMovieId(Long movieId);
 
+    List<Show> findAllByOrderByDateTimeAsc();
+
     List<Show> findAllByMovieIdAndDateTimeAfterOrderByDateTimeAsc(Long movieId, LocalDateTime now);
+
+    List<Show> findAllByScreeningRoomIdOrderByDateTimeAsc(Long screeningRoomId);
 }

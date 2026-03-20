@@ -20,12 +20,21 @@ class AdminRouteSecurityTest {
 
     @Test
     void unauthenticatedUsersAreRedirectedToLogin() throws Exception {
+        assertRedirectsToLogin("/admin/movies");
+    }
+
+    @Test
+    void unauthenticatedUsersAreRedirectedToLoginForShows() throws Exception {
+        assertRedirectsToLogin("/admin/shows");
+    }
+
+    private void assertRedirectsToLogin(String path) throws Exception {
         HttpClient client = HttpClient.newBuilder()
                 .followRedirects(HttpClient.Redirect.NEVER)
                 .build();
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create("http://127.0.0.1:" + port + "/admin/movies"))
+                .uri(URI.create("http://127.0.0.1:" + port + path))
                 .GET()
                 .build();
 

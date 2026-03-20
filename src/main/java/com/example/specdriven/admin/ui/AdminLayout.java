@@ -24,15 +24,18 @@ public class AdminLayout extends AppLayout {
 
         RouterLink dashboard = new RouterLink("Dashboard", AdminDashboardView.class);
         RouterLink movies = new RouterLink("Movies", MovieAdminView.class);
+        RouterLink shows = new RouterLink("Shows", ShowAdminView.class);
         dashboard.getStyle().set("font-weight", "600");
         dashboard.getStyle().set("color", "var(--lumo-body-text-color)");
         movies.getStyle().set("font-weight", "600");
         movies.getStyle().set("color", "var(--lumo-body-text-color)");
+        shows.getStyle().set("font-weight", "600");
+        shows.getStyle().set("color", "var(--lumo-body-text-color)");
 
         Span loggedIn = new Span("Logged in as admin");
         loggedIn.getStyle().set("color", "var(--lumo-secondary-text-color)");
 
-        HorizontalLayout links = new HorizontalLayout(dashboard, movies, loggedIn);
+        HorizontalLayout links = new HorizontalLayout(dashboard, movies, shows, loggedIn);
         links.setAlignItems(Alignment.CENTER);
         links.setJustifyContentMode(JustifyContentMode.BETWEEN);
         links.setWidthFull();
