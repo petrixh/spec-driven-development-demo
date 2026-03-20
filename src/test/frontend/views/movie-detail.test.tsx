@@ -16,7 +16,7 @@ describe('MovieDetailView', () => {
       title: 'The Gardening Incident',
       description: 'A suburban mystery sparked by one very suspicious flowerbed.',
       durationMinutes: 109,
-      posterUrl: '/posters/gardening-incident.png',
+      posterUrl: '/api/posters/gardening-incident.png',
       showDates: [
         {
           date: '2026-03-21',

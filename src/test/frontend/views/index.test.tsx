@@ -15,7 +15,7 @@ describe('HomeView', () => {
         id: 7,
         title: 'AI Developer 2',
         durationMinutes: 126,
-        posterUrl: '/posters/ai-developer-2.png',
+        posterUrl: '/api/posters/ai-developer-2.png',
         hasUpcomingShows: true,
       },
     ]);
@@ -24,7 +24,7 @@ describe('HomeView', () => {
 
     await waitFor(() => expect(screen.getByRole('heading', { name: 'AI Developer 2' })).toBeInTheDocument());
     expect(screen.getByText('126 min')).toBeInTheDocument();
-    expect(screen.getByAltText('AI Developer 2 poster')).toHaveAttribute('src', '/posters/ai-developer-2.png');
+    expect(screen.getByAltText('AI Developer 2 poster')).toHaveAttribute('src', '/api/posters/ai-developer-2.png');
     expect(screen.getByRole('link', { name: /AI Developer 2 poster/i })).toHaveAttribute('href', '/movie/7');
   });
 

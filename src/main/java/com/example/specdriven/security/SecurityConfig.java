@@ -20,7 +20,7 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/", "/movie/**", "/show/**", "/posters/**", "/styles.css", "/favicon.ico",
+                .requestMatchers("/", "/movie/**", "/show/**", "/api/posters/**", "/styles.css", "/favicon.ico",
                         Application.OG_IMAGE_PATH)
                 .permitAll());
         http.with(VaadinSecurityConfigurer.vaadin(), configurer -> configurer.loginView(LoginView.class));

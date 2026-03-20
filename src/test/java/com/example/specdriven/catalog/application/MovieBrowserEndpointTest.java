@@ -75,7 +75,7 @@ class MovieBrowserEndpointTest {
         MovieDetailsDto details = endpoint.getMovieDetails(movie.id());
 
         assertThat(details.title()).isEqualTo(movie.title());
-        assertThat(details.posterUrl()).startsWith("/posters/");
+        assertThat(details.posterUrl()).startsWith("/api/posters/");
         assertThat(details.durationMinutes()).isPositive();
         assertThat(details.showDates()).isNotEmpty();
     }

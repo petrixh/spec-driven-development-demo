@@ -65,7 +65,7 @@ public class MovieBrowseService {
     }
 
     private String posterUrl(String posterFileName) {
-        return posterFileName == null ? "" : "/posters/" + posterFileName;
+        return posterFileName == null ? "" : "/api/posters/" + posterFileName;
     }
 
     private List<ShowDateGroupDto> buildShowDateGroups(long movieId, LocalDateTime now) {
