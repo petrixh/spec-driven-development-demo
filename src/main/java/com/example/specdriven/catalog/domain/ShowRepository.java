@@ -22,5 +22,6 @@ public interface ShowRepository extends JpaRepository<Show, Long> {
             """)
     boolean existsOverlappingShow(Long roomId, Long excludeShowId, LocalDateTime startTime, LocalDateTime endTime);
 
+    @Query("select s from Show s join fetch s.movie join fetch s.screeningRoom order by s.dateTime asc")
     List<Show> findAllByOrderByDateTimeAsc();
 }
