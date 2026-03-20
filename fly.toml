@@ -1,10 +1,14 @@
-# fly.toml app configuration file generated for ai-cinema on 2026-03-19T16:56:48+02:00
+# fly.toml app configuration file generated for ai-cinema-claude on 2026-03-20T14:32:15+02:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
-app = 'ai-cinema'
+app = 'ai-cinema-claude'
 primary_region = 'arn'
+
+[deploy]
+  strategy = 'immediate'
+  ha = false
 
 [build]
 
