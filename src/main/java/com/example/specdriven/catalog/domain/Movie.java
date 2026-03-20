@@ -61,4 +61,11 @@ public class Movie {
     public Set<Show> getShows() {
         return shows;
     }
+
+    public void update(String title, String description, Integer durationMinutes, String posterFileName) {
+        this.title = title;
+        this.description = description;
+        this.durationMinutes = durationMinutes;
+        this.posterFileName = posterFileName;
+    }
 }

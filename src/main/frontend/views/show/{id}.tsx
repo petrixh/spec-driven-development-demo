@@ -190,115 +190,117 @@ export default function ShowSeatSelectionView() {
         }));
 
   return (
-    <main className="page seat-page">
-      {show ? (
-        <a className="back-link" href={`/movie/${show.movieId}`}>
-          Back to Movie
-        </a>
-      ) : null}
+    <div className="app-shell">
+      <main className="page seat-page">
+        {show ? (
+          <a className="back-link" href={`/movie/${show.movieId}`}>
+            Back to Movie
+          </a>
+        ) : null}
 
-      {loading ? <div className="loading-state">Loading seats…</div> : null}
-      {!loading && error && !show ? <div className="error-state">{error}</div> : null}
+        {loading ? <div className="loading-state">Loading seats…</div> : null}
+        {!loading && error && !show ? <div className="error-state">{error}</div> : null}
 
-      {!loading && show ? (
-        <>
-          <section className="seat-hero">
-            <span className="eyebrow">Seat Selection</span>
-            <h1>{show.movieTitle}</h1>
-            <p>
-              {formatShowDate(show.showDate)} at {show.showTime} in {show.screeningRoomName}
-            </p>
-          </section>
+        {!loading && show ? (
+          <>
+            <section className="seat-hero">
+              <span className="eyebrow">Seat Selection</span>
+              <h1>{show.movieTitle}</h1>
+              <p>
+                {formatShowDate(show.showDate)} at {show.showTime} in {show.screeningRoomName}
+              </p>
+            </section>
 
-          <section className="seat-layout">
-            <div className="seat-map-panel">
-              <div className="screen-indicator">
-                <span>Screen</span>
-              </div>
-
-              <div aria-label="Seat legend" className="seat-legend">
-                <div className="legend-item">
-                  <span className="legend-swatch available" />
-                  Available
+            <section className="seat-layout">
+              <div className="seat-map-panel">
+                <div className="screen-indicator">
+                  <span>Screen</span>
                 </div>
-                <div className="legend-item">
-                  <span className="legend-swatch selected" />
-                  Selected
-                </div>
-                <div className="legend-item">
-                  <span className="legend-swatch sold" />
-                  Sold
-                </div>
-              </div>
 
-              <div aria-label="Seat map" className="seat-map">
-                {seatRows.map((seatRow) => (
-                  <div className="seat-row" key={seatRow.row}>
-                    <span className="seat-row-label">{rowLabel(seatRow.row)}</span>
-                    <div className="seat-row-grid">{seatRow.seats.map(renderSeat)}</div>
+                <div aria-label="Seat legend" className="seat-legend">
+                  <div className="legend-item">
+                    <span className="legend-swatch available" />
+                    Available
                   </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="purchase-panel">
-              <section className="purchase-summary">
-                <h2>Selection Summary</h2>
-                <p>
-                  {selectedSeats.length} seat{selectedSeats.length === 1 ? '' : 's'} selected
-                </p>
-                <div className="selected-seat-list">
-                  {selectedSeats.length > 0 ? selectedSeats.map((seat) => <span key={seatLabel(seat)}>{seatLabel(seat)}</span>) : <span>Choose up to 6 seats.</span>}
+                  <div className="legend-item">
+                    <span className="legend-swatch selected" />
+                    Selected
+                  </div>
+                  <div className="legend-item">
+                    <span className="legend-swatch sold" />
+                    Sold
+                  </div>
                 </div>
-              </section>
 
-              <form className="purchase-form" onSubmit={handlePurchase}>
-                <label>
-                  Name
-                  <input
-                    required
-                    type="text"
-                    value={customerName}
-                    onChange={(event) => setCustomerName(event.target.value)}
-                  />
-                </label>
+                <div aria-label="Seat map" className="seat-map">
+                  {seatRows.map((seatRow) => (
+                    <div className="seat-row" key={seatRow.row}>
+                      <span className="seat-row-label">{rowLabel(seatRow.row)}</span>
+                      <div className="seat-row-grid">{seatRow.seats.map(renderSeat)}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-                <label>
-                  Email
-                  <input
-                    required
-                    type="email"
-                    value={customerEmail}
-                    onChange={(event) => setCustomerEmail(event.target.value)}
-                  />
-                </label>
-
-                {error ? <div className="purchase-error">{error}</div> : null}
-
-                <button className="purchase-button" disabled={submitting || confirmation !== null} type="submit">
-                  {submitting ? 'Purchasing…' : 'Purchase'}
-                </button>
-              </form>
-
-              {confirmation ? (
-                <section className="purchase-confirmation">
-                  <h2>Purchase Confirmed</h2>
+              <div className="purchase-panel">
+                <section className="purchase-summary">
+                  <h2>Selection Summary</h2>
                   <p>
-                    {confirmation.customerName}, your tickets for {confirmation.movieTitle} are reserved.
+                    {selectedSeats.length} seat{selectedSeats.length === 1 ? '' : 's'} selected
                   </p>
-                  <p>
-                    {formatShowDate(confirmation.showDate)} at {confirmation.showTime} in {confirmation.screeningRoomName}
-                  </p>
-                  <p>Seats: {confirmation.seats.join(', ')}</p>
-                  <a className="back-link" href={`/movie/${confirmation.movieId}`}>
-                    Back to Movie
-                  </a>
+                  <div className="selected-seat-list">
+                    {selectedSeats.length > 0 ? selectedSeats.map((seat) => <span key={seatLabel(seat)}>{seatLabel(seat)}</span>) : <span>Choose up to 6 seats.</span>}
+                  </div>
                 </section>
-              ) : null}
-            </div>
-          </section>
-        </>
-      ) : null}
-    </main>
+
+                <form className="purchase-form" onSubmit={handlePurchase}>
+                  <label>
+                    Name
+                    <input
+                      required
+                      type="text"
+                      value={customerName}
+                      onChange={(event) => setCustomerName(event.target.value)}
+                    />
+                  </label>
+
+                  <label>
+                    Email
+                    <input
+                      required
+                      type="email"
+                      value={customerEmail}
+                      onChange={(event) => setCustomerEmail(event.target.value)}
+                    />
+                  </label>
+
+                  {error ? <div className="purchase-error">{error}</div> : null}
+
+                  <button className="purchase-button" disabled={submitting || confirmation !== null} type="submit">
+                    {submitting ? 'Purchasing…' : 'Purchase'}
+                  </button>
+                </form>
+
+                {confirmation ? (
+                  <section className="purchase-confirmation">
+                    <h2>Purchase Confirmed</h2>
+                    <p>
+                      {confirmation.customerName}, your tickets for {confirmation.movieTitle} are reserved.
+                    </p>
+                    <p>
+                      {formatShowDate(confirmation.showDate)} at {confirmation.showTime} in {confirmation.screeningRoomName}
+                    </p>
+                    <p>Seats: {confirmation.seats.join(', ')}</p>
+                    <a className="back-link" href={`/movie/${confirmation.movieId}`}>
+                      Back to Movie
+                    </a>
+                  </section>
+                ) : null}
+              </div>
+            </section>
+          </>
+        ) : null}
+      </main>
+    </div>
   );
 }

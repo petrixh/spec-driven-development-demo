@@ -8,6 +8,12 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface MovieRepository extends JpaRepository<Movie, Long> {
 
+    boolean existsByTitleIgnoreCase(String title);
+
+    boolean existsByTitleIgnoreCaseAndIdNot(String title, Long id);
+
+    List<Movie> findAllByOrderByTitleAsc();
+
     @Query("""
             select distinct movie
             from Movie movie

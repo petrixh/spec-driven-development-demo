@@ -99,37 +99,39 @@ export function MovieDetailView() {
   }, [id]);
 
   return (
-    <main className="page">
-      <a className="back-link" href="/">
-        Back to all movies
-      </a>
+    <div className="app-shell">
+      <main className="page">
+        <a className="back-link" href="/">
+          Back to all movies
+        </a>
 
-      {loading ? <div className="loading-state">Loading movie details…</div> : null}
-      {error ? <div className="error-state">{error}</div> : null}
+        {loading ? <div className="loading-state">Loading movie details…</div> : null}
+        {error ? <div className="error-state">{error}</div> : null}
 
-      {!loading && !error && movie ? (
-        <>
-          <section className="detail-layout">
-            <img alt={`${movie.title} poster`} className="detail-poster" src={movie.posterUrl} />
-            <div className="detail-copy">
-              <span className="eyebrow" style={eyebrowStyle}>Movie Details</span>
-              <h1 style={{ color: 'var(--text-primary)' }}>{movie.title}</h1>
-              <div className="show-badge" style={badgeStyle}>{movie.durationMinutes} min</div>
-              <p>{movie.description}</p>
-            </div>
-          </section>
+        {!loading && !error && movie ? (
+          <>
+            <section className="detail-layout">
+              <img alt={`${movie.title} poster`} className="detail-poster" src={movie.posterUrl} />
+              <div className="detail-copy">
+                <span className="eyebrow" style={eyebrowStyle}>Movie Details</span>
+                <h1 style={{ color: 'var(--text-primary)' }}>{movie.title}</h1>
+                <div className="show-badge" style={badgeStyle}>{movie.durationMinutes} min</div>
+                <p>{movie.description}</p>
+              </div>
+            </section>
 
-          <section className="showtime-section">
-            <span className="eyebrow" style={eyebrowStyle}>Upcoming Showtimes</span>
-            {movie.showDates.length > 0 ? (
-              movie.showDates.map((group) => <ShowtimeGroup group={group} key={group.date} />)
-            ) : (
-              <div className="empty-state">No future showtimes are currently scheduled for this movie.</div>
-            )}
-          </section>
-        </>
-      ) : null}
-    </main>
+            <section className="showtime-section">
+              <span className="eyebrow" style={eyebrowStyle}>Upcoming Showtimes</span>
+              {movie.showDates.length > 0 ? (
+                movie.showDates.map((group) => <ShowtimeGroup group={group} key={group.date} />)
+              ) : (
+                <div className="empty-state">No future showtimes are currently scheduled for this movie.</div>
+              )}
+            </section>
+          </>
+        ) : null}
+      </main>
+    </div>
   );
 }
 

@@ -10,6 +10,7 @@ import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 
 import com.vaadin.flow.spring.security.VaadinSecurityConfigurer;
+import com.example.specdriven.admin.ui.LoginView;
 
 @Configuration
 @EnableMethodSecurity(jsr250Enabled = true)
@@ -18,10 +19,8 @@ public class SecurityConfig {
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http.authorizeHttpRequests(authorize -> authorize
-                .requestMatchers(VaadinSecurityConfigurer.getDefaultHttpSecurityPermitMatcher()).permitAll()
-                .requestMatchers(VaadinSecurityConfigurer.getDefaultWebSecurityIgnoreMatcher()).permitAll()
-                .requestMatchers("/posters/**", "/styles.css", "/favicon.ico").permitAll()
-                .anyRequest().permitAll());
+                .requestMatchers("/", "/movie/**", "/show/**", "/posters/**", "/styles.css", "/favicon.ico").permitAll());
+        http.with(VaadinSecurityConfigurer.vaadin(), configurer -> configurer.loginView(LoginView.class));
         return http.build();
     }
 
