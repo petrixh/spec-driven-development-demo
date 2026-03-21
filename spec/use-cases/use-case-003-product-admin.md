@@ -36,6 +36,8 @@
 ## Acceptance Criteria
 
 - [ ] Unauthenticated users are redirected to `/login`
+- [ ] Logging out ends the session and redirects to the public view
+- [ ] After logout, navigating to an admin route redirects to `/login`
 - [ ] Admin can see all products in a grid
 - [ ] Admin can add a new product with barcode, name, and price
 - [ ] Adding a product with a duplicate barcode shows an error
@@ -51,7 +53,7 @@
 
 - [ ] `ProductAdminTest` (Browserless test — Vaadin Flow view)
 - [ ] `ProductServiceTest` (JUnit service test)
-- [ ] Tests cover: CRUD operations, validation, duplicate barcode, access control
+- [ ] Tests cover: CRUD operations, validation, duplicate barcode, access control, logout
 
 ---
 
