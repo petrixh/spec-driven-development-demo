@@ -28,6 +28,9 @@ public class AdminLayout extends VerticalLayout implements RouterLayout {
         RouterLink productsLink = new RouterLink("Products", ProductAdminView.class);
         productsLink.addClassName("admin-nav-link");
 
+        RouterLink customersLink = new RouterLink("Customers", CustomerAdminView.class);
+        customersLink.addClassName("admin-nav-link");
+
         Span navSpacer = new Span();
         navSpacer.getStyle().set("flex-grow", "1");
 
@@ -35,7 +38,7 @@ public class AdminLayout extends VerticalLayout implements RouterLayout {
                 UI.getCurrent().getPage().setLocation("/logout"));
         logoutButton.getStyle().set("color", "var(--aura-red)");
 
-        HorizontalLayout header = new HorizontalLayout(title, productsLink, navSpacer, logoutButton);
+        HorizontalLayout header = new HorizontalLayout(title, productsLink, customersLink, navSpacer, logoutButton);
         header.setWidthFull();
         header.setAlignItems(FlexComponent.Alignment.CENTER);
         header.getStyle().set("gap", "var(--vaadin-gap-l)");

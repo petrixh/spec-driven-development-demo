@@ -16,7 +16,8 @@ public class AdminView extends VerticalLayout {
         Paragraph intro = new Paragraph("Select a section to manage:");
 
         RouterLink productsLink = new RouterLink("Product Management", ProductAdminView.class);
+        RouterLink customersLink = new RouterLink("Customer Management", CustomerAdminView.class);
 
-        add(header, intro, productsLink);
+        add(header, intro, productsLink, customersLink);
     }
 }
