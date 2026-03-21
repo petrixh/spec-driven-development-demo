@@ -62,3 +62,5 @@ com.example.specdriven/
 - Public views: `@AnonymousAllowed` (React Hilla endpoints, public routes)
 - Admin views: `@RolesAllowed("ADMIN")` (Vaadin Flow views)
 - Login: Vaadin `LoginForm` at `/login`
+- **Logout**: If the application has login functionality, authenticated views must include a visible logout link/button that ends the session and redirects to the public view.
+- **Admin root view**: If the app has admin views, there must always be a root admin view at `/admin` that provides navigation to all admin sub-views (e.g., `/admin/products`). This serves as the admin landing page and ensures discoverability of all admin features.
