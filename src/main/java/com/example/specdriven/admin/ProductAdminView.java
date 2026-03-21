@@ -17,7 +17,7 @@ import jakarta.annotation.security.RolesAllowed;
 
 import java.math.BigDecimal;
 
-@Route("admin/products")
+@Route(value = "admin/products", layout = AdminLayout.class)
 @RolesAllowed("ADMIN")
 public class ProductAdminView extends VerticalLayout {
 
