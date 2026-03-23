@@ -229,7 +229,7 @@ public class SelfCheckoutView extends VerticalLayout {
         dialog.addClassName("employee-code-dialog");
 
         Span prompt = new Span("Enter employee code");
-        TextField codeInput = new TextField();
+        com.vaadin.flow.component.textfield.PasswordField codeInput = new com.vaadin.flow.component.textfield.PasswordField();
         codeInput.setPlaceholder("Code...");
         codeInput.setWidthFull();
         codeInput.setAutofocus(true);

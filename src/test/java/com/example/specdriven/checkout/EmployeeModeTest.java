@@ -5,7 +5,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
 import com.vaadin.flow.component.html.Span;
-import com.vaadin.flow.component.textfield.TextField;
+import com.vaadin.flow.component.textfield.PasswordField;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,7 +34,7 @@ class EmployeeModeTest extends SpringBrowserlessTest {
     private void enterEmployeeMode() {
         view.openEmployeeCodeDialog();
         Dialog dialog = $(Dialog.class).single();
-        TextField codeInput = $(TextField.class, dialog).single();
+        PasswordField codeInput = $(PasswordField.class, dialog).single();
         codeInput.setValue(SelfCheckoutView.EMPLOYEE_CODE);
         Button submitButton = $(Button.class, dialog).withText("Submit").single();
         test(submitButton).click();
@@ -50,7 +50,7 @@ class EmployeeModeTest extends SpringBrowserlessTest {
         view.openEmployeeCodeDialog();
         Dialog dialog = $(Dialog.class).single();
         assertTrue(dialog.isOpened());
-        assertTrue($(TextField.class, dialog).exists());
+        assertTrue($(PasswordField.class, dialog).exists());
     }
 
     @Test
@@ -69,7 +69,7 @@ class EmployeeModeTest extends SpringBrowserlessTest {
     void enteringWrongCodeShowsError() {
         view.openEmployeeCodeDialog();
         Dialog dialog = $(Dialog.class).single();
-        TextField codeInput = $(TextField.class, dialog).single();
+        PasswordField codeInput = $(PasswordField.class, dialog).single();
         codeInput.setValue("000000");
         Button submitButton = $(Button.class, dialog).withText("Submit").single();
         test(submitButton).click();
