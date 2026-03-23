@@ -9,6 +9,8 @@
 
 Use the Playwright MCP server to visually verify **every view** after implementation.
 
+> **Mindset:** The goal of visual verification is not to check the minimum boxes or get away with minimal changes. The goal is to ensure the UI looks **great** and is **awesome to use**. Approach each screen as a user would — if something looks off, crowded, ugly, or confusing, flag it and fix it, even if it technically passes the checklist. The checklist is a floor, not a ceiling.
+
 ### When to Verify
 
 - After implementing a use case
