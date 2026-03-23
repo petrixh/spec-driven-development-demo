@@ -10,10 +10,10 @@ export const config: ViewConfig = {
 };
 
 const statusColors: Record<string, string> = {
-  OPEN: '#2563EB',
-  IN_PROGRESS: '#D97706',
-  RESOLVED: '#16A34A',
-  CLOSED: '#64748B',
+  OPEN: 'var(--resolve-status-open)',
+  IN_PROGRESS: 'var(--resolve-status-in-progress)',
+  RESOLVED: 'var(--resolve-status-resolved)',
+  CLOSED: 'var(--resolve-status-closed)',
 };
 
 export default function TicketDetailView() {
@@ -29,9 +29,9 @@ export default function TicketDetailView() {
     }
   }, [ticketId, navigate]);
 
-  if (!ticket) return <div>Loading...</div>;
+  if (!ticket) return <div className="resolve-meta">Loading...</div>;
 
-  const sc = statusColors[ticket.status ?? ''] ?? '#64748B';
+  const sc = statusColors[ticket.status ?? ''] ?? 'var(--resolve-status-closed)';
 
   return (
     <div style={{ maxWidth: '800px' }}>
@@ -39,18 +39,17 @@ export default function TicketDetailView() {
         ← Back to My Tickets
       </Button>
 
-      <div style={{ backgroundColor: 'white', borderRadius: '8px', padding: 'var(--vaadin-space-l)', border: '1px solid #E2E8F0' }}>
+      <div className="resolve-card">
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
           <h2 style={{ margin: 0 }}>{ticket.title}</h2>
-          <span style={{
-            padding: '4px 12px', borderRadius: '4px', fontSize: '0.85rem',
-            fontWeight: 600, backgroundColor: `${sc}18`, color: sc,
+          <span className="resolve-badge" style={{
+            backgroundColor: `color-mix(in srgb, ${sc} 12%, transparent)`, color: sc,
           }}>
             {(ticket.status ?? '').replace('_', ' ')}
           </span>
         </div>
 
-        <div style={{ display: 'flex', gap: 'var(--vaadin-space-m)', marginTop: 'var(--vaadin-space-s)', fontSize: '0.85rem', color: '#64748B' }}>
+        <div className="resolve-meta" style={{ display: 'flex', gap: 'var(--vaadin-space-m)', marginTop: 'var(--vaadin-space-s)' }}>
           <span>Category: {ticket.category}</span>
           <span>Priority: {ticket.priority}</span>
           <span>Created: {ticket.createdDate ? new Date(ticket.createdDate).toLocaleDateString() : ''}</span>
@@ -61,16 +60,13 @@ export default function TicketDetailView() {
 
       <h3 style={{ marginTop: 'var(--vaadin-space-l)' }}>Comments</h3>
       {(!ticket.comments || ticket.comments.length === 0) ? (
-        <p style={{ color: '#64748B' }}>No comments yet.</p>
+        <p className="resolve-meta">No comments yet.</p>
       ) : (
         <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--vaadin-space-s)' }}>
           {ticket.comments.map((c) => (
-            <div key={c.id} style={{
-              backgroundColor: 'white', borderRadius: '8px',
-              padding: 'var(--vaadin-space-m)', border: '1px solid #E2E8F0',
-            }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: '0.85rem', color: '#64748B', marginBottom: '4px' }}>
-                <strong>{c.authorName}</strong>
+            <div key={c.id} className="resolve-card">
+              <div className="resolve-meta" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 'var(--vaadin-space-xs)' }}>
+                <strong style={{ color: 'inherit' }}>{c.authorName}</strong>
                 <span>{c.createdDate ? new Date(c.createdDate).toLocaleString() : ''}</span>
               </div>
               <p style={{ margin: 0 }}>{c.text}</p>

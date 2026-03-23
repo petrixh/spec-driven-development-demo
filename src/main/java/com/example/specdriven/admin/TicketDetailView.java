@@ -16,11 +16,19 @@ import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Map;
 
 @Route(value = "admin/ticket", layout = AdminLayout.class)
 @PageTitle("Ticket Detail — re:solve")
 @RolesAllowed("ADMIN")
 public class TicketDetailView extends VerticalLayout implements HasUrlParameter<Long> {
+
+    private static final Map<Status, String> STATUS_COLORS = Map.of(
+            Status.OPEN, "var(--resolve-status-open)",
+            Status.IN_PROGRESS, "var(--resolve-status-in-progress)",
+            Status.RESOLVED, "var(--resolve-status-resolved)",
+            Status.CLOSED, "var(--resolve-status-closed)"
+    );
 
     private final TicketService ticketService;
     private final UserRepository userRepository;
@@ -59,11 +67,7 @@ public class TicketDetailView extends VerticalLayout implements HasUrlParameter<
 
         // Ticket details card
         VerticalLayout detailsCard = new VerticalLayout();
-        detailsCard.getStyle()
-                .set("background", "white")
-                .set("border-radius", "8px")
-                .set("border", "1px solid #E2E8F0")
-                .set("padding", "var(--vaadin-space-l)");
+        detailsCard.addClassName("resolve-card");
 
         HorizontalLayout titleRow = new HorizontalLayout();
         titleRow.setWidthFull();
@@ -107,7 +111,7 @@ public class TicketDetailView extends VerticalLayout implements HasUrlParameter<
 
         // Metadata
         HorizontalLayout meta = new HorizontalLayout();
-        meta.getStyle().set("color", "#64748B").set("font-size", "var(--aura-font-size-s)");
+        meta.addClassName("resolve-meta");
         meta.add(
                 new Span("Category: " + ticket.getCategory()),
                 new Span("Priority: " + ticket.getPriority()),
@@ -162,22 +166,18 @@ public class TicketDetailView extends VerticalLayout implements HasUrlParameter<
         List<Comment> comments = ticketService.getComments(ticket.getId());
         if (comments.isEmpty()) {
             Span empty = new Span("No comments yet.");
-            empty.getStyle().set("color", "#64748B");
+            empty.addClassName("resolve-meta");
             commentsSection.add(empty);
         } else {
             for (Comment c : comments) {
                 VerticalLayout commentCard = new VerticalLayout();
-                commentCard.getStyle()
-                        .set("background", "white")
-                        .set("border-radius", "8px")
-                        .set("border", "1px solid #E2E8F0")
-                        .set("padding", "var(--vaadin-space-m)");
+                commentCard.addClassName("resolve-card");
                 commentCard.setSpacing(false);
 
                 HorizontalLayout commentHeader = new HorizontalLayout();
                 commentHeader.setWidthFull();
                 commentHeader.setJustifyContentMode(JustifyContentMode.BETWEEN);
-                commentHeader.getStyle().set("font-size", "var(--aura-font-size-s)").set("color", "#64748B");
+                commentHeader.addClassName("resolve-meta");
 
                 Span author = new Span(c.getAuthor().getName());
                 author.getStyle().set("font-weight", "600");
@@ -195,19 +195,11 @@ public class TicketDetailView extends VerticalLayout implements HasUrlParameter<
     private void updateStatusBadge() {
         String statusText = ticket.getStatus().name().replace("_", " ");
         statusBadge.setText(statusText);
-        statusBadge.getStyle()
-                .set("padding", "4px 12px")
-                .set("border-radius", "4px")
-                .set("font-size", "var(--aura-font-size-s)")
-                .set("font-weight", "600");
+        statusBadge.addClassName("resolve-badge");
 
-        String color = switch (ticket.getStatus()) {
-            case OPEN -> "#2563EB";
-            case IN_PROGRESS -> "#D97706";
-            case RESOLVED -> "#16A34A";
-            case CLOSED -> "#64748B";
-        };
-        statusBadge.getStyle().set("color", color).set("background", color + "18");
+        String color = STATUS_COLORS.getOrDefault(ticket.getStatus(), "var(--resolve-status-closed)");
+        statusBadge.getStyle().set("color", color).set("background",
+                "color-mix(in srgb, " + color + " 12%, transparent)");
     }
 
     private User getCurrentUser() {

@@ -1,1 +1,87 @@
-/* Add your styles here */
+/* re:solve — Theme overrides and shared styles */
+
+/* Brand colors */
+html {
+  --vaadin-primary-color: #2563EB;
+  --vaadin-primary-color-50: #EFF6FF;
+  --vaadin-success-color: #16A34A;
+  --vaadin-warning-color: #D97706;
+  --vaadin-error-color: #DC2626;
+
+  /* App-specific tokens */
+  --resolve-border-color: #E2E8F0;
+  --resolve-border-light: #F1F5F9;
+  --resolve-card-bg: white;
+  --resolve-text-muted: #64748B;
+  --resolve-card-radius: var(--vaadin-space-s);
+
+  /* Status colors */
+  --resolve-status-open: #2563EB;
+  --resolve-status-in-progress: #D97706;
+  --resolve-status-resolved: #16A34A;
+  --resolve-status-closed: #64748B;
+
+  /* Priority badge colors */
+  --resolve-priority-low-bg: #F1F5F9;
+  --resolve-priority-low-color: #475569;
+  --resolve-priority-medium-bg: #FEF3C7;
+  --resolve-priority-medium-color: #92400E;
+  --resolve-priority-high-bg: #FED7AA;
+  --resolve-priority-high-color: #9A3412;
+  --resolve-priority-critical-bg: #FEE2E2;
+  --resolve-priority-critical-color: #991B1B;
+}
+
+/* Brand wordmark */
+.resolve-brand {
+  font-size: var(--aura-font-size-l);
+  line-height: 1;
+}
+.resolve-brand-re {
+  font-weight: 400;
+  color: var(--resolve-text-muted);
+}
+.resolve-brand-colon {
+  font-weight: 700;
+  color: var(--vaadin-primary-color);
+}
+.resolve-brand-solve {
+  font-weight: 700;
+}
+
+/* Nav links */
+.resolve-nav a {
+  text-decoration: none;
+  color: var(--resolve-text-muted);
+  font-size: var(--aura-font-size-m);
+  transition: color 0.15s;
+}
+.resolve-nav a:hover,
+.resolve-nav a[aria-current="page"] {
+  color: var(--vaadin-primary-color);
+  font-weight: 600;
+}
+
+/* Card style */
+.resolve-card {
+  background: var(--resolve-card-bg);
+  border-radius: var(--resolve-card-radius);
+  border: 1px solid var(--resolve-border-color);
+  padding: var(--vaadin-space-l);
+}
+
+/* Badge */
+.resolve-badge {
+  padding: 2px var(--vaadin-space-s);
+  border-radius: var(--vaadin-space-xs);
+  font-size: var(--aura-font-size-xs);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+/* Meta text */
+.resolve-meta {
+  font-size: var(--aura-font-size-s);
+  color: var(--resolve-text-muted);
+}

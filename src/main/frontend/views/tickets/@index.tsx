@@ -10,25 +10,22 @@ export const config: ViewConfig = {
 };
 
 const priorityColors: Record<string, { bg: string; color: string }> = {
-  LOW: { bg: '#F1F5F9', color: '#475569' },
-  MEDIUM: { bg: '#FEF3C7', color: '#92400E' },
-  HIGH: { bg: '#FED7AA', color: '#9A3412' },
-  CRITICAL: { bg: '#FEE2E2', color: '#991B1B' },
+  LOW: { bg: 'var(--resolve-priority-low-bg)', color: 'var(--resolve-priority-low-color)' },
+  MEDIUM: { bg: 'var(--resolve-priority-medium-bg)', color: 'var(--resolve-priority-medium-color)' },
+  HIGH: { bg: 'var(--resolve-priority-high-bg)', color: 'var(--resolve-priority-high-color)' },
+  CRITICAL: { bg: 'var(--resolve-priority-critical-bg)', color: 'var(--resolve-priority-critical-color)' },
 };
 
 const statusColors: Record<string, string> = {
-  OPEN: '#2563EB',
-  IN_PROGRESS: '#D97706',
-  RESOLVED: '#16A34A',
-  CLOSED: '#64748B',
+  OPEN: 'var(--resolve-status-open)',
+  IN_PROGRESS: 'var(--resolve-status-in-progress)',
+  RESOLVED: 'var(--resolve-status-resolved)',
+  CLOSED: 'var(--resolve-status-closed)',
 };
 
 function Badge({ label, bg, color }: { label: string; bg: string; color: string }) {
   return (
-    <span style={{
-      padding: '2px 8px', borderRadius: '4px', fontSize: '0.75rem',
-      fontWeight: 600, backgroundColor: bg, color,
-    }}>
+    <span className="resolve-badge" style={{ backgroundColor: bg, color }}>
       {label}
     </span>
   );
@@ -53,7 +50,7 @@ export default function TicketsView() {
     return (
       <div>
         <h2>My Tickets</h2>
-        <p>No tickets yet. <a href="/submit">Submit one</a>.</p>
+        <p className="resolve-meta">No tickets yet. <a href="/submit">Submit one</a>.</p>
       </div>
     );
   }
@@ -79,21 +76,17 @@ export default function TicketsView() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--vaadin-space-s)' }}>
         {filtered.map((t) => {
           const pc = priorityColors[t.priority ?? ''] ?? priorityColors.MEDIUM;
-          const sc = statusColors[t.status ?? ''] ?? '#64748B';
+          const sc = statusColors[t.status ?? ''] ?? 'var(--resolve-status-closed)';
           return (
             <div
               key={t.id}
+              className="resolve-card"
               onClick={() => navigate(`/tickets/${t.id}`)}
-              style={{
-                padding: 'var(--vaadin-space-m)', borderRadius: '8px',
-                backgroundColor: 'white', cursor: 'pointer',
-                border: '1px solid #E2E8F0',
-                display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-              }}
+              style={{ cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
             >
               <div>
-                <div style={{ fontWeight: 600, marginBottom: '4px' }}>{t.title}</div>
-                <div style={{ display: 'flex', gap: '8px', alignItems: 'center', fontSize: '0.85rem', color: '#64748B' }}>
+                <div style={{ fontWeight: 600, marginBottom: 'var(--vaadin-space-xs)' }}>{t.title}</div>
+                <div className="resolve-meta" style={{ display: 'flex', gap: 'var(--vaadin-space-s)', alignItems: 'center' }}>
                   <span>{t.category}</span>
                   <span>·</span>
                   <Badge label={t.priority ?? ''} bg={pc.bg} color={pc.color} />
@@ -101,7 +94,7 @@ export default function TicketsView() {
                   <span>{t.createdDate ? new Date(t.createdDate).toLocaleDateString() : ''}</span>
                 </div>
               </div>
-              <Badge label={(t.status ?? '').replace('_', ' ')} bg={`${sc}18`} color={sc} />
+              <Badge label={(t.status ?? '').replace('_', ' ')} bg={`color-mix(in srgb, ${sc} 12%, transparent)`} color={sc} />
             </div>
           );
         })}

@@ -60,6 +60,7 @@ export default function SubmitView() {
       <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--vaadin-space-m)' }}>
         <TextField
           label="Title"
+          placeholder="Brief summary of your issue"
           value={title}
           onValueChanged={(e) => { setTitle(e.detail.value); setTitleInvalid(false); }}
           required
@@ -90,6 +91,7 @@ export default function SubmitView() {
         />
         <TextArea
           label="Description"
+          placeholder="Describe your issue in detail"
           value={description}
           onValueChanged={(e) => { setDescription(e.detail.value); setDescInvalid(false); }}
           required

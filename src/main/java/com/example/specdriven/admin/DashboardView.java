@@ -40,10 +40,10 @@ public class DashboardView extends VerticalLayout {
         cards.getStyle().set("gap", "var(--vaadin-space-m)");
 
         cards.add(
-                createCard("Open", String.valueOf(openCount), "#2563EB"),
-                createCard("In Progress", String.valueOf(inProgressCount), "#D97706"),
-                createCard("Resolved Today", String.valueOf(resolvedToday), "#16A34A"),
-                createCard("Closed Today", String.valueOf(closedToday), "#64748B")
+                createCard("Open", String.valueOf(openCount), "var(--resolve-status-open)"),
+                createCard("In Progress", String.valueOf(inProgressCount), "var(--resolve-status-in-progress)"),
+                createCard("Resolved Today", String.valueOf(resolvedToday), "var(--resolve-status-resolved)"),
+                createCard("Closed Today", String.valueOf(closedToday), "var(--resolve-status-closed)")
         );
         add(cards);
 
@@ -65,26 +65,22 @@ public class DashboardView extends VerticalLayout {
 
     private Div createCard(String label, String value, String color) {
         Div card = new Div();
+        card.addClassName("resolve-card");
         card.getStyle()
-                .set("background", "white")
-                .set("border-radius", "8px")
-                .set("border", "1px solid #E2E8F0")
-                .set("padding", "var(--vaadin-space-l)")
                 .set("flex", "1 1 200px")
                 .set("min-width", "200px")
                 .set("text-align", "center");
 
         Span valueSpan = new Span(value);
         valueSpan.getStyle()
-                .set("font-size", "2rem")
+                .set("font-size", "var(--aura-font-size-xxl, 2rem)")
                 .set("font-weight", "700")
                 .set("color", color)
                 .set("display", "block");
 
         Span labelSpan = new Span(label);
+        labelSpan.addClassName("resolve-meta");
         labelSpan.getStyle()
-                .set("font-size", "var(--aura-font-size-s)")
-                .set("color", "#64748B")
                 .set("display", "block")
                 .set("margin-top", "var(--vaadin-space-xs)");
 
@@ -101,9 +97,9 @@ public class DashboardView extends VerticalLayout {
 
         Div tableDiv = new Div();
         tableDiv.getStyle()
-                .set("background", "white")
-                .set("border-radius", "8px")
-                .set("border", "1px solid #E2E8F0")
+                .set("background", "var(--resolve-card-bg)")
+                .set("border-radius", "var(--resolve-card-radius)")
+                .set("border", "1px solid var(--resolve-border-color)")
                 .set("overflow", "hidden");
 
         for (E value : allValues) {
@@ -113,7 +109,7 @@ public class DashboardView extends VerticalLayout {
                     .set("display", "flex")
                     .set("justify-content", "space-between")
                     .set("padding", "var(--vaadin-space-s) var(--vaadin-space-m)")
-                    .set("border-bottom", "1px solid #F1F5F9");
+                    .set("border-bottom", "1px solid var(--resolve-border-light)");
 
             Span nameSpan = new Span(value.name().replace("_", " "));
             Span countSpan = new Span(String.valueOf(count));
