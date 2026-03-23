@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 48" fill="none">
+  <!-- Ticket icon with checkmark -->
+  <g transform="translate(4, 4)">
+    <path d="M4 2C4 0.9 4.9 0 6 0H34C35.1 0 36 0.9 36 2V15.5C34.3 15.5 33 16.8 33 18.5C33 20.2 34.3 21.5 36 21.5V38C36 39.1 35.1 40 34 40H6C4.9 40 4 39.1 4 38V21.5C5.7 21.5 7 20.2 7 18.5C7 16.8 5.7 15.5 4 15.5V2Z" fill="#2563EB"/>
+    <path d="M14 20L18 24L26 16" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <!-- "re" in regular weight -->
+  <text x="52" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="400" fill="#64748B" letter-spacing="-0.5">re</text>
+  <!-- ":" as visual separator in primary color -->
+  <text x="78" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="700" fill="#2563EB" letter-spacing="-0.5">:</text>
+  <!-- "solve" in bold -->
+  <text x="88" y="34" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="700" fill="#1E293B" letter-spacing="-0.5">solve</text>
+</svg>
