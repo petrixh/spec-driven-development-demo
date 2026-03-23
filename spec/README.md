@@ -15,6 +15,11 @@ Status lifecycle: **Draft** → **Approved** → **Implemented**
 | `architecture.md` | Technology stack and application structure | After project context is filled in |
 | `datamodel/datamodel.md` | Entity definitions and relationships | When adding data-driven features |
 | `use-cases/use-case-template.md` | Template for individual feature specs | Copy per feature as `use-case-NNN-short-name.md` |
+| `use-cases/use-case-001-submit-ticket.md` | Customer submits a support ticket | UC-001 |
+| `use-cases/use-case-002-view-my-tickets.md` | Customer views and tracks their tickets | UC-002 |
+| `use-cases/use-case-003-manage-ticket-queue.md` | Agent browses and assigns tickets | UC-003 |
+| `use-cases/use-case-004-work-on-ticket.md` | Agent comments on and resolves tickets | UC-004 |
+| `use-cases/use-case-005-dashboard.md` | Dashboard with ticket metrics | UC-005 |
 | `verification.md` | Visual verification checklists (Playwright MCP) | During and after implementation |
 
 ## Workflow
