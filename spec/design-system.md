@@ -6,8 +6,8 @@
 
 ## 1. Brand
 
-- **App name:** StockBase
-- **Tagline:** Inventory, simplified.
+- **App name:** Stash.log
+- **Tagline:** `git stash` for your warehouse.
 - **Logo (full):** [`logo.svg`](logo.svg) — wordmark with icon, used in the sidebar header and login page
 - **Logo (icon):** [`logo-icon.svg`](logo-icon.svg) — standalone icon, used as favicon and collapsed sidebar
 - **Personality:** Professional, clean, utilitarian — this is an internal productivity tool, not a consumer app. Avoid decoration; every element should earn its space.
