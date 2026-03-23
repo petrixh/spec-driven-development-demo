@@ -70,4 +70,6 @@ com.example.specdriven/
 - **Spring Security** with `VaadinSecurityConfigurer`
 - Public views: `@AnonymousAllowed` (React Hilla endpoints, public routes)
 - Admin views: `@RolesAllowed("ADMIN")` (Vaadin Flow views)
-- Login: Vaadin `LoginForm` at `/login`
+- Login: Vaadin `LoginOverlay` at `/login`
+- A "Forgot password" button on the login screen reveals the available demo usernames and passwords inline on the login view itself (not as a notification or popup — this is a demo app, not a real password-reset flow). The button must be labeled "Forgot password" (not "Show demo credentials" or similar).
+- A "Log out" link is shown in the top navbar for authenticated users. Clicking it ends the session and redirects to the login page.
