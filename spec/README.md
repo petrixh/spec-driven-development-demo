@@ -17,6 +17,16 @@ Status lifecycle: **Draft** → **Approved** → **Implemented**
 | `use-cases/use-case-template.md` | Template for individual feature specs | Copy per feature as `use-case-NNN-short-name.md` |
 | `verification.md` | Visual verification checklists (Playwright MCP) | During and after implementation |
 
+## Use Cases
+
+| Use Case | Title | Actor | Status |
+|----------|-------|-------|--------|
+| [UC-001](use-cases/use-case-001-manage-products.md) | Manage Products | Warehouse Manager | Draft |
+| [UC-002](use-cases/use-case-002-browse-inventory.md) | Browse Inventory | Warehouse Staff | Draft |
+| [UC-003](use-cases/use-case-003-receive-stock.md) | Receive Stock | Warehouse Staff | Draft |
+| [UC-004](use-cases/use-case-004-adjust-stock.md) | Adjust Stock | Warehouse Manager | Draft |
+| [UC-005](use-cases/use-case-005-dashboard.md) | Dashboard | Any user | Draft |
+
 ## Workflow
 
 1. **Define context** — Fill in `project-context.md` with problem, vision, scope, and constraints.

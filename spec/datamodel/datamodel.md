@@ -4,4 +4,5 @@
 
 | Entity | Key Fields | Relationships |
 |--------|-----------|---------------|
-| [Entity 1] | [field1, field2] | [Has many Entity2] |
+| Product | id, name, sku, category, unitPrice, reorderPoint, currentStock | Has many StockEvent |
+| StockEvent | id, type (RECEIVED, ADJUSTMENT), quantity, reason, timestamp | Belongs to Product |
