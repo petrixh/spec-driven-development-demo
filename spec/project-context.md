@@ -4,16 +4,18 @@
 
 ## 1. Vision
 
-[One to two paragraphs describing the desired future state. What does success look like for the users?]
+A small clinic needs a simple, reliable web application to manage patient information and visit history. Staff should be able to quickly find patients, register new ones, update their details, and log visits — all from a single browser-based tool. The goal is to replace paper records and spreadsheets with a clean, purpose-built application that reduces errors and saves time.
 
 ## 2. Users
 
-[ Describe users and what they can do]
+- **Clinic Staff (ADMIN role)** — Front-desk and medical staff who register patients, update records, and log visits. They have full access to all features behind login.
 
 ## 3. Constraints
 
-- [Platform or integration requirement]
-- [Policy or standard]
+- All views require authentication (no public views)
+- Patient data must be validated before saving (required fields, format checks)
+- The application is single-clinic; no multi-tenancy
+- This is a demo application — uses in-memory credentials, not a real user directory
 
 > For technology stack and application structure details, see [`architecture.md`](architecture.md).
 
