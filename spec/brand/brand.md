@@ -1,15 +1,15 @@
-# Brand Guide — CareBase
+# Brand Guide — Triage
 
-> Visual identity for the CareBase patient management application.
+> Visual identity for the Triage patient management application.
 
 ---
 
 ## 1. Name
 
-**CareBase** — a caring foundation for patient information.
+**Triage** — prioritize, assess, act. A term shared by developers and healthcare professionals alike.
 
-- Always written as one word: **CareBase** (capital C, capital B)
-- In the logo, "Care" is dark (`#2C3E50`) and "Base" is blue (`#4A90B8`)
+- Always written with a capital T: **Triage**
+- In the logo, "Tri" is dark (`#2C3E50`) and "age" is blue (`#4A90B8`) — a subtle nod to splitting/parsing
 
 ---
 
@@ -59,6 +59,7 @@ Drawn from the [design system](../design-system.md) color palette.
 - **Professional** — clear, concise, no jargon
 - **Calm** — reassuring, not alarming (even in error states)
 - **Helpful** — guide the user, don't lecture
+- **Subtly geeky** — small clever touches that developers will appreciate, never forced
 
 Examples:
 - Success: "Patient saved successfully"
