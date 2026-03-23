@@ -2,17 +2,18 @@
   <!-- Background circle -->
   <circle cx="256" cy="256" r="256" fill="#1A1A1A"/>
 
-  <!-- Three Gantt-style bars — staggered to suggest a timeline/progress -->
-  <!-- Bar 1 (top): short, lighter orange — represents TODO/planning -->
-  <rect x="120" y="148" width="140" height="40" rx="8" fill="#FB8C00"/>
+  <!-- Three Gantt-style bars -->
+  <rect x="200" y="148" width="140" height="36" rx="8" fill="#FB8C00"/>
+  <rect x="200" y="210" width="210" height="36" rx="8" fill="#F57C00"/>
+  <rect x="200" y="272" width="180" height="36" rx="8" fill="#E65100"/>
 
-  <!-- Bar 2 (middle): medium, primary orange — represents IN_PROGRESS -->
-  <rect x="152" y="216" width="220" height="40" rx="8" fill="#F57C00"/>
-
-  <!-- Bar 3 (bottom): longest, deep orange — represents completion/momentum -->
-  <rect x="120" y="284" width="280" height="40" rx="8" fill="#E65100"/>
-
-  <!-- Spark/anvil accent — small diamond shape to the right, suggesting the "forge" spark -->
-  <polygon points="418,230 434,256 418,282 402,256" fill="#FB8C00"/>
-  <polygon points="418,240 428,256 418,272 408,256" fill="#FFB74D"/>
+  <!-- Checkmark / clock hand — the "tick" -->
+  <polyline
+    points="112,240 140,272 172,192"
+    fill="none"
+    stroke="#FFB74D"
+    stroke-width="24"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
 </svg>

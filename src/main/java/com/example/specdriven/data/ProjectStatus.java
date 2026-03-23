@@ -1,0 +1,5 @@
+package com.example.specdriven.data;
+
+public enum ProjectStatus {
+    NOT_STARTED, IN_PROGRESS, COMPLETED
+}

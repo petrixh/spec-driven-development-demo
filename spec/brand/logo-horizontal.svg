@@ -1,26 +1,32 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80" width="360" height="80">
-  <!-- Icon mark (compact version of the logo) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 80" width="420" height="80">
+  <!-- Icon mark -->
   <g transform="translate(0, 4)">
     <!-- Dark rounded square background -->
     <rect x="0" y="0" width="72" height="72" rx="14" fill="#1A1A1A"/>
 
-    <!-- Three Gantt bars -->
-    <rect x="14" y="14" width="24" height="10" rx="3" fill="#FB8C00"/>
-    <rect x="18" y="30" width="34" height="10" rx="3" fill="#F57C00"/>
-    <rect x="14" y="46" width="42" height="10" rx="3" fill="#E65100"/>
+    <!-- Checkmark / clock hand -->
+    <polyline
+      points="12,38 20,47 30,24"
+      fill="none"
+      stroke="#FFB74D"
+      stroke-width="5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
 
-    <!-- Spark -->
-    <polygon points="60,28 64,36 60,44 56,36" fill="#FB8C00"/>
-    <polygon points="60,30 62.5,36 60,42 57.5,36" fill="#FFB74D"/>
+    <!-- Three Gantt bars -->
+    <rect x="36" y="16" width="24" height="9" rx="3" fill="#FB8C00"/>
+    <rect x="36" y="31" width="30" height="9" rx="3" fill="#F57C00"/>
+    <rect x="36" y="46" width="27" height="9" rx="3" fill="#E65100"/>
   </g>
 
   <!-- Wordmark -->
-  <text x="88" y="55" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="48" font-weight="700" fill="#1A1A1A" letter-spacing="-1">
-    Forge
+  <text x="88" y="52" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="44" font-weight="700" fill="#1A1A1A" letter-spacing="-1">
+    TickTask
   </text>
 
   <!-- Tagline -->
-  <text x="90" y="72" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="400" fill="#757575" letter-spacing="2">
+  <text x="90" y="70" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="12" font-weight="400" fill="#757575" letter-spacing="2">
     PROJECT MANAGEMENT
   </text>
 </svg>

@@ -6,10 +6,10 @@
 
 ## 0. Brand
 
-- **App name:** Forge
+- **App name:** TickTask
 - **Tagline:** Project Management
-- **Voice:** Direct, confident, builder-oriented. No fluff — mirrors the tool's simplicity.
-- **Logo concept:** Three staggered horizontal bars (evoking Gantt chart timelines) in graduated orange tones on a dark background, with a small diamond "spark" accent to the right — representing the forge's spark and forward momentum.
+- **Voice:** Playful, clever, developer-friendly. Sounds like "tic-tac" — a nod to the rhythm of getting things done, clock ticks marking progress, and checkmarks (ticks) completing tasks.
+- **Logo concept:** A stylized checkmark (tick) integrated with a clock hand, next to three staggered Gantt-style bars in graduated orange tones on a dark background. The checkmark doubles as a clock hand at the "tick" position, reinforcing the dual meaning.
 
 ### Logo Files
 
@@ -24,11 +24,10 @@
 | Element | Color | Token |
 |---------|-------|-------|
 | Background | `#1A1A1A` | Surface (dark) |
+| Checkmark / clock hand | `#FFB74D` | Orange 300 — bright accent |
 | Top bar | `#FB8C00` | Orange 600 — planning/future |
 | Middle bar | `#F57C00` | Orange 700 — primary/active |
 | Bottom bar | `#E65100` | Orange 900 — completed/momentum |
-| Spark outer | `#FB8C00` | Orange 600 |
-| Spark inner | `#FFB74D` | Orange 300 — bright highlight |
 
 ### Usage Rules
 
