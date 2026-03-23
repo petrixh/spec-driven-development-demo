@@ -2,18 +2,16 @@
 
 - [ ] TODO Replace or update this README with instructions relevant to your application
 
-To start the application in development mode, import it into your IDE and run the `Application` class. 
-You can also start the application from the command line by running: 
+## Build & Run Commands
 
 ```bash
-./mvnw
+./mvnw                            # Run in dev mode (default goal: spring-boot:run)
+./mvnw clean package              # Production build (JAR in target/)
+./mvnw test                       # Run all tests
+./mvnw test -Dtest=ClassName      # Run a single test class
 ```
 
-To build the application in production mode, run:
-
-```bash
-./mvnw package
-```
+The app runs on port 8080 (configurable via `PORT` env var).
 
 To build a Docker image, run:
 
@@ -29,6 +27,6 @@ docker build --secret id=proKey,src=$HOME/.vaadin/proKey .
 
 ## Getting Started
 
-The [Quick Start](https://vaadin.com/docs/v25/getting-started/quick-start) tutorial helps you get started with Vaadin in 
-around 10 minutes. This tutorial walks you through building a simple application, introducing the core concepts along 
+The [Quick Start](https://vaadin.com/docs/v25/getting-started/quick-start) tutorial helps you get started with Vaadin in
+around 10 minutes. This tutorial walks you through building a simple application, introducing the core concepts along
 the way.
