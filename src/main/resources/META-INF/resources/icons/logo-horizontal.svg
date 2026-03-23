@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 80" width="360" height="80">
+  <!-- Icon mark (compact version of the logo) -->
+  <g transform="translate(0, 4)">
+    <!-- Dark rounded square background -->
+    <rect x="0" y="0" width="72" height="72" rx="14" fill="#1A1A1A"/>
+
+    <!-- Three Gantt bars -->
+    <rect x="14" y="14" width="24" height="10" rx="3" fill="#FB8C00"/>
+    <rect x="18" y="30" width="34" height="10" rx="3" fill="#F57C00"/>
+    <rect x="14" y="46" width="42" height="10" rx="3" fill="#E65100"/>
+
+    <!-- Spark -->
+    <polygon points="60,28 64,36 60,44 56,36" fill="#FB8C00"/>
+    <polygon points="60,30 62.5,36 60,42 57.5,36" fill="#FFB74D"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text x="88" y="55" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="48" font-weight="700" fill="#1A1A1A" letter-spacing="-1">
+    Forge
+  </text>
+
+  <!-- Tagline -->
+  <text x="90" y="72" font-family="system-ui, -apple-system, 'Segoe UI', sans-serif" font-size="13" font-weight="400" fill="#757575" letter-spacing="2">
+    PROJECT MANAGEMENT
+  </text>
+</svg>
