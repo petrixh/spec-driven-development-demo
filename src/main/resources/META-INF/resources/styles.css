@@ -40,6 +40,7 @@
     font-size: var(--aura-font-size-l);
     color: var(--vaadin-text-color-secondary);
     text-align: center;
+    margin-bottom: 4px;
 }
 
 .total-price {
@@ -129,4 +130,32 @@
     text-align: center;
     font-size: var(--aura-font-size-s);
     color: var(--vaadin-text-color-secondary);
+}
+
+/* Responsive: mobile layout */
+@media (max-width: 600px) {
+    vaadin-horizontal-layout.checkout-content {
+        flex-direction: column !important;
+    }
+
+    vaadin-horizontal-layout.checkout-content > .action-panel {
+        width: 100% !important;
+        min-width: 0;
+    }
+
+    vaadin-horizontal-layout.checkout-content > .item-grid {
+        min-height: 200px;
+        width: 100% !important;
+    }
+}
+
+/* Responsive: tablet layout */
+@media (max-width: 768px) {
+    .action-panel {
+        width: 250px !important;
+    }
+
+    .total-price {
+        font-size: 2rem;
+    }
 }
