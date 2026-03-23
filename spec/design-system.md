@@ -28,10 +28,12 @@
 
 ## 3. Typography
 
+**Always use Aura theme variables for font sizes** (e.g., `var(--aura-font-size-s)`, `var(--aura-font-size-m)`, `var(--aura-font-size-l)`, `var(--aura-font-size-xl)`). Do not use hardcoded `px`, `rem`, or `em` values for font sizes. This ensures consistency with the Vaadin Aura theme and allows global font-size adjustments through theme customization.
+
 | Element | Font / Size | Notes |
 |---------|-------------|-------|
-| Total price | 2.5rem, bold | Must be readable from a distance at the checkout terminal |
-| Item list | Aura defaults (1rem) | Clear and scannable |
+| Total price | `--aura-font-size-xl`, bold | Must be readable from a distance at the checkout terminal |
+| Item list | Aura defaults (`--aura-font-size-m`) | Clear and scannable |
 | Headings | Aura defaults | Standard section headings |
 
 ---
