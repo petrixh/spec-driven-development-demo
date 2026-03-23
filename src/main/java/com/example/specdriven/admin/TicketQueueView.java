@@ -44,6 +44,9 @@ public class TicketQueueView extends VerticalLayout {
         add(grid);
         grid.setSizeFull();
 
+        grid.addItemDoubleClickListener(e ->
+                getUI().ifPresent(ui -> ui.navigate("admin/ticket/" + e.getItem().getId())));
+
         refreshGrid();
     }
 
