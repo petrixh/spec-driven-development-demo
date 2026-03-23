@@ -60,7 +60,7 @@ public class DashboardView extends VerticalLayout {
         FlexLayout cards = new FlexLayout();
         cards.setWidthFull();
         cards.setFlexWrap(FlexLayout.FlexWrap.WRAP);
-        cards.getStyle().set("gap", "var(--vaadin-space-m)");
+        cards.getStyle().set("gap", "var(--vaadin-gap-m)");
 
         cards.add(createCard("Total Products", String.valueOf(totalProducts), null));
         cards.add(createCard("Total Stock Value", "$" + totalValue.setScale(2).toPlainString(), null));
@@ -72,30 +72,15 @@ public class DashboardView extends VerticalLayout {
 
     private Div createCard(String title, String value, String variant) {
         Div card = new Div();
-        card.getStyle()
-                .set("padding", "var(--vaadin-space-l)")
-                .set("border-radius", "var(--vaadin-border-radius-m)")
-                .set("border", "1px solid var(--vaadin-contrast-10pct)")
-                .set("min-width", "200px")
-                .set("flex", "1");
+        card.addClassName("summary-card");
 
         Span titleSpan = new Span(title);
-        titleSpan.getStyle()
-                .set("font-size", "var(--aura-font-size-s)")
-                .set("color", "var(--vaadin-contrast-60pct)")
-                .set("display", "block");
+        titleSpan.addClassName("card-title");
 
         Span valueSpan = new Span(value);
-        valueSpan.getStyle()
-                .set("font-size", "var(--aura-font-size-xl)")
-                .set("font-weight", "bold")
-                .set("display", "block")
-                .set("margin-top", "var(--vaadin-space-xs)");
-
-        if ("warning".equals(variant)) {
-            valueSpan.getStyle().set("color", "var(--vaadin-warning-color)");
-        } else if ("error".equals(variant)) {
-            valueSpan.getStyle().set("color", "var(--vaadin-error-color)");
+        valueSpan.addClassName("card-value");
+        if (variant != null) {
+            valueSpan.addClassName(variant);
         }
 
         card.add(titleSpan, valueSpan);
@@ -104,7 +89,7 @@ public class DashboardView extends VerticalLayout {
 
     private VerticalLayout createLowStockSection() {
         H2 heading = new H2("Low-Stock Alerts");
-        heading.getStyle().set("font-size", "var(--aura-font-size-l)");
+        heading.addClassName("section-heading");
 
         List<Product> lowStock = productRepository.findAll().stream()
                 .filter(p -> p.getCurrentStock() <= p.getReorderPoint())
@@ -128,7 +113,7 @@ public class DashboardView extends VerticalLayout {
 
     private VerticalLayout createRecentActivitySection() {
         H2 heading = new H2("Recent Activity");
-        heading.getStyle().set("font-size", "var(--aura-font-size-l)");
+        heading.addClassName("section-heading");
 
         List<StockEvent> events = stockEventRepository.findTop10ByOrderByTimestampDesc();
 

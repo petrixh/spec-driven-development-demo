@@ -21,7 +21,10 @@ public class MainLayout extends AppLayout {
         DrawerToggle toggle = new DrawerToggle();
 
         H1 title = new H1("Stash.log");
-        title.getStyle().set("font-size", "1.125rem").set("margin", "0");
+        title.getStyle()
+                .set("font-size", "var(--aura-font-size-l)")
+                .set("font-weight", "var(--aura-font-weight-semibold)")
+                .set("margin", "0");
 
         SideNav nav = new SideNav();
         nav.addItem(new SideNavItem("Dashboard", DashboardView.class, VaadinIcon.DASHBOARD.create()));

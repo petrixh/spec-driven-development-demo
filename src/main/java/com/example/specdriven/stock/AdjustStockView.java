@@ -67,7 +67,7 @@ public class AdjustStockView extends VerticalLayout {
             }
         });
 
-        currentStockLabel.getStyle().set("font-weight", "bold");
+        currentStockLabel.addClassName("current-stock-label");
 
         quantityField.setRequiredIndicatorVisible(true);
         quantityField.setStepButtonsVisible(true);

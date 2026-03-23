@@ -1,6 +1,7 @@
 package com.example.specdriven.security;
 
 import com.vaadin.flow.component.html.H1;
+import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.login.LoginForm;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
@@ -18,13 +19,17 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
     private final LoginForm loginForm = new LoginForm();
 
     public LoginView() {
+        addClassName("login-view");
         setSizeFull();
         setAlignItems(FlexComponent.Alignment.CENTER);
         setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
 
         loginForm.setAction("login");
 
-        add(new H1("Stash.log"), loginForm);
+        Paragraph tagline = new Paragraph("git stash for your warehouse.");
+        tagline.addClassName("tagline");
+
+        add(new H1("Stash.log"), tagline, loginForm);
     }
 
     @Override

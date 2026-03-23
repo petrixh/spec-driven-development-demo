@@ -89,9 +89,10 @@ public class ManageProductsView extends VerticalLayout {
         saveButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         saveButton.addClickListener(event -> saveProduct());
 
-        deleteButton.addThemeVariants(ButtonVariant.LUMO_ERROR);
+        deleteButton.addThemeVariants(ButtonVariant.LUMO_ERROR, ButtonVariant.LUMO_TERTIARY);
         deleteButton.addClickListener(event -> confirmDelete());
 
+        addButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         addButton.addClickListener(event -> {
             grid.asSingleSelect().clear();
             clearForm();
@@ -129,7 +130,7 @@ public class ManageProductsView extends VerticalLayout {
 
     private VerticalLayout createFormLayout() {
         H2 formTitle = new H2("Product Details");
-        formTitle.getStyle().set("font-size", "var(--aura-font-size-l)");
+        formTitle.addClassName("section-heading");
 
         FormLayout form = new FormLayout();
         form.add(nameField, skuField, categoryField, unitPriceField, reorderPointField);
@@ -138,7 +139,7 @@ public class ManageProductsView extends VerticalLayout {
         HorizontalLayout buttons = new HorizontalLayout(saveButton, deleteButton);
 
         VerticalLayout layout = new VerticalLayout(formTitle, form, buttons);
-        layout.setPadding(true);
+        layout.addClassName("form-panel");
         layout.setWidth("100%");
         return layout;
     }

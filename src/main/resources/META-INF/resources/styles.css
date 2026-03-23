@@ -1,1 +1,109 @@
-/* Add your styles here */
+/* Stash.log — Brand & Design System */
+
+/* ── Aura Theme Customization ── */
+html {
+  /* Brand teal as accent color */
+  --aura-accent-color-light: #0F766E;
+  --aura-accent-color-dark: #2DD4BF;
+
+  /* Dark sidebar, light content */
+  color-scheme: dark;
+  --aura-content-color-scheme: light;
+
+  /* Slightly reduce app layout inset for more space */
+  --aura-app-layout-inset: 4px;
+}
+
+/* ── Login Page ── */
+.login-view {
+  background: linear-gradient(135deg, #F0FDFA 0%, #CCFBF1 100%);
+}
+
+.login-view h1 {
+  color: #0F766E;
+  font-size: var(--aura-font-size-xl);
+  font-weight: var(--aura-font-weight-semibold);
+}
+
+.login-view .tagline {
+  color: #6B7280;
+  font-size: var(--aura-font-size-s);
+  font-family: 'SF Mono', 'Fira Code', 'JetBrains Mono', monospace;
+  margin-top: calc(-1 * var(--vaadin-gap-s));
+  margin-bottom: var(--vaadin-gap-l);
+}
+
+/* ── Dashboard Summary Cards ── */
+.summary-card {
+  background: var(--vaadin-background-color);
+  border: 1px solid var(--vaadin-border-color-secondary);
+  border-radius: var(--vaadin-radius-l);
+  padding: var(--vaadin-padding-l);
+  min-width: 180px;
+  max-width: 300px;
+  flex: 1;
+}
+
+.summary-card .card-title {
+  font-size: var(--aura-font-size-s);
+  color: var(--vaadin-text-color-secondary);
+  display: block;
+}
+
+.summary-card .card-value {
+  font-size: var(--aura-font-size-xl);
+  font-weight: var(--aura-font-weight-semibold);
+  display: block;
+  margin-top: var(--vaadin-gap-xs);
+}
+
+.summary-card .card-value.warning {
+  color: #D97706;
+}
+
+.summary-card .card-value.error {
+  color: #DC2626;
+}
+
+/* ── Stock Status Badges ── */
+span[theme~="badge"][theme~="success"] {
+  --vaadin-badge-color: #16A34A;
+  --vaadin-badge-background: #DCFCE7;
+}
+
+span[theme~="badge"][theme~="warning"] {
+  --vaadin-badge-color: #D97706;
+  --vaadin-badge-background: #FEF3C7;
+}
+
+span[theme~="badge"][theme~="error"] {
+  --vaadin-badge-color: #DC2626;
+  --vaadin-badge-background: #FEE2E2;
+}
+
+/* ── Section Headings ── */
+.section-heading {
+  font-size: var(--aura-font-size-l);
+  font-weight: var(--aura-font-weight-semibold);
+  margin-top: var(--vaadin-gap-l);
+  margin-bottom: var(--vaadin-gap-s);
+}
+
+/* ── Form Panels ── */
+.form-panel {
+  padding: var(--vaadin-padding-l);
+}
+
+.form-panel h2 {
+  font-size: var(--aura-font-size-l);
+  font-weight: var(--aura-font-weight-semibold);
+  margin: 0 0 var(--vaadin-gap-m) 0;
+}
+
+/* ── Current Stock Label (Adjust Stock) ── */
+.current-stock-label {
+  font-weight: var(--aura-font-weight-semibold);
+  font-size: var(--aura-font-size-m);
+  color: var(--vaadin-text-color);
+  padding: var(--vaadin-padding-s) 0;
+}
