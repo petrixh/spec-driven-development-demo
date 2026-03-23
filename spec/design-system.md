@@ -15,9 +15,9 @@
 
 | File | Size | Usage |
 |------|------|-------|
-| `icons/logo.svg` | 512x512 | App icon, splash screen, about page |
-| `icons/logo-horizontal.svg` | 360x80 | Header/navbar logo with "Forge" wordmark |
-| `icons/favicon.svg` | 32x32 | Browser tab favicon |
+| [`brand/logo.svg`](brand/logo.svg) | 512x512 | App icon, splash screen, about page |
+| [`brand/logo-horizontal.svg`](brand/logo-horizontal.svg) | 360x80 | Header/navbar logo with "Forge" wordmark |
+| [`brand/favicon.svg`](brand/favicon.svg) | 32x32 | Browser tab favicon |
 
 ### Logo Colors
 
