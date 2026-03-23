@@ -172,9 +172,9 @@ vaadin-app-layout::part(navbar) {
     border-bottom: 1px solid #F5F5F5;
 }
 
-/* Workload warning */
-.workload-warning {
-    background: #FFF8E1 !important;
+/* Workload warning - grid part name based styling */
+vaadin-grid::part(workload-warning) {
+    background: #FFF8E1;
 }
 
 /* Login view */
