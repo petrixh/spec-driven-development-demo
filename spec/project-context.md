@@ -4,16 +4,20 @@
 
 ## 1. Vision
 
-[One to two paragraphs describing the desired future state. What does success look like for the users?]
+A lightweight project management tool for small teams (2–10 people) who need to plan work, track progress, and visualize timelines without the complexity of enterprise tools like Jira or MS Project. The app centers on a Gantt chart as the primary planning interface, complemented by straightforward task management and a team workload view. Success means a team lead can set up a project, assign tasks, and see the full timeline in under five minutes.
 
 ## 2. Users
 
-[ Describe users and what they can do]
+- **Project Manager (Admin)** — Creates and manages projects, assigns tasks to team members, adjusts timelines. Has full access to all views and data.
+- **Team Member (Authenticated)** — Views assigned tasks, updates task status, views the Gantt chart and workload. Cannot create or delete projects.
 
 ## 3. Constraints
 
-- [Platform or integration requirement]
-- [Policy or standard]
+- Single-tenant application (one team per deployment)
+- No integrations with external systems (email, Slack, etc.)
+- No file attachments or comments on tasks
+- No recurring tasks or templates
+- Maximum 20 projects and 200 tasks total (small-team scale)
 
 > For technology stack and application structure details, see [`architecture.md`](architecture.md).
 
