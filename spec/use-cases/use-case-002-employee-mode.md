@@ -33,6 +33,7 @@
 |----|------|
 | BR-01 | The secret code is `112233` (hard-coded) |
 | BR-02 | Entering a wrong code shows an error message and does not unlock employee mode |
+| BR-07 | The code input must be masked (password field) — entered characters must not be visible on screen |
 | BR-03 | "Paid by Cash" is only available in employee mode |
 | BR-04 | "Paid by Cash" requires at least one item in the transaction (same as regular pay) |
 | BR-05 | Employee mode persists until explicitly exited or the transaction is completed |
@@ -75,7 +76,7 @@
 Employee mode is part of the self-checkout view (no separate route).
 
 - **"Call Employee" button**: Always visible on the checkout view, styled distinctly (e.g., secondary/outlined)
-- **Code input**: Appears as a dialog/overlay when "Call Employee" is pressed, with a numeric input and submit button
+- **Code input**: Appears as a dialog/overlay when "Call Employee" is pressed, with a password/masked input (characters must not be visible) and submit button
 - **Employee mode indicator**: A visible badge or banner showing "Employee Mode" when active
 - **"Paid by Cash" button**: Appears alongside the "Pay" button when in employee mode
 - **"Select Customer" button**: Appears in employee mode, opens a customer selection dialog with search by name/number
