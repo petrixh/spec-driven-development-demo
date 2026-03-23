@@ -1,1 +1,86 @@
-/* Add your styles here */
+/* GreenLedger — Green & White theme on Aura */
+
+html {
+    --aura-accent-color-light: #2E7D32;
+    --aura-accent-color-dark: #4CAF50;
+    --aura-green: #2E7D32;
+}
+
+/* Login view */
+.login-view {
+    background: var(--vaadin-background-color);
+}
+
+.login-brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--vaadin-gap-s);
+    margin-bottom: var(--vaadin-gap-l);
+}
+
+.login-title {
+    color: #2E7D32;
+    margin: 0;
+    font-size: var(--aura-font-size-xl);
+}
+
+.login-tagline {
+    color: var(--vaadin-text-color-secondary);
+    margin: 0;
+    font-size: var(--aura-font-size-m);
+}
+
+/* Drawer / sidebar */
+.drawer-username {
+    display: block;
+    padding: var(--vaadin-padding-s) 0;
+    color: var(--vaadin-text-color-secondary);
+    font-size: var(--aura-font-size-s);
+}
+
+/* Status badges */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--vaadin-padding-xs) var(--vaadin-padding-s);
+    border-radius: var(--vaadin-radius-s);
+    font-size: var(--aura-font-size-xs);
+    font-weight: var(--aura-font-weight-medium);
+}
+
+.badge-pending {
+    background: #FFF8E1;
+    color: #F57F17;
+}
+
+.badge-approved {
+    background: #E8F5E9;
+    color: #2E7D32;
+}
+
+.badge-rejected {
+    background: #FFEBEE;
+    color: #C62828;
+}
+
+/* Dashboard cards */
+.dashboard-card {
+    background: var(--aura-surface-color);
+    border-radius: var(--vaadin-radius-l);
+    padding: var(--vaadin-padding-l);
+    box-shadow: var(--aura-shadow-s);
+}
+
+.dashboard-card h3 {
+    margin: 0 0 var(--vaadin-gap-s) 0;
+    color: var(--vaadin-text-color-secondary);
+    font-size: var(--aura-font-size-s);
+    font-weight: var(--aura-font-weight-medium);
+}
+
+.dashboard-card .card-value {
+    font-size: var(--aura-font-size-xl);
+    font-weight: var(--aura-font-weight-semibold);
+    color: #2E7D32;
+}
