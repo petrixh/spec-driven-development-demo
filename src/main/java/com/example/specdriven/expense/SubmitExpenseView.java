@@ -47,6 +47,7 @@ public class SubmitExpenseView extends VerticalLayout {
         setMaxWidth("800px");
 
         H2 title = new H2("Submit Expense");
+        title.addClassName("view-title");
 
         amountField.setMin(0.01);
         amountField.setStep(0.01);
@@ -82,9 +83,11 @@ public class SubmitExpenseView extends VerticalLayout {
         FormLayout formLayout = new FormLayout();
         formLayout.add(amountField, dateField, categoryField, descriptionField);
         formLayout.setColspan(descriptionField, 2);
+        formLayout.addClassName("submit-form");
 
         Button submitButton = new Button("Submit", e -> handleSubmit());
         submitButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
+        submitButton.addClassName("btn-approve");
 
         add(title, formLayout, receiptUpload, submitButton);
     }

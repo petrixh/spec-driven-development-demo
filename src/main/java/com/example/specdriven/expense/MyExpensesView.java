@@ -41,6 +41,7 @@ public class MyExpensesView extends VerticalLayout {
         setPadding(true);
 
         H2 title = new H2("My Expenses");
+        title.addClassName("view-title");
 
         configureFilters();
         configureGrid();
@@ -48,11 +49,9 @@ public class MyExpensesView extends VerticalLayout {
         HorizontalLayout filterBar = new HorizontalLayout(statusFilter, fromDate, toDate, totalLabel);
         filterBar.setAlignItems(Alignment.BASELINE);
         filterBar.setWidthFull();
+        filterBar.addClassName("filter-bar");
 
-        totalLabel.getStyle()
-                .set("margin-left", "auto")
-                .set("font-weight", "var(--aura-font-weight-semibold)")
-                .set("font-size", "var(--aura-font-size-l)");
+        totalLabel.addClassName("total-label");
 
         add(title, filterBar, grid);
         refreshGrid();

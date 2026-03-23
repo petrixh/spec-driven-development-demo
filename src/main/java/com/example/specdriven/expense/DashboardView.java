@@ -6,6 +6,7 @@ import com.vaadin.flow.component.charts.model.Configuration;
 import com.vaadin.flow.component.charts.model.DataSeries;
 import com.vaadin.flow.component.charts.model.DataSeriesItem;
 import com.vaadin.flow.component.charts.model.PlotOptionsPie;
+import com.vaadin.flow.component.charts.model.style.SolidColor;
 import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
@@ -33,6 +34,7 @@ public class DashboardView extends VerticalLayout {
         setPadding(true);
 
         H2 title = new H2("Dashboard");
+        title.addClassName("view-title");
 
         HorizontalLayout cards = createCards();
         Chart chart = createCategoryChart();
@@ -70,9 +72,20 @@ public class DashboardView extends VerticalLayout {
         Configuration conf = chart.getConfiguration();
         conf.setTitle("Approved Expenses by Category");
 
+        // Brand-aligned chart color palette
+        SolidColor[] brandColors = {
+                new SolidColor("#2E7D32"),  // --primary
+                new SolidColor("#4CAF50"),  // --primary-light
+                new SolidColor("#1B5E20"),  // --primary-dark
+                new SolidColor("#81C784"),  // light green
+                new SolidColor("#388E3C"),  // --success
+        };
+        conf.getChart().setBackgroundColor(new SolidColor(0, 0, 0, 0));
+
         DataSeries series = new DataSeries("Amount");
         Map<ExpenseCategory, BigDecimal> data = expenseService.getApprovedByCategory();
 
+        int colorIdx = 0;
         for (Map.Entry<ExpenseCategory, BigDecimal> entry : data.entrySet()) {
             String label = switch (entry.getKey()) {
                 case TRAVEL -> "Travel";
@@ -80,7 +93,10 @@ public class DashboardView extends VerticalLayout {
                 case OFFICE_SUPPLIES -> "Office Supplies";
                 case OTHER -> "Other";
             };
-            series.add(new DataSeriesItem(label, entry.getValue().doubleValue()));
+            DataSeriesItem item = new DataSeriesItem(label, entry.getValue().doubleValue());
+            item.setColor(brandColors[colorIdx % brandColors.length]);
+            colorIdx++;
+            series.add(item);
         }
 
         if (series.getData().isEmpty()) {

@@ -37,6 +37,7 @@ public class MainLayout extends AppLayout {
         logo.setHeight("32px");
 
         H1 appTitle = new H1("GreenLedger");
+        appTitle.addClassName("app-title");
         appTitle.getStyle().set("font-size", "var(--aura-font-size-l)").set("margin", "0");
 
         HorizontalLayout titleLayout = new HorizontalLayout(logo, appTitle);

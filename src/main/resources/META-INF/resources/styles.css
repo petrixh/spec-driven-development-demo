@@ -1,14 +1,26 @@
 /* GreenLedger — Green & White theme on Aura */
 
+/* === Design System Color Tokens === */
 html {
-    --aura-accent-color-light: #2E7D32;
-    --aura-accent-color-dark: #4CAF50;
-    --aura-green: #2E7D32;
+    --primary: #2E7D32;
+    --primary-light: #4CAF50;
+    --primary-dark: #1B5E20;
+    --background: #FFFFFF;
+    --surface: #F5F9F5;
+    --text-primary: #1C1C1C;
+    --text-secondary: #5F6368;
+    --success: #388E3C;
+    --error: #D32F2F;
+    --warning: #F9A825;
+
+    /* Map design tokens to Aura accent */
+    --aura-accent-color-light: var(--primary);
+    --aura-accent-color-dark: var(--primary-light);
 }
 
-/* Login view */
+/* === Login View === */
 .login-view {
-    background: var(--vaadin-background-color);
+    background: var(--background);
 }
 
 .login-brand {
@@ -20,26 +32,36 @@ html {
 }
 
 .login-title {
-    color: #2E7D32;
+    color: var(--primary);
     margin: 0;
     font-size: var(--aura-font-size-xl);
 }
 
 .login-tagline {
-    color: var(--vaadin-text-color-secondary);
+    color: var(--text-secondary);
     margin: 0;
     font-size: var(--aura-font-size-m);
 }
 
-/* Drawer / sidebar */
+/* === App Layout / Drawer === */
+.app-title {
+    color: var(--primary-dark);
+}
+
 .drawer-username {
     display: block;
     padding: var(--vaadin-padding-s) 0;
-    color: var(--vaadin-text-color-secondary);
+    color: var(--text-secondary);
     font-size: var(--aura-font-size-s);
 }
 
-/* Status badges */
+/* === Page Headings === */
+.view-title {
+    color: var(--text-primary);
+    margin: 0 0 var(--vaadin-gap-m) 0;
+}
+
+/* === Status Badges === */
 .badge {
     display: inline-flex;
     align-items: center;
@@ -47,40 +69,114 @@ html {
     border-radius: var(--vaadin-radius-s);
     font-size: var(--aura-font-size-xs);
     font-weight: var(--aura-font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
 }
 
 .badge-pending {
-    background: #FFF8E1;
-    color: #F57F17;
+    background: color-mix(in srgb, var(--warning) 15%, transparent);
+    color: var(--warning);
 }
 
 .badge-approved {
-    background: #E8F5E9;
-    color: #2E7D32;
+    background: color-mix(in srgb, var(--success) 12%, transparent);
+    color: var(--success);
 }
 
 .badge-rejected {
-    background: #FFEBEE;
-    color: #C62828;
+    background: color-mix(in srgb, var(--error) 10%, transparent);
+    color: var(--error);
 }
 
-/* Dashboard cards */
+/* === Receipt Indicator === */
+.receipt-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--vaadin-gap-xs);
+    font-size: var(--aura-font-size-xs);
+    color: var(--text-secondary);
+}
+
+.receipt-badge-yes {
+    color: var(--success);
+    font-weight: var(--aura-font-weight-medium);
+}
+
+/* === Filter Bar === */
+.filter-bar {
+    gap: var(--vaadin-gap-m);
+}
+
+.total-label {
+    margin-left: auto;
+    font-weight: var(--aura-font-weight-semibold);
+    font-size: var(--aura-font-size-l);
+    color: var(--primary);
+}
+
+/* === Detail Panel === */
+.detail-panel {
+    background: var(--background);
+    border-radius: var(--vaadin-radius-l);
+    box-shadow: var(--aura-shadow-s);
+    border: 1px solid var(--vaadin-border-color-secondary);
+}
+
+.detail-panel h3 {
+    color: var(--primary-dark);
+    margin: 0 0 var(--vaadin-gap-m) 0;
+}
+
+.detail-label {
+    color: var(--text-secondary);
+    font-size: var(--aura-font-size-s);
+    margin: 0;
+}
+
+.detail-value {
+    color: var(--text-primary);
+    font-size: var(--aura-font-size-m);
+    margin: 0 0 var(--vaadin-gap-s) 0;
+}
+
+/* === Approve / Reject Buttons === */
+.btn-approve {
+    background: var(--primary);
+    color: var(--background);
+}
+
+.btn-approve:hover {
+    background: var(--primary-dark);
+}
+
+/* === Dashboard Cards === */
 .dashboard-card {
-    background: var(--aura-surface-color);
+    background: var(--surface);
     border-radius: var(--vaadin-radius-l);
     padding: var(--vaadin-padding-l);
     box-shadow: var(--aura-shadow-s);
+    border: 1px solid color-mix(in srgb, var(--primary) 8%, transparent);
 }
 
 .dashboard-card h3 {
     margin: 0 0 var(--vaadin-gap-s) 0;
-    color: var(--vaadin-text-color-secondary);
+    color: var(--text-secondary);
     font-size: var(--aura-font-size-s);
     font-weight: var(--aura-font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 
 .dashboard-card .card-value {
     font-size: var(--aura-font-size-xl);
     font-weight: var(--aura-font-weight-semibold);
-    color: #2E7D32;
+    color: var(--primary);
+}
+
+/* === Submit Expense Form === */
+.submit-form {
+    background: var(--background);
+    border-radius: var(--vaadin-radius-l);
+    padding: var(--vaadin-padding-l);
+    box-shadow: var(--aura-shadow-xs);
 }

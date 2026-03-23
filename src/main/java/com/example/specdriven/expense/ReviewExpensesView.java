@@ -4,6 +4,7 @@ import com.vaadin.flow.component.button.Button;
 import com.vaadin.flow.component.button.ButtonVariant;
 import com.vaadin.flow.component.dialog.Dialog;
 import com.vaadin.flow.component.grid.Grid;
+import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Image;
@@ -38,6 +39,7 @@ public class ReviewExpensesView extends VerticalLayout {
         setSizeFull();
 
         H2 title = new H2("Review Expenses");
+        title.addClassName("view-title");
 
         configureGrid();
         configureDetailPanel();
@@ -60,8 +62,12 @@ public class ReviewExpensesView extends VerticalLayout {
         grid.addColumn(Expense::getDescription).setHeader("Description").setFlexGrow(1);
         grid.addColumn(e -> formatCurrency(e.getAmount())).setHeader("Amount").setAutoWidth(true);
         grid.addComponentColumn(e -> {
-            Span icon = new Span(e.getReceipt() != null ? "Yes" : "No");
-            return icon;
+            Span indicator = new Span(e.getReceipt() != null ? "Attached" : "None");
+            indicator.addClassName("receipt-badge");
+            if (e.getReceipt() != null) {
+                indicator.addClassName("receipt-badge-yes");
+            }
+            return indicator;
         }).setHeader("Receipt").setAutoWidth(true);
 
         grid.asSingleSelect().addValueChangeListener(e -> showDetail(e.getValue()));
@@ -72,8 +78,7 @@ public class ReviewExpensesView extends VerticalLayout {
         detailPanel.setWidth("400px");
         detailPanel.setPadding(true);
         detailPanel.setVisible(false);
-        detailPanel.getStyle().set("background", "var(--vaadin-background-color)")
-                .set("border-radius", "var(--vaadin-radius-l)");
+        detailPanel.addClassName("detail-panel");
     }
 
     private void showDetail(Expense expense) {
@@ -86,11 +91,11 @@ public class ReviewExpensesView extends VerticalLayout {
 
         H3 detailTitle = new H3("Expense Details");
         detailPanel.add(detailTitle);
-        detailPanel.add(new Paragraph("Employee: " + expense.getSubmitterUsername()));
-        detailPanel.add(new Paragraph("Date: " + expense.getDate()));
-        detailPanel.add(new Paragraph("Category: " + formatCategory(expense.getCategory())));
-        detailPanel.add(new Paragraph("Description: " + expense.getDescription()));
-        detailPanel.add(new Paragraph("Amount: " + formatCurrency(expense.getAmount())));
+        detailPanel.add(createDetailRow("Employee", expense.getSubmitterUsername()));
+        detailPanel.add(createDetailRow("Date", expense.getDate().toString()));
+        detailPanel.add(createDetailRow("Category", formatCategory(expense.getCategory())));
+        detailPanel.add(createDetailRow("Description", expense.getDescription()));
+        detailPanel.add(createDetailRow("Amount", formatCurrency(expense.getAmount())));
 
         if (expense.getReceipt() != null) {
             StreamResource resource = new StreamResource(
@@ -105,7 +110,7 @@ public class ReviewExpensesView extends VerticalLayout {
 
         Button approveBtn = new Button("Approve", e -> approve(expense));
         approveBtn.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
-        approveBtn.getStyle().set("background", "#2E7D32");
+        approveBtn.addClassName("btn-approve");
 
         Button rejectBtn = new Button("Reject", e -> openRejectDialog(expense));
         rejectBtn.addThemeVariants(ButtonVariant.LUMO_ERROR);
@@ -132,7 +137,7 @@ public class ReviewExpensesView extends VerticalLayout {
         commentField.setRequiredIndicatorVisible(true);
 
         Span errorMsg = new Span();
-        errorMsg.getStyle().set("color", "var(--vaadin-input-field-invalid-color, #d32f2f)");
+        errorMsg.getStyle().set("color", "var(--error)");
 
         dialog.add(commentField, errorMsg);
 
@@ -170,6 +175,15 @@ public class ReviewExpensesView extends VerticalLayout {
             case OFFICE_SUPPLIES -> "Office Supplies";
             case OTHER -> "Other";
         };
+    }
+
+    private Div createDetailRow(String label, String value) {
+        Paragraph labelEl = new Paragraph(label);
+        labelEl.addClassName("detail-label");
+        Paragraph valueEl = new Paragraph(value);
+        valueEl.addClassName("detail-value");
+        Div row = new Div(labelEl, valueEl);
+        return row;
     }
 
     private String formatCurrency(java.math.BigDecimal amount) {
