@@ -9,6 +9,8 @@
 - **Base theme:** Vaadin Aura
 - **Custom CSS:** `src/main/resources/META-INF/resources/styles.css`
 
+> **Aura and Lumo are two different, incompatible design systems.** This project uses **Aura**. Do not use `--lumo-*` CSS variables — they belong to the Lumo theme and must not be mixed with Aura. Use `--aura-*` variables for Aura-specific properties (typography, shadows) and `--vaadin-*` variables for base properties shared across all themes (spacing, radius, colors).
+
 ---
 
 ## 2. Color Palette
