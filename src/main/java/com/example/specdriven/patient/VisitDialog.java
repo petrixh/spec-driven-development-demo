@@ -77,6 +77,7 @@ public class VisitDialog extends Dialog {
         save.addClickListener(e -> saveVisit());
 
         Button cancel = new Button("Cancel");
+        cancel.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         cancel.addClickListener(e -> close());
 
         getFooter().add(cancel, save);

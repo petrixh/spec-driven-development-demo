@@ -43,23 +43,30 @@ public class PatientFormView extends VerticalLayout {
     public PatientFormView(PatientService patientService) {
         this.patientService = patientService;
 
+        addClassName("content-view");
         setPadding(true);
-        setMaxWidth("800px");
 
-        add(new H2("New Patient"));
+        H2 title = new H2("New Patient");
+        title.addClassName("page-title");
 
         configureForm();
         configureBinder();
 
         FormLayout formLayout = new FormLayout();
+        formLayout.setResponsiveSteps(
+                new FormLayout.ResponsiveStep("0", 1),
+                new FormLayout.ResponsiveStep("640px", 2));
         formLayout.add(firstName, lastName, dateOfBirth, gender, phone, email);
         formLayout.setColspan(email, 2);
 
         address.setWidthFull();
 
-        var buttons = createButtons();
+        var formCard = new VerticalLayout(formLayout, address);
+        formCard.addClassName("surface-card");
+        formCard.setPadding(true);
+        formCard.setSpacing(true);
 
-        add(formLayout, address, buttons);
+        add(title, formCard, createButtons());
     }
 
     private void configureForm() {
@@ -71,8 +78,8 @@ public class PatientFormView extends VerticalLayout {
         gender.setItems("Male", "Female", "Other");
         gender.setPlaceholder("Select gender");
 
-        phone.setPlaceholder("e.g. +1 555-0100");
-        email.setPlaceholder("e.g. jane@example.com");
+        phone.setHelperText("Digits, spaces, dashes, or leading +");
+        email.setHelperText("e.g. jane@example.com");
         address.setPlaceholder("Street, city, zip");
         address.setMaxLength(500);
     }
@@ -116,6 +123,7 @@ public class PatientFormView extends VerticalLayout {
         save.addClickListener(e -> savePatient());
 
         Button cancel = new Button("Cancel");
+        cancel.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         cancel.addClickListener(e -> UI.getCurrent().navigate("patients"));
 
         var layout = new HorizontalLayout(save, cancel);

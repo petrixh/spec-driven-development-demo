@@ -28,10 +28,13 @@ public class DashboardView extends VerticalLayout {
     public DashboardView(PatientService patientService) {
         this.patientService = patientService;
 
+        addClassName("content-view");
         setPadding(true);
         setSpacing(true);
 
-        add(new H2("Dashboard"));
+        H2 title = new H2("Dashboard");
+        title.addClassName("page-title");
+        add(title);
         add(createStatCards());
         add(createRecentSections());
     }
@@ -76,7 +79,9 @@ public class DashboardView extends VerticalLayout {
 
     private VerticalLayout createRecentVisits() {
         var section = new VerticalLayout();
-        section.add(new H3("Recent Visits"));
+        H3 heading = new H3("Recent Visits");
+        heading.addClassName("section-title");
+        section.add(heading);
 
         List<Visit> visits = patientService.findRecentVisits();
 
@@ -98,7 +103,9 @@ public class DashboardView extends VerticalLayout {
 
     private VerticalLayout createRecentPatients() {
         var section = new VerticalLayout();
-        section.add(new H3("Recently Registered"));
+        H3 heading = new H3("Recently Registered");
+        heading.addClassName("section-title");
+        section.add(heading);
 
         List<Patient> patients = patientService.findRecentPatients();
 

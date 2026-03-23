@@ -25,15 +25,22 @@ public class PatientListView extends VerticalLayout {
     private final PatientService patientService;
     private final Grid<Patient> grid = new Grid<>(Patient.class, false);
     private final TextField searchField = new TextField();
+    private final Span emptyState = new Span("No patients found \u2014 try adjusting your search");
 
     public PatientListView(PatientService patientService) {
         this.patientService = patientService;
 
+        addClassName("content-view");
         setSizeFull();
         setPadding(true);
 
+        H2 title = new H2("Patients");
+        title.addClassName("page-title");
+
         configureGrid();
-        add(createToolbar(), grid);
+        configureEmptyState();
+
+        add(title, createToolbar(), grid, emptyState);
         updateList();
     }
 
@@ -67,14 +74,19 @@ public class PatientListView extends VerticalLayout {
                 UI.getCurrent().navigate("patients/" + e.getItem().getId()));
     }
 
+    private void configureEmptyState() {
+        emptyState.addClassName("empty-state");
+        emptyState.setWidthFull();
+        emptyState.setVisible(false);
+    }
+
     private void updateList() {
         String filter = searchField.getValue();
         var page = patientService.findAll(filter,
                 PageRequest.of(0, 200, Sort.by("lastName").ascending()));
-        if (page.isEmpty()) {
-            grid.setItems(java.util.List.of());
-        } else {
-            grid.setItems(page.getContent());
-        }
+        boolean hasResults = !page.isEmpty();
+        grid.setItems(hasResults ? page.getContent() : java.util.List.of());
+        grid.setVisible(hasResults);
+        emptyState.setVisible(!hasResults);
     }
 }

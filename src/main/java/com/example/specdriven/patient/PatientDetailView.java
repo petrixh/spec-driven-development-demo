@@ -58,8 +58,8 @@ public class PatientDetailView extends VerticalLayout implements HasUrlParameter
     public PatientDetailView(PatientService patientService) {
         this.patientService = patientService;
 
+        addClassName("content-view");
         setPadding(true);
-        setMaxWidth("900px");
 
         configureBinder();
         configureVisitGrid();
@@ -70,7 +70,9 @@ public class PatientDetailView extends VerticalLayout implements HasUrlParameter
         var optional = patientService.findById(patientId);
         if (optional.isEmpty()) {
             removeAll();
-            add(new H2("Patient not found"));
+            Span notFound = new Span("Patient not found");
+            notFound.addClassName("empty-state");
+            add(notFound);
             return;
         }
         this.patient = optional.get();
@@ -84,22 +86,33 @@ public class PatientDetailView extends VerticalLayout implements HasUrlParameter
         removeAll();
 
         title.setText(patient.getFirstName() + " " + patient.getLastName());
+        title.addClassName("page-title");
 
         FormLayout formLayout = new FormLayout();
+        formLayout.setResponsiveSteps(
+                new FormLayout.ResponsiveStep("0", 1),
+                new FormLayout.ResponsiveStep("640px", 2));
         formLayout.add(firstName, lastName, dateOfBirth, gender, phone, email);
         formLayout.setColspan(email, 2);
 
         address.setWidthFull();
+
+        var formCard = new VerticalLayout(formLayout, address);
+        formCard.addClassName("surface-card");
+        formCard.setPadding(true);
+        formCard.setSpacing(true);
 
         configureButtons();
 
         var buttonBar = new HorizontalLayout(editButton, saveButton, cancelButton);
         buttonBar.setSpacing(true);
 
-        add(title, formLayout, address, buttonBar);
+        add(title, formCard, buttonBar);
 
         // Visit section
-        var visitHeader = new HorizontalLayout(new H3("Visit History"), addVisitButton);
+        H3 visitTitle = new H3("Visit History");
+        visitTitle.addClassName("section-title");
+        var visitHeader = new HorizontalLayout(visitTitle, addVisitButton);
         visitHeader.setAlignItems(Alignment.BASELINE);
         visitHeader.setSpacing(true);
         add(visitHeader, visitGrid);
@@ -139,6 +152,8 @@ public class PatientDetailView extends VerticalLayout implements HasUrlParameter
 
         gender.setItems("Male", "Female", "Other");
         dateOfBirth.setMax(LocalDate.now());
+        phone.setHelperText("Digits, spaces, dashes, or leading +");
+        email.setHelperText("e.g. jane@example.com");
     }
 
     private void configureButtons() {
@@ -147,6 +162,7 @@ public class PatientDetailView extends VerticalLayout implements HasUrlParameter
         saveButton.addThemeVariants(ButtonVariant.LUMO_PRIMARY);
         saveButton.addClickListener(e -> savePatient());
 
+        cancelButton.addThemeVariants(ButtonVariant.LUMO_TERTIARY);
         cancelButton.addClickListener(e -> {
             populateForm();
             setReadOnly(true);

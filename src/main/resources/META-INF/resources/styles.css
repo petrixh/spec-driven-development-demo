@@ -12,6 +12,7 @@ body {
     color: #2C3E50;
 }
 
+/* Header */
 .app-header {
     background-color: #FFFFFF;
     border-bottom: 1px solid #D6E0E8;
@@ -19,8 +20,66 @@ body {
 
 .app-logo {
     color: #2C3E50;
+    font-weight: 600;
 }
 
+.app-logo .logo-accent {
+    color: #4A90B8;
+}
+
+/* Login page */
+.login-view {
+    background-color: #F7F9FB;
+}
+
+.login-brand {
+    text-align: center;
+}
+
+.login-brand .login-logo-text {
+    font-size: var(--aura-font-size-xl);
+    font-weight: 600;
+    color: #2C3E50;
+}
+
+.login-brand .login-logo-accent {
+    color: #4A90B8;
+}
+
+.login-brand .login-subtitle {
+    font-size: var(--aura-font-size-s);
+    color: #6B7D8D;
+}
+
+/* Content area */
+.content-view {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Page titles */
+.page-title {
+    color: #2C3E50;
+    font-size: var(--aura-font-size-xl);
+    margin: 0 0 var(--vaadin-space-s) 0;
+}
+
+/* Section headings */
+.section-title {
+    color: #2C3E50;
+    font-size: var(--aura-font-size-l);
+    margin: 0;
+}
+
+/* Surface card */
+.surface-card {
+    background: #FFFFFF;
+    border: 1px solid #D6E0E8;
+    border-radius: var(--vaadin-border-radius);
+    padding: var(--vaadin-space-m);
+}
+
+/* Stat cards */
 .stat-card {
     background: #FFFFFF;
     border: 1px solid #D6E0E8;
@@ -37,4 +96,21 @@ body {
 .stat-card .stat-label {
     font-size: var(--aura-font-size-s);
     color: #6B7D8D;
+}
+
+/* Empty state */
+.empty-state {
+    color: #6B7D8D;
+    font-size: var(--aura-font-size-m);
+    text-align: center;
+    padding: var(--vaadin-space-l);
+}
+
+/* Grid row cursor */
+vaadin-grid::part(row) {
+    cursor: pointer;
+}
+
+vaadin-grid::part(row):hover {
+    background-color: #EBF3F8;
 }

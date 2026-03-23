@@ -19,11 +19,16 @@ public class MainLayout extends AppLayout {
     }
 
     private void createHeader() {
-        H1 logo = new H1("Triage");
+        H1 logo = new H1();
         logo.addClassName("app-logo");
         logo.getStyle()
                 .set("font-size", "var(--aura-font-size-l)")
                 .set("margin", "0");
+
+        Span tri = new Span("Tri");
+        Span age = new Span("age");
+        age.addClassName("logo-accent");
+        logo.add(tri, age);
 
         var header = new HorizontalLayout(new DrawerToggle(), logo);
         header.setDefaultVerticalComponentAlignment(FlexComponent.Alignment.CENTER);
