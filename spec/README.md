@@ -20,6 +20,10 @@ Status: **Pending** (not yet implemented) or **Implemented**
 | `architecture.md` | Technology stack and application structure | After project context is filled in |
 | `datamodel/datamodel.md` | Entity definitions and relationships | When adding data-driven features |
 | `use-cases/use-case-template.md` | Template for individual feature specs | Copy per feature as `use-case-NNN-short-name.md` |
+| `use-cases/use-case-001-project-dashboard.md` | Project list with status overview | Core navigation entry point |
+| `use-cases/use-case-002-task-management.md` | CRUD tasks within a project | Task grid, edit panel, filtering |
+| `use-cases/use-case-003-gantt-chart.md` | Timeline visualization with drag/resize | Central planning interface |
+| `use-cases/use-case-004-team-workload.md` | Cross-project workload per team member | Workload balancing view |
 | `verification.md` | Visual verification checklists (Playwright MCP) | During and after implementation |
 
 ## Workflow
