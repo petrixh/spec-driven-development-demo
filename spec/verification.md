@@ -25,11 +25,37 @@ Unless the use case specifies a particular resolution or size, use **1920x1080**
 2. **Navigate to every route** defined in the use case's UI/Routes section
 3. **Walk through the main flow** — perform each step from the use case's Main Flow
 4. **Take screenshots** — capture the page state at key interaction points
-5. **Check visual appearance:**
-   - Layout matches expectations (spacing, alignment, sizing)
-   - Typography is readable and consistent
-   - Interactive elements are clearly identifiable
-   - Responsive behaviour works at common breakpoints (mobile, tablet, desktop)
+5. **Check visual appearance** using the detailed checklist below:
+
+   **Text & Readability**
+   - No text is clipped, truncated, or overflowing its container
+   - No text overlaps other text or UI elements
+   - All text has sufficient contrast against its background (WCAG AA: 4.5:1 for normal text, 3:1 for large text)
+   - Text on colored buttons/badges is readable (check disabled states too)
+   - Long content (names, values) wraps or truncates gracefully with ellipsis
+
+   **Spacing & Alignment**
+   - No elements overlap or touch without intended spacing
+   - Consistent padding inside containers (no edge-hugging content)
+   - Aligned baselines for horizontally adjacent text/buttons
+   - No unintended gaps or collapsed sections
+
+   **Interactive Elements**
+   - All buttons have visible boundaries or fill (not invisible against background)
+   - Disabled elements are visually distinct but still readable
+   - Focus ring visible when tabbing through elements
+   - Hover states provide feedback on clickable elements
+   - Touch targets are at least 48x48px
+
+   **Dialogs & Overlays**
+   - Dialog content doesn't overflow the dialog bounds
+   - Background is visibly dimmed behind modal dialogs
+   - Dialog is centered and appropriately sized
+
+   **Responsive**
+   - Check at 1920x1080 (desktop), 768x1024 (tablet), 390x844 (mobile)
+   - No horizontal scrollbar at any breakpoint
+   - Content reflows rather than shrinking to unreadable size
 6. **Record results** — note any visual issues in the per-use-case checklist below
 
 ---
@@ -93,12 +119,38 @@ Every use case must have UI tests before it is considered implemented. See `arch
 - [ ] All acceptance criteria pass
 - [ ] Error/edge cases handled appropriately
 
-#### Visual
+#### Visual — Text & Readability
 
-- [ ] Page layout matches expectations
-- [ ] Interactive elements respond correctly (hover, focus, click)
-- [ ] Loading states and transitions are smooth
-- [ ] Responsive at mobile and desktop widths
+- [ ] No text clipped, truncated, or overflowing its container
+- [ ] No text overlapping other text or UI elements
+- [ ] Sufficient contrast on all text (including on colored buttons, badges, disabled states)
+- [ ] Long content wraps or shows ellipsis gracefully
+
+#### Visual — Spacing & Alignment
+
+- [ ] No elements overlapping or touching without intended spacing
+- [ ] Consistent padding inside containers
+- [ ] Aligned baselines for adjacent text/buttons
+- [ ] No unintended gaps or collapsed sections
+
+#### Visual — Interactive Elements
+
+- [ ] All buttons have visible boundaries or fill
+- [ ] Disabled elements are visually distinct but readable
+- [ ] Focus ring visible when tabbing
+- [ ] Touch targets at least 48x48px
+
+#### Visual — Dialogs & Overlays
+
+- [ ] Dialog content doesn't overflow dialog bounds
+- [ ] Background dimmed behind modal dialogs
+- [ ] Dialogs centered and appropriately sized
+
+#### Visual — Responsive
+
+- [ ] Desktop (1920x1080): layout correct
+- [ ] Tablet (768x1024): content reflows appropriately
+- [ ] Mobile (390x844): single-column, no horizontal scroll
 
 #### Result
 
