@@ -41,8 +41,9 @@ public class ProjectDashboardView extends VerticalLayout {
         this.projectService = projectService;
         this.authContext = authContext;
 
-        setPadding(true);
+        addClassName("page-content");
         setSpacing(true);
+        setPadding(false);
 
         HorizontalLayout header = new HorizontalLayout();
         header.setWidthFull();
@@ -110,7 +111,7 @@ public class ProjectDashboardView extends VerticalLayout {
         int progress = projectService.calculateProgressPercent(project);
         Div track = new Div();
         track.addClassName("progress-bar-track");
-        track.getStyle().set("margin-top", "var(--vaadin-space-s)");
+        track.getStyle().set("margin-top", "var(--vaadin-gap-xs)");
 
         Div fill = new Div();
         fill.addClassName("progress-bar-fill");
@@ -134,7 +135,7 @@ public class ProjectDashboardView extends VerticalLayout {
             case IN_PROGRESS -> badge.addClassName("badge-in-progress");
             case COMPLETED -> badge.addClassName("badge-completed");
         }
-        badge.getStyle().set("margin-top", "var(--vaadin-space-s)");
+        badge.getStyle().set("margin-top", "var(--vaadin-gap-xs)");
         card.add(badge);
 
         // Click to navigate to tasks

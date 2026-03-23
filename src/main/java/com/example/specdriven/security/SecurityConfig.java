@@ -21,6 +21,9 @@ public class SecurityConfig {
         http.with(VaadinSecurityConfigurer.vaadin(), configurer -> {
             configurer.loginView(LoginView.class);
         });
+        http.authorizeHttpRequests(auth -> auth
+                .requestMatchers("/icons/**").permitAll()
+        );
         return http.build();
     }
 

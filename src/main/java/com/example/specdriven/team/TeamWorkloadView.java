@@ -28,7 +28,8 @@ public class TeamWorkloadView extends VerticalLayout {
 
     public TeamWorkloadView(MemberService memberService) {
         this.memberService = memberService;
-        setPadding(true);
+        addClassName("page-content");
+        setPadding(false);
         setSpacing(true);
 
         H2 title = new H2("Team Workload");
@@ -83,7 +84,7 @@ public class TeamWorkloadView extends VerticalLayout {
                 for (Task task : entry.getValue()) {
                     Div taskRow = new Div();
                     taskRow.getStyle()
-                            .set("padding", "4px 0 4px 16px")
+                            .set("padding", "var(--vaadin-padding-xs) 0 var(--vaadin-padding-xs) var(--vaadin-padding-m)")
                             .set("cursor", "pointer")
                             .set("display", "flex")
                             .set("gap", "var(--vaadin-space-m)")

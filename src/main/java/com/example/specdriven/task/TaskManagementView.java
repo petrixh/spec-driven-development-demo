@@ -56,7 +56,8 @@ public class TaskManagementView extends VerticalLayout implements BeforeEnterObs
         this.taskService = taskService;
         this.projectService = projectService;
         this.authContext = authContext;
-        setPadding(true);
+        addClassName("page-content");
+        setPadding(false);
         setSpacing(true);
     }
 

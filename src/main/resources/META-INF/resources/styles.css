@@ -1,5 +1,16 @@
-/* TickTask Theme - Orange & Black */
-:root {
+/* TickTask Theme — Orange & Black, Aura base */
+
+/* === 1. Color Palette & Accent === */
+html {
+    /* Aura accent = orange primary */
+    --aura-accent-color-light: #F57C00;
+    --aura-accent-color-dark: #FB8C00;
+
+    /* Dark nav, light content */
+    color-scheme: dark;
+    --aura-content-color-scheme: light;
+
+    /* Base overrides shared across themes */
     --vaadin-primary-color: #F57C00;
     --vaadin-primary-text-color: #E65100;
     --vaadin-primary-color-50pct: #FB8C0080;
@@ -9,43 +20,76 @@
     --vaadin-warning-color: #F9A825;
 }
 
-/* Dark sidebar */
+/* === 2. Typography — heading colors per design system === */
+h1, h2, h3, h4, h5, h6 {
+    color: #212121;
+}
+
+/* === 3. Sidebar & Navbar (dark surface #1A1A1A) === */
 vaadin-app-layout::part(drawer) {
     background: #1A1A1A;
     color: #FFFFFF;
 }
 
-vaadin-app-layout vaadin-side-nav {
-    --vaadin-side-nav-item-color: #FFFFFF;
-}
-
-/* Navbar styling */
 vaadin-app-layout::part(navbar) {
     background: #1A1A1A;
     color: #FFFFFF;
 }
 
-/* Project card */
-.project-card {
-    background: #FFFFFF;
-    border: 1px solid #E0E0E0;
-    border-radius: 8px;
-    padding: var(--vaadin-space-m);
-    cursor: pointer;
-    transition: box-shadow 0.2s;
+/* Side nav: white text, orange active item */
+vaadin-app-layout vaadin-side-nav-item {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+vaadin-app-layout vaadin-side-nav-item[active] {
+    color: #F57C00;
+    --vaadin-side-nav-item-active-indicator-color: #F57C00;
+}
+
+/* Navbar heading should be white in dark context */
+vaadin-app-layout::part(navbar) h1 {
+    color: #F57C00;
+}
+
+/* === 4. Layout — max-width 1280px, centered === */
+.page-content {
+    max-width: 1280px;
     width: 100%;
-    max-width: 380px;
+    margin: 0 auto;
+    padding: var(--vaadin-padding-l);
     box-sizing: border-box;
 }
 
-.project-card:hover {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+/* === 5. Project Cards — responsive grid === */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--vaadin-gap-m);
+    width: 100%;
 }
 
-/* Progress bar */
+.project-card {
+    background: #FFFFFF;
+    border: 1px solid #E0E0E0;
+    border-radius: var(--vaadin-radius-l);
+    padding: var(--vaadin-padding-m);
+    cursor: pointer;
+    transition: box-shadow 0.2s, border-color 0.2s;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: var(--vaadin-gap-xs);
+}
+
+.project-card:hover {
+    box-shadow: var(--aura-shadow-s);
+    border-color: #BDBDBD;
+}
+
+/* === 6. Progress bar === */
 .progress-bar-track {
     background: #EEEEEE;
-    border-radius: 4px;
+    border-radius: var(--vaadin-radius-s);
     height: 8px;
     width: 100%;
     overflow: hidden;
@@ -53,20 +97,22 @@ vaadin-app-layout::part(navbar) {
 
 .progress-bar-fill {
     height: 100%;
-    border-radius: 4px;
+    border-radius: var(--vaadin-radius-s);
     transition: width 0.3s;
 }
 
-/* Status badges */
+/* === 7. Status & Priority Badges === */
 .badge {
     display: inline-block;
     padding: 2px 8px;
-    border-radius: 4px;
+    border-radius: var(--vaadin-radius-s);
     font-size: var(--aura-font-size-s);
-    font-weight: 500;
+    font-weight: var(--aura-font-weight-medium);
+    line-height: var(--aura-line-height-s);
 }
 
-.badge-not-started {
+.badge-not-started,
+.badge-todo {
     background: #EEEEEE;
     color: #616161;
 }
@@ -76,17 +122,12 @@ vaadin-app-layout::part(navbar) {
     color: #E65100;
 }
 
-.badge-completed, .badge-done {
+.badge-completed,
+.badge-done {
     background: #E8F5E9;
     color: #2E7D32;
 }
 
-.badge-todo {
-    background: #EEEEEE;
-    color: #616161;
-}
-
-/* Priority badges */
 .badge-low {
     background: #EEEEEE;
     color: #616161;
@@ -102,28 +143,26 @@ vaadin-app-layout::part(navbar) {
     color: #C62828;
 }
 
-/* Card grid */
-.card-grid {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--vaadin-space-m);
-}
-
-/* Gantt chart */
+/* === 8. Gantt chart === */
 .gantt-bar {
-    border-radius: 4px;
+    border-radius: var(--vaadin-radius-s);
     height: 28px;
     position: absolute;
     cursor: pointer;
     display: flex;
     align-items: center;
-    padding: 0 6px;
+    padding: 0 var(--vaadin-padding-xs);
     font-size: var(--aura-font-size-s);
     color: #FFFFFF;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
     box-sizing: border-box;
+    transition: opacity 0.15s;
+}
+
+.gantt-bar:hover {
+    opacity: 0.85;
 }
 
 .gantt-bar-todo {
@@ -161,7 +200,7 @@ vaadin-app-layout::part(navbar) {
     text-align: center;
     font-size: var(--aura-font-size-s);
     color: #757575;
-    padding: 4px 0;
+    padding: var(--vaadin-padding-xs) 0;
     box-sizing: border-box;
     flex-shrink: 0;
 }
@@ -172,16 +211,36 @@ vaadin-app-layout::part(navbar) {
     border-bottom: 1px solid #F5F5F5;
 }
 
-/* Workload warning - grid part name based styling */
+/* === 9. Team workload warning === */
 vaadin-grid::part(workload-warning) {
     background: #FFF8E1;
 }
 
-/* Login view */
+/* === 10. Login view === */
 .login-view {
     background: #1A1A1A;
 }
 
 .login-view h1 {
-    color: #F57C00;
+    color: #F57C00 !important;
+}
+
+/* === 11. Responsive breakpoints === */
+
+/* Mobile: < 640px */
+@media (max-width: 639px) {
+    .card-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-content {
+        padding: var(--vaadin-padding-m);
+    }
+}
+
+/* Tablet: 640–1024px */
+@media (min-width: 640px) and (max-width: 1024px) {
+    .card-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }

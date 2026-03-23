@@ -6,10 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.page.AppShellConfigurator;
+import com.vaadin.flow.server.PWA;
 
 @SpringBootApplication
 @StyleSheet(Aura.STYLESHEET)
-@StyleSheet("styles.css") // Your custom styles
+@StyleSheet("styles.css")
+@PWA(name = "TickTask", shortName = "TickTask", iconPath = "icons/favicon.svg")
 public class Application implements AppShellConfigurator {
 
     public static void main(String[] args) {

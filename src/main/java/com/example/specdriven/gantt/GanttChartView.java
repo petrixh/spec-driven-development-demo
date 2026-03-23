@@ -59,7 +59,8 @@ public class GanttChartView extends VerticalLayout implements BeforeEnterObserve
         this.projectService = projectService;
         this.dependencyRepository = dependencyRepository;
         this.authContext = authContext;
-        setPadding(true);
+        addClassName("page-content");
+        setPadding(false);
         setSpacing(true);
         setSizeFull();
     }
@@ -129,7 +130,7 @@ public class GanttChartView extends VerticalLayout implements BeforeEnterObserve
                 .set("height", "32px")
                 .set("line-height", "32px")
                 .set("font-weight", "bold")
-                .set("padding-left", "8px")
+                .set("padding-left", "var(--vaadin-padding-s)")
                 .set("border-bottom", "1px solid #E0E0E0")
                 .set("background", "#FAFAFA")
                 .set("font-size", "var(--aura-font-size-s)")
@@ -142,7 +143,7 @@ public class GanttChartView extends VerticalLayout implements BeforeEnterObserve
             row.getStyle()
                     .set("height", ROW_HEIGHT + "px")
                     .set("line-height", ROW_HEIGHT + "px")
-                    .set("padding-left", "8px")
+                    .set("padding-left", "var(--vaadin-padding-s)")
                     .set("border-bottom", "1px solid #F5F5F5")
                     .set("overflow", "hidden")
                     .set("text-overflow", "ellipsis")
