@@ -4,6 +4,15 @@
 
 ---
 
+## 0. Brand
+
+- **App name:** GreenLedger
+- **Tagline:** "Expenses, simplified."
+- **Logo:** A minimal leaf shape formed from two overlapping rounded rectangles, suggesting both a checkmark (approval) and a leaf (green/growth). Rendered in primary green (`#2E7D32`) on white. Used in the app header and login page.
+- **Tone:** Clean, professional, approachable. The brand conveys trust and simplicity — this is a tool that gets out of your way.
+
+---
+
 ## 1. Theme
 
 - **Base theme:** Vaadin Aura
@@ -17,10 +26,20 @@
 
 ## 2. Color Palette
 
+Green and white tone theme.
+
 | Token | Value | Usage |
 |-------|-------|-------|
-| [e.g., `--primary`] | [e.g., `#1676F3`] | [Primary actions, links] |
-| [e.g., `--error`] | [e.g., `#E53935`] | [Error states, destructive actions] |
+| `--primary` | `#2E7D32` | Primary actions, links, active states |
+| `--primary-light` | `#4CAF50` | Hover states, secondary highlights |
+| `--primary-dark` | `#1B5E20` | Pressed states, emphasis |
+| `--background` | `#FFFFFF` | Page and card backgrounds |
+| `--surface` | `#F5F9F5` | Subtle green-tinted surface for sections and cards |
+| `--text-primary` | `#1C1C1C` | Main body text |
+| `--text-secondary` | `#5F6368` | Labels, hints, secondary text |
+| `--success` | `#388E3C` | Approved status, success notifications |
+| `--error` | `#D32F2F` | Rejected status, validation errors |
+| `--warning` | `#F9A825` | Pending status indicators |
 
 ---
 
