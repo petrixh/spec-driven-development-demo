@@ -1,6 +1,6 @@
 # Architecture
 
-> Technology stack and application structure. `pom.xml` is the source of truth for versions. Do not modify `pom.xml` without asking.
+> Technology stack and application structure. `pom.xml` is the source of truth for versions. Do not modify `pom.xml`, `vite.config.ts`, or `architecture.md` without asking.
 
 ---
 

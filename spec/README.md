@@ -3,6 +3,8 @@
 > Specs are written first, then used as input for AI-driven implementation and verification.
 > They are the single source of truth. Keep them up to date as the project evolves.
 
+> **When in doubt, consult the Vaadin MCP.** Whenever you are even slightly unsure about Vaadin API usage, component behavior, theme variables, styling, or best practices — use the Vaadin MCP server to look it up before guessing. Do not rely on memory for Vaadin specifics.
+
 Status lifecycle: **Draft** → **Approved** → **Implemented**
 
 ## File Overview
