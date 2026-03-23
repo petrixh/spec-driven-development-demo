@@ -4,4 +4,5 @@
 
 | Entity | Key Fields | Relationships |
 |--------|-----------|---------------|
-| [Entity 1] | [field1, field2] | [Has many Entity2] |
+| Patient | id, firstName, lastName, dateOfBirth, gender, phone, email, address | Has many Visit |
+| Visit | id, date, reason, doctorName, notes | Belongs to Patient |
