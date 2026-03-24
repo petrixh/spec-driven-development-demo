@@ -56,21 +56,12 @@ Every use case must have UI tests before it is considered implemented. See `arch
 
 - Tests live in `src/test/java/`, mirroring the main package structure
 - Extend `SpringBrowserlessTest`, annotate with `@SpringBootTest`
-- Use `@WithMockUser(roles = "ADMIN")` for admin views
-- Use `@WithAnonymousUser` for access control tests
 - Use `navigate(ViewClass.class)` to render views
 - Use `$(ComponentClass.class)` to query components, `test(component)` to interact
 
-#### React View Tests (Vitest)
-
-- Tests live in `src/test/frontend/`, mirroring the view structure
-- Mock `@BrowserCallable` endpoint calls
-- Test component rendering, user interactions, and navigation
-- Run via `npx vitest run`
-
 ### Naming Conventions
 
-- **Test class**: `[FeatureName]Test.java` or `[FeatureName].test.tsx` (e.g., `BrowseMoviesTest`, `BuyTickets.test.tsx`)
+- **Test class**: `[FeatureName]Test.java` (e.g., `BookReturnViewTest`)
 - **Test methods**: descriptive names that map to acceptance criteria or business rules (e.g., `onlyItemsWithFutureEventsAreDisplayed`, `maximumSixItemsPerTransaction`)
 - **Structure**: one test class per use case, with individual test methods for each acceptance criterion and business rule edge case
 

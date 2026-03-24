@@ -6,13 +6,13 @@
 
 ## 1. Technology Stack
 
-- Vaadin — server-side Java UI for admin views, client-side React for public views
+- Vaadin 25 — server-side Java UI (Vaadin Flow only, no React/Hilla views)
 - Spring Boot — auto-configuration, embedded Tomcat
-- Java
+- Java 21+
 - Maven (wrapper included)
 - Database: H2 (in-memory, mocked data for demo)
-- Routing: Vaadin Flow views use `@Route`. Hilla React views use file-based routing (`src/main/frontend/views/`), not `src/main/frontend/routes.tsx`.
-- Testing: JUnit 5, Vaadin Browserless Tests (`browserless-test-junit6`), Vitest for React views
+- Routing: Vaadin Flow views use `@Route`
+- Testing: JUnit 5, Vaadin Browserless Tests (`browserless-test-junit6`)
 
 ---
 
@@ -21,12 +21,19 @@
 ```
 com.example.specdriven/
   Application.java              — Spring Boot entry point
-  bookreturn/
+  view/
     BookReturnView.java         — Vaadin @Route view (scan & process returns)
+  service/
     BookReturnService.java      — Business logic (Spring @Service)
+  repository/
     BookRepository.java         — Data access (Spring Data)
     PatronRepository.java       — Data access (Spring Data)
     LendingRecordRepository.java — Data access (Spring Data)
+  model/
+    Book.java                   — JPA entity
+    Patron.java                 — JPA entity
+    LendingRecord.java          — JPA entity
+    LendingStatus.java          — Enum (CHECKED_OUT, RETURNED, etc.)
 ```
 
 ---
@@ -36,40 +43,19 @@ com.example.specdriven/
 - **Browserless Tests**: Vaadin Browserless Testing (`SpringBrowserlessTest`)
   - Tests live in `src/test/java/`, mirroring the main package structure
   - Extend `SpringBrowserlessTest`, annotate with `@SpringBootTest`
-  - Use `@WithMockUser(roles = "ADMIN")` for admin views
-  - Use `@WithAnonymousUser` for access control tests
   - Use `navigate(ViewClass.class)` to render views
   - Use `$(ComponentClass.class)` to query components, `test(component)` to interact
-- **React View Tests**: Vitest with React Testing Library
-  - Tests live in `src/test/frontend/`, mirroring the view structure
-  - Mock `@BrowserCallable` endpoint calls
-  - Test component rendering, user interactions, and navigation
-  - Run via `npx vitest run`
 - **Service Tests**: JUnit tests for Spring `@Service` classes
   - Tests live in `src/test/java/`, same as browserless tests
   - Annotate with `@SpringBootTest`, autowire the service
   - Test business rules, validation, and data access
-  - Endpoints (`@BrowserCallable`) typically delegate to services — test the service, not the endpoint
 - **Test Coverage Requirements**:
-  - React views: Vitest view tests
   - Vaadin Flow views: Browserless view tests
   - Services: JUnit service tests
 - **Visual Verification**: Playwright MCP during development (not automated)
 
 ---
 
-## 4. UIState Management
+## 4. Security
 
-- **Signals** are the primary mechanism for managing UI state
-- **Non-shared signals** for standard per-user UI state (e.g., form values, selection state, view-local data)
-- **Shared signals** when state must be visible across multiple users/sessions (collaborative or real-time features) — requires **server push** to be enabled
-- When using shared signals, enable push on the view/UI (e.g., `@Push` annotation)
-
----
-
-## 5. Security & Admin
-
-- **Spring Security** with `VaadinSecurityConfigurer`
-- Public views: `@AnonymousAllowed` (React Hilla endpoints, public routes)
-- Admin views: `@RolesAllowed("ADMIN")` (Vaadin Flow views)
-- Login: Vaadin `LoginForm` at `/login`
+- No authentication or login required — all views are publicly accessible

@@ -30,7 +30,7 @@
 | ID | Rule |
 |----|------|
 | BR-01 | A valid ISBN/barcode must match an existing book with an active (CHECKED_OUT) lending record |
-| BR-02 | If the book is overdue, the number of days overdue and late fee ($0.25/day) are displayed |
+| BR-02 | If the book is overdue, the number of days overdue and late fee (based on the book's per-day rate) are displayed |
 | BR-03 | If no matching book or active lending record is found, an error message is shown |
 | BR-04 | After a successful return, the view resets to the landing scan screen |
 

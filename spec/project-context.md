@@ -18,7 +18,7 @@ In the first version, the librarian inserts the barcode, gets presented by the d
 ## 3. Constraints
 
 - H2 in-memory database with mocked data (no external DB required)
-- Java 17+ runtime
+- Java 21+ runtime (Vaadin 25 requirement)
 - No external system integrations — lending data is mocked for demo purposes
 - No formal compliance requirements; standard best practices apply
 

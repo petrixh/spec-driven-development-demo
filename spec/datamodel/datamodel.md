@@ -4,7 +4,7 @@
 
 | Entity | Key Fields | Relationships |
 |--------|-----------|---------------|
-| Book | id, title, author, isbn, callNumber | Has many LendingRecord |
+| Book | id, title, author, isbn, callNumber, lateFeePerDay | Has many LendingRecord |
 | Patron | id, name, patronId, accountBalance | Has many LendingRecord |
 | LendingRecord | id, checkoutDate, dueDate, returnDate, status, lateFee, damageAssessment, notes | Belongs to Book, belongs to Patron |
 
@@ -17,5 +17,5 @@
 
 ### Late fee calculation
 
-- $0.25 per day overdue (as shown in mockup)
-- Fee calculated from dueDate to return date
+- Late fee rate is per book (`Book.lateFeePerDay`) — some books have higher fees than others
+- Fee calculated as `lateFeePerDay × days overdue` (from dueDate to return date)
