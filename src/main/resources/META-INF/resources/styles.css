@@ -1,1 +1,287 @@
-/* Add your styles here */
+/* Forge — Orange & Black theme */
+html {
+    --vaadin-primary-color: #F57C00;
+    --vaadin-primary-text-color: #E65100;
+    --vaadin-primary-color-50pct: #FB8C0080;
+    --vaadin-primary-color-10pct: #FB8C001A;
+    --vaadin-error-color: #D32F2F;
+    --vaadin-success-color: #2E7D32;
+    --vaadin-warning-color: #F9A825;
+    --aura-accent-color-light: #F57C00;
+}
+
+/* Status badges */
+.badge-not-started, .badge-todo {
+    background: #EEEEEE;
+    color: #616161;
+    padding: 2px 8px;
+    border-radius: var(--vaadin-radius-s);
+    font-size: var(--aura-font-size-s);
+    font-weight: var(--aura-font-weight-medium);
+}
+
+.badge-in-progress {
+    background: #FFF3E0;
+    color: #E65100;
+    padding: 2px 8px;
+    border-radius: var(--vaadin-radius-s);
+    font-size: var(--aura-font-size-s);
+    font-weight: var(--aura-font-weight-medium);
+}
+
+.badge-completed, .badge-done {
+    background: #E8F5E9;
+    color: #2E7D32;
+    padding: 2px 8px;
+    border-radius: var(--vaadin-radius-s);
+    font-size: var(--aura-font-size-s);
+    font-weight: var(--aura-font-weight-medium);
+}
+
+/* Priority badges */
+.badge-low {
+    background: #EEEEEE;
+    color: #616161;
+    padding: 2px 8px;
+    border-radius: var(--vaadin-radius-s);
+    font-size: var(--aura-font-size-s);
+    font-weight: var(--aura-font-weight-medium);
+}
+
+.badge-medium {
+    background: #FFF3E0;
+    color: #E65100;
+    padding: 2px 8px;
+    border-radius: var(--vaadin-radius-s);
+    font-size: var(--aura-font-size-s);
+    font-weight: var(--aura-font-weight-medium);
+}
+
+.badge-high {
+    background: #FFEBEE;
+    color: #C62828;
+    padding: 2px 8px;
+    border-radius: var(--vaadin-radius-s);
+    font-size: var(--aura-font-size-s);
+    font-weight: var(--aura-font-weight-medium);
+}
+
+/* Project dashboard cards */
+.project-card {
+    background: var(--vaadin-background-color);
+    border: 1px solid #E0E0E0;
+    border-radius: var(--vaadin-radius-l);
+    padding: var(--vaadin-padding-l);
+    cursor: pointer;
+    transition: box-shadow 0.2s;
+}
+
+.project-card:hover {
+    box-shadow: var(--aura-shadow-s);
+}
+
+.project-card h3 {
+    margin: 0 0 var(--vaadin-gap-xs) 0;
+    color: #212121;
+    font-size: var(--aura-font-size-l);
+}
+
+.project-card .date-range {
+    color: #757575;
+    font-size: var(--aura-font-size-s);
+}
+
+.progress-bar-container {
+    background: #EEEEEE;
+    border-radius: var(--vaadin-radius-s);
+    height: 8px;
+    overflow: hidden;
+    margin: var(--vaadin-gap-s) 0;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    border-radius: var(--vaadin-radius-s);
+    transition: width 0.3s;
+}
+
+.progress-bar-fill.not-started {
+    background: #BDBDBD;
+}
+
+.progress-bar-fill.in-progress {
+    background: #F57C00;
+}
+
+.progress-bar-fill.completed {
+    background: #2E7D32;
+}
+
+/* Dashboard card grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    gap: var(--vaadin-gap-m);
+    padding: var(--vaadin-padding-l);
+    max-width: 1280px;
+}
+
+/* Gantt chart */
+.gantt-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
+}
+
+.gantt-toolbar {
+    display: flex;
+    align-items: center;
+    gap: var(--vaadin-gap-s);
+    padding: var(--vaadin-padding-m);
+    border-bottom: 1px solid #E0E0E0;
+}
+
+.gantt-body {
+    display: flex;
+    flex: 1;
+    overflow: hidden;
+}
+
+.gantt-task-list {
+    min-width: 200px;
+    max-width: 250px;
+    border-right: 1px solid #E0E0E0;
+    overflow-y: auto;
+}
+
+.gantt-task-list .task-row {
+    padding: var(--vaadin-padding-s) var(--vaadin-padding-m);
+    border-bottom: 1px solid #EEEEEE;
+    font-size: var(--aura-font-size-s);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.gantt-timeline {
+    flex: 1;
+    overflow-x: auto;
+    overflow-y: auto;
+    position: relative;
+}
+
+.gantt-header {
+    display: flex;
+    border-bottom: 1px solid #E0E0E0;
+    position: sticky;
+    top: 0;
+    background: var(--vaadin-background-color);
+    z-index: 1;
+}
+
+.gantt-header-cell {
+    min-width: 40px;
+    text-align: center;
+    font-size: var(--aura-font-size-xs);
+    color: #757575;
+    padding: var(--vaadin-padding-xs) 0;
+    border-right: 1px solid #EEEEEE;
+    box-sizing: border-box;
+}
+
+.gantt-rows {
+    position: relative;
+}
+
+.gantt-row {
+    height: 40px;
+    position: relative;
+    border-bottom: 1px solid #EEEEEE;
+}
+
+.gantt-bar {
+    position: absolute;
+    height: 24px;
+    top: 8px;
+    border-radius: var(--vaadin-radius-s);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 0 6px;
+    font-size: var(--aura-font-size-xs);
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    z-index: 2;
+}
+
+.gantt-bar.todo {
+    background: #BDBDBD;
+    color: #424242;
+}
+
+.gantt-bar.in-progress {
+    background: #F57C00;
+}
+
+.gantt-bar.done {
+    background: #2E7D32;
+}
+
+.gantt-bar.draggable {
+    cursor: grab;
+}
+
+.gantt-bar.draggable:active {
+    cursor: grabbing;
+}
+
+.gantt-bar .resize-handle {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 6px;
+    cursor: ew-resize;
+}
+
+.gantt-today-marker {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #E65100;
+    z-index: 3;
+    pointer-events: none;
+}
+
+.gantt-dependency-arrow {
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+}
+
+/* Workload warning row */
+.workload-warning {
+    background: #FFF8E1 !important;
+}
+
+/* Page header styling */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--vaadin-padding-l);
+    max-width: 1280px;
+}
+
+.page-header h2 {
+    margin: 0;
+    color: #212121;
+    font-size: var(--aura-font-size-xl);
+}
