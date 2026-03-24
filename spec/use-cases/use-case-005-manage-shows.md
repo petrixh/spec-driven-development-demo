@@ -2,7 +2,7 @@
 
 **As an** admin, **I want to** schedule and manage shows **so that** moviegoers can see what's playing and when.
 
-**Status:** Pending
+**Status:** Implemented
 **Date:** 2026-03-18
 
 ---
