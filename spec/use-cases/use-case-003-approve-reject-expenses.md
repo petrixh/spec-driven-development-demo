@@ -2,7 +2,7 @@
 
 **As a** manager, **I want to** review pending expenses and approve or reject them **so that** employees can be reimbursed promptly and invalid expenses are caught.
 
-**Status:** Pending
+**Status:** Implemented
 **Date:** 2026-03-23
 
 ---
