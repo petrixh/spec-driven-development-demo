@@ -45,13 +45,24 @@ html {
 }
 
 /* === Demo Credentials === */
+.demo-credentials {
+    margin-top: var(--vaadin-gap-m);
+    padding: var(--vaadin-padding-m);
+    background: var(--surface);
+    border-radius: var(--vaadin-radius-m);
+    border: 1px solid var(--vaadin-border-color-secondary);
+    text-align: center;
+}
+
 .demo-credentials p {
     margin: 0 0 var(--vaadin-gap-xs) 0;
     font-size: var(--aura-font-size-s);
+    color: var(--text-secondary);
 }
 
 .demo-credentials p:first-child {
     font-weight: var(--aura-font-weight-semibold);
+    color: var(--text-primary);
     margin-bottom: var(--vaadin-gap-s);
 }
 

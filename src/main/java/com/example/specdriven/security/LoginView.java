@@ -4,9 +4,7 @@ import com.vaadin.flow.component.html.Div;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Image;
 import com.vaadin.flow.component.html.Paragraph;
-import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.login.LoginForm;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEnterEvent;
@@ -21,6 +19,7 @@ import com.vaadin.flow.server.auth.AnonymousAllowed;
 public class LoginView extends VerticalLayout implements BeforeEnterObserver {
 
     private final LoginForm loginForm = new LoginForm();
+    private Div credentialsHint;
 
     public LoginView() {
         addClassName("login-view");
@@ -48,17 +47,15 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
     }
 
     private void showDemoCredentials() {
-        Div content = new Div();
-        content.addClassName("demo-credentials");
-        content.add(new Paragraph("Demo accounts:"));
-        content.add(new Paragraph("Employee — employee / employee"));
-        content.add(new Paragraph("Manager — manager / manager"));
-
-        Notification notification = new Notification();
-        notification.add(content);
-        notification.setDuration(10000);
-        notification.setPosition(Notification.Position.MIDDLE);
-        notification.open();
+        if (credentialsHint != null) {
+            return;
+        }
+        credentialsHint = new Div();
+        credentialsHint.addClassName("demo-credentials");
+        credentialsHint.add(new Paragraph("Demo accounts:"));
+        credentialsHint.add(new Paragraph("Employee — employee / employee"));
+        credentialsHint.add(new Paragraph("Manager — manager / manager"));
+        add(credentialsHint);
     }
 
     @Override
