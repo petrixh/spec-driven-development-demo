@@ -43,6 +43,17 @@ html {
     font-size: var(--aura-font-size-m);
 }
 
+/* === Demo Credentials === */
+.demo-credentials p {
+    margin: 0 0 var(--vaadin-gap-xs) 0;
+    font-size: var(--aura-font-size-s);
+}
+
+.demo-credentials p:first-child {
+    font-weight: var(--aura-font-weight-semibold);
+    margin-bottom: var(--vaadin-gap-s);
+}
+
 /* === App Layout / Drawer === */
 .app-title {
     color: var(--primary-dark);
