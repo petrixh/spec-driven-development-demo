@@ -15,6 +15,7 @@ A small clinic needs a simple, reliable web application to manage patient inform
 - All views require authentication (no public views)
 - Patient data must be validated before saving (required fields, format checks)
 - The application is single-clinic; no multi-tenancy
+- This is a demo application — uses in-memory credentials, not a real user directory
 
 > For technology stack and application structure details, see [`architecture.md`](architecture.md).
 
