@@ -35,8 +35,8 @@ html {
 
 /* ── Dashboard Summary Cards ── */
 .summary-card {
-  background: var(--vaadin-background-color);
-  border: 1px solid var(--vaadin-border-color-secondary);
+  background: #F8FAFC;
+  border: 1px solid #E2E8F0;
   border-radius: var(--vaadin-radius-l);
   padding: var(--vaadin-padding-l);
   min-width: 180px;
@@ -46,13 +46,14 @@ html {
 
 .summary-card .card-title {
   font-size: var(--aura-font-size-s);
-  color: var(--vaadin-text-color-secondary);
+  color: #64748B;
   display: block;
 }
 
 .summary-card .card-value {
   font-size: var(--aura-font-size-xl);
   font-weight: var(--aura-font-weight-semibold);
+  color: #1E293B;
   display: block;
   margin-top: var(--vaadin-gap-xs);
 }

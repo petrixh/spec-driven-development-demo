@@ -92,7 +92,7 @@ public class DashboardView extends VerticalLayout {
         heading.addClassName("section-heading");
 
         List<Product> lowStock = productRepository.findAll().stream()
-                .filter(p -> p.getCurrentStock() <= p.getReorderPoint())
+                .filter(p -> p.getCurrentStock() > 0 && p.getCurrentStock() <= p.getReorderPoint())
                 .sorted(Comparator.comparingDouble(p ->
                         p.getReorderPoint() == 0 ? 0 : (double) p.getCurrentStock() / p.getReorderPoint()))
                 .limit(10)
