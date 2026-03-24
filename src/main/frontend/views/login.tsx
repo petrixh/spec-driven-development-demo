@@ -7,10 +7,7 @@ export const config: ViewConfig = {
   title: 'Login',
 };
 
-const demoCredentials = `Demo accounts:
-  customer@test.com / password (Customer)
-  agent@test.com / password (Agent)
-  manager@test.com / password (Manager)`;
+const demoCredentials = 'Demo accounts (password = email): customer@test.com (Customer) · agent@test.com (Agent) · manager@test.com (Manager)';
 
 export default function LoginView() {
   const [showCredentials, setShowCredentials] = useState(false);
@@ -27,7 +24,7 @@ export default function LoginView() {
           username: 'Username',
           password: 'Password',
           submit: 'Log in',
-          forgotPassword: 'Show demo credentials',
+          forgotPassword: 'Forgot password',
         },
         additionalInformation: showCredentials ? demoCredentials : '',
       }}

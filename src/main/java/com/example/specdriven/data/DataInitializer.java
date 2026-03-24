@@ -19,11 +19,11 @@ public class DataInitializer implements CommandLineRunner {
     public void run(String... args) {
         if (userRepository.count() == 0) {
             userRepository.save(new User("Alice Customer", "customer@test.com",
-                    passwordEncoder.encode("password"), Role.CUSTOMER));
+                    passwordEncoder.encode("customer@test.com"), Role.CUSTOMER));
             userRepository.save(new User("Bob Agent", "agent@test.com",
-                    passwordEncoder.encode("password"), Role.ADMIN));
+                    passwordEncoder.encode("agent@test.com"), Role.ADMIN));
             userRepository.save(new User("Carol Manager", "manager@test.com",
-                    passwordEncoder.encode("password"), Role.ADMIN));
+                    passwordEncoder.encode("manager@test.com"), Role.ADMIN));
         }
     }
 }
