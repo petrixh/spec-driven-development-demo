@@ -30,6 +30,11 @@ Unless the use case specifies a particular resolution or size, use **1920x1080**
    - Typography is readable and consistent
    - Interactive elements are clearly identifiable
    - Responsive behaviour works at common breakpoints (mobile, tablet, desktop)
+6. **Check contrast and readability:**
+   - All text is clearly readable against its background (titles, labels, values, badges)
+   - Colored text (warning/error values, status badges) has sufficient contrast
+   - Elements that inherit from a different color scheme (e.g., dark sidebar vs light content) render correctly — CSS custom properties like `var(--vaadin-background-color)` may resolve differently depending on the inherited color scheme
+   - Card and panel backgrounds don't swallow their content text
 6. **Record results** — note any visual issues in the per-use-case checklist below
 
 ---
@@ -99,6 +104,13 @@ Every use case must have UI tests before it is considered implemented. See `arch
 - [ ] Interactive elements respond correctly (hover, focus, click)
 - [ ] Loading states and transitions are smooth
 - [ ] Responsive at mobile and desktop widths
+
+#### Contrast & Readability
+
+- [ ] All text is clearly readable against its background
+- [ ] Card/panel titles and values are both visible (not swallowed by background)
+- [ ] Status badges and colored indicators have sufficient contrast
+- [ ] Elements using theme CSS variables render correctly in the active color scheme
 
 #### Result
 
