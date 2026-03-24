@@ -8,6 +8,7 @@ import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.textfield.BigDecimalField;
 import com.vaadin.flow.component.textfield.TextArea;
 import com.vaadin.flow.component.upload.Upload;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -25,6 +26,14 @@ class SubmitExpenseTest extends SpringBrowserlessTest {
 
     @Autowired
     private ExpenseService expenseService;
+
+    @Autowired
+    private ExpenseRepository expenseRepository;
+
+    @BeforeEach
+    void clearData() {
+        expenseRepository.deleteAll();
+    }
 
     @Test
     void formDisplaysAllRequiredFields() {

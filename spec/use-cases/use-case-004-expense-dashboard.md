@@ -2,7 +2,7 @@
 
 **As a** manager, **I want to** see a summary of expenses **so that** I can quickly understand spending patterns and pending workload.
 
-**Status:** Pending
+**Status:** Implemented
 **Date:** 2026-03-23
 
 ---
