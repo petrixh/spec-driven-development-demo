@@ -1,1 +1,102 @@
-/* Add your styles here */
+html {
+    /* Dark sidebar, light content area */
+    color-scheme: dark;
+    --aura-content-color-scheme: light;
+
+    /* Teal accent color */
+    --aura-accent-color-light: #0F766E;
+    --aura-accent-color-dark: #0F766E;
+
+    /* Brand color palette */
+    --primary: #0F766E;
+    --primary-dark: #115E59;
+    --primary-light: #CCFBF1;
+    --warning: #D97706;
+    --warning-light: #FEF3C7;
+    --error: #DC2626;
+    --error-light: #FEE2E2;
+    --success: #16A34A;
+    --success-light: #DCFCE7;
+    --neutral-50: #F9FAFB;
+    --neutral-200: #E5E7EB;
+    --neutral-500: #6B7280;
+    --neutral-900: #111827;
+}
+
+/* Login view */
+.login-view {
+    background: var(--neutral-50);
+}
+
+.credentials-hint {
+    background: var(--primary-light);
+    border: 1px solid var(--primary);
+    border-radius: var(--vaadin-radius-m);
+    padding: var(--vaadin-padding-m);
+    max-width: 320px;
+    font-size: var(--aura-font-size-s);
+    color: var(--neutral-900);
+}
+
+/* Stock status badges */
+.stock-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 10px;
+    border-radius: var(--vaadin-radius-s);
+    font-size: var(--aura-font-size-s);
+    font-weight: var(--aura-font-weight-medium);
+    white-space: nowrap;
+}
+
+.stock-badge-success {
+    color: var(--success);
+    background: var(--success-light);
+}
+
+.stock-badge-warning {
+    color: var(--warning);
+    background: var(--warning-light);
+}
+
+.stock-badge-error {
+    color: var(--error);
+    background: var(--error-light);
+}
+
+/* Dashboard summary cards */
+.summary-card {
+    background: var(--aura-surface-color);
+    border-radius: var(--vaadin-radius-l);
+    padding: var(--vaadin-padding-l);
+    min-width: 180px;
+    max-width: 300px;
+    flex: 1;
+    box-shadow: var(--aura-shadow-s);
+}
+
+.summary-card .card-title {
+    font-size: var(--aura-font-size-s);
+    color: var(--neutral-500);
+    margin: 0;
+}
+
+.summary-card .card-value {
+    font-size: var(--aura-font-size-xl);
+    font-weight: var(--aura-font-weight-semibold);
+    margin: var(--vaadin-gap-xs) 0 0 0;
+}
+
+.card-value-warning {
+    color: var(--warning);
+}
+
+.card-value-error {
+    color: var(--error);
+}
+
+/* View content padding */
+.view-content {
+    padding: var(--vaadin-padding-l);
+    max-width: 100%;
+}
