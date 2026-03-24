@@ -1,1 +1,121 @@
-/* Add your styles here */
+/* re:solve custom styles */
+
+/* Color palette */
+:root {
+    --vaadin-primary-color: #2563EB;
+    --vaadin-primary-color-50: #EFF6FF;
+    --vaadin-success-color: #16A34A;
+    --vaadin-warning-color: #D97706;
+    --vaadin-error-color: #DC2626;
+
+    /* Status colors */
+    --status-open: #2563EB;
+    --status-in-progress: #D97706;
+    --status-resolved: #16A34A;
+    --status-closed: #64748B;
+
+    /* Priority badge colors */
+    --priority-low-bg: #F1F5F9;
+    --priority-low-text: #475569;
+    --priority-medium-bg: #FEF3C7;
+    --priority-medium-text: #92400E;
+    --priority-high-bg: #FED7AA;
+    --priority-high-text: #9A3412;
+    --priority-critical-bg: #FEE2E2;
+    --priority-critical-text: #991B1B;
+}
+
+/* Badge base styles */
+.badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: var(--vaadin-radius-s, 4px);
+    font-size: var(--aura-font-size-xs, 0.75rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* Status badges */
+.badge-open {
+    background: #EFF6FF;
+    color: var(--status-open);
+}
+
+.badge-in-progress {
+    background: #FEF3C7;
+    color: var(--status-in-progress);
+}
+
+.badge-resolved {
+    background: #F0FDF4;
+    color: var(--status-resolved);
+}
+
+.badge-closed {
+    background: #F1F5F9;
+    color: var(--status-closed);
+}
+
+/* Priority badges */
+.badge-low {
+    background: var(--priority-low-bg);
+    color: var(--priority-low-text);
+}
+
+.badge-medium {
+    background: var(--priority-medium-bg);
+    color: var(--priority-medium-text);
+}
+
+.badge-high {
+    background: var(--priority-high-bg);
+    color: var(--priority-high-text);
+}
+
+.badge-critical {
+    background: var(--priority-critical-bg);
+    color: var(--priority-critical-text);
+}
+
+/* Dashboard stat cards */
+.stat-card {
+    background: var(--vaadin-background-color, #fff);
+    border: 1px solid var(--vaadin-contrast-10pct, #e2e8f0);
+    border-radius: var(--vaadin-radius-m, 8px);
+    padding: var(--vaadin-space-l, 1.5rem);
+    text-align: center;
+    flex: 1;
+    min-width: 200px;
+}
+
+.stat-card .stat-value {
+    font-size: var(--aura-font-size-xl, 2rem);
+    font-weight: 700;
+    margin: var(--vaadin-space-s, 0.5rem) 0;
+}
+
+.stat-card .stat-label {
+    font-size: var(--aura-font-size-s, 0.875rem);
+    color: var(--vaadin-secondary-text-color, #64748B);
+}
+
+/* Admin content area */
+.admin-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--vaadin-space-l, 1.5rem);
+    width: 100%;
+}
+
+/* Comment styles */
+.comment-item {
+    border: 1px solid var(--vaadin-contrast-10pct, #e2e8f0);
+    border-radius: var(--vaadin-radius-m, 8px);
+    padding: var(--vaadin-space-m, 1rem);
+}
+
+.comment-meta {
+    font-size: var(--aura-font-size-s, 0.875rem);
+    color: var(--vaadin-secondary-text-color, #64748B);
+}
