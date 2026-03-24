@@ -2,7 +2,7 @@
 
 **As an** admin, **I want to** manage the movie catalogue **so that** the cinema's offerings stay up to date.
 
-**Status:** Pending
+**Status:** Implemented
 **Date:** 2026-03-18
 
 ---
