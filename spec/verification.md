@@ -27,6 +27,7 @@ Unless the use case specifies a particular resolution or size, use **1920x1080**
 4. **Take screenshots** — capture the page state at key interaction points
 5. **Check visual appearance:**
    - Layout matches expectations (spacing, alignment, sizing)
+   - **Spacing & padding are consistent** — content has appropriate breathing room, no cramped or excessively spaced areas. Verify that nested layouts (e.g., AppLayout > VerticalLayout > card) don't double-up padding or collapse it. Compare padding between similar views (e.g., all admin views should have the same content padding).
    - Typography is readable and consistent
    - Interactive elements are clearly identifiable
    - Responsive behaviour works at common breakpoints (mobile, tablet, desktop)
@@ -96,6 +97,7 @@ Every use case must have UI tests before it is considered implemented. See `arch
 #### Visual
 
 - [ ] Page layout matches expectations
+- [ ] Spacing and padding are consistent — no doubled or missing padding from nested layouts
 - [ ] Interactive elements respond correctly (hover, focus, click)
 - [ ] Loading states and transitions are smooth
 - [ ] Responsive at mobile and desktop widths
