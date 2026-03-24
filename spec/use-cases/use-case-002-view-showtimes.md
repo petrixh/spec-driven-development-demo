@@ -2,7 +2,7 @@
 
 **As a** moviegoer, **I want to** see available showtimes for a movie **so that** I can pick a convenient time.
 
-**Status:** Pending
+**Status:** Implemented
 **Date:** 2026-03-18
 
 ---
