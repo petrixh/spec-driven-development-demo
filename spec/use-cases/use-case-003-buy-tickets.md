@@ -2,7 +2,7 @@
 
 **As a** moviegoer, **I want to** choose my seats and purchase tickets **so that** I have reserved seats for the show.
 
-**Status:** Pending
+**Status:** Implemented
 **Date:** 2026-03-18
 
 ---
