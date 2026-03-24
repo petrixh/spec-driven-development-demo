@@ -1,14 +1,19 @@
 # Project Context
 
-> High-level context for the project: the problem being solved, who it's for, what's in scope, and what constraints apply.
+A staff-facing book return processing station. A librarian scans a returned book and the system displays all relevant details, allowing them to process the return with the appropriate action.
 
 ## 1. Vision
 
-[One to two paragraphs describing the desired future state. What does success look like for the users?]
+Stateful single-screen workflow (scan → react → process)
+
+A proof of concept example implmentation. Initially we will have a mocked data in a H2 database, later we might use real data. This part of the system focuses just on the returns of books, the lend out is done in a separate system (mocked data used for testing). 
 
 ## 2. Users
 
-[ Describe users and what they can do]
+Librarians using a barcode scanner to scan the barcode of a returned book
+
+In the first version, the librarian inserts the barcode, gets presented by the details of the book, it's lending history. The Librarian can mark the book returned from a button in the UI. Internally the system keeps track of books being returned. 
+
 
 ## 3. Constraints
 
