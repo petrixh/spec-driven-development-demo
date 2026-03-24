@@ -1,1 +1,61 @@
-/* Add your styles here */
+:root {
+    --vaadin-primary-color: #4A90B8;
+    --vaadin-primary-color-50: #EBF3F8;
+    --vaadin-primary-color-text: #3A7CA5;
+    --vaadin-success-color: #5BA88C;
+    --vaadin-error-color: #C75B5B;
+    --vaadin-warning-color: #D4A84B;
+}
+
+body {
+    background-color: #F7F9FB;
+    color: #2C3E50;
+}
+
+/* Stat cards on dashboard */
+.stat-card {
+    background: #FFFFFF;
+    border: 1px solid #D6E0E8;
+    border-radius: var(--vaadin-radius-m);
+    padding: var(--vaadin-padding-l);
+    text-align: center;
+    flex: 1;
+    min-width: 180px;
+}
+
+.stat-card .stat-value {
+    font-size: var(--aura-font-size-xl);
+    font-weight: 600;
+    color: #4A90B8;
+    margin: 0;
+}
+
+.stat-card .stat-label {
+    font-size: var(--aura-font-size-s);
+    color: #6B7D8D;
+    margin: 0;
+}
+
+/* Content area styling */
+.view-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--vaadin-padding-l);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Section cards */
+.section-card {
+    background: #FFFFFF;
+    border: 1px solid #D6E0E8;
+    border-radius: var(--vaadin-radius-m);
+    padding: var(--vaadin-padding-m);
+}
+
+/* Patient not found */
+.not-found-message {
+    text-align: center;
+    padding: var(--vaadin-padding-l);
+    color: #6B7D8D;
+}
