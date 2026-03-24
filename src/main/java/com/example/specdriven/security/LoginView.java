@@ -2,8 +2,8 @@ package com.example.specdriven.security;
 
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Paragraph;
+import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.login.LoginForm;
-import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEnterEvent;
@@ -26,16 +26,17 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
 
         loginForm.setAction("login");
-        loginForm.addForgotPasswordListener(event -> {
-            Notification.show(
-                    "Demo accounts — admin / admin (Manager) · staff / staff (Staff)",
-                    10000, Notification.Position.MIDDLE);
-        });
+
+        Span credentialsHint = new Span("Demo accounts — admin / admin (Manager) · staff / staff (Staff)");
+        credentialsHint.addClassName("credentials-hint");
+        credentialsHint.setVisible(false);
+
+        loginForm.addForgotPasswordListener(event -> credentialsHint.setVisible(true));
 
         Paragraph tagline = new Paragraph("git stash for your warehouse.");
         tagline.addClassName("tagline");
 
-        add(new H1("Stash.log"), tagline, loginForm);
+        add(new H1("Stash.log"), tagline, loginForm, credentialsHint);
     }
 
     @Override

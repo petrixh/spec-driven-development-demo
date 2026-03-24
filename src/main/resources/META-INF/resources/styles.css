@@ -33,6 +33,16 @@ html {
   margin-bottom: var(--vaadin-gap-l);
 }
 
+.login-view .credentials-hint {
+  margin-top: var(--vaadin-gap-m);
+  padding: var(--vaadin-padding-s) var(--vaadin-padding-m);
+  background: #F0FDFA;
+  border: 1px solid #99F6E4;
+  border-radius: var(--vaadin-radius-m, 6px);
+  color: #0F766E;
+  font-size: var(--aura-font-size-s);
+}
+
 /* ── Dashboard Summary Cards ── */
 .summary-card {
   background: #F8FAFC;
