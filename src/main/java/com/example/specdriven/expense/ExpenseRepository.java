@@ -42,4 +42,8 @@ public class ExpenseRepository {
     public List<Expense> findAll() {
         return new ArrayList<>(expenses.values());
     }
+
+    public void deleteAll() {
+        expenses.clear();
+    }
 }

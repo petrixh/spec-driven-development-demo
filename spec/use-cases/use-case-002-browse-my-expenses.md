@@ -2,7 +2,7 @@
 
 **As an** employee, **I want to** view my submitted expenses and their status **so that** I can track what has been approved, rejected, or is still pending.
 
-**Status:** Pending
+**Status:** Implemented
 **Date:** 2026-03-23
 
 ---
