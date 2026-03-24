@@ -1,1 +1,419 @@
-/* Add your styles here */
+/* Cinema App - Public Views */
+:root {
+    --primary: #E50914;
+    --primary-hover: #B2070F;
+    --surface: #141414;
+    --surface-card: #1F1F1F;
+    --text-primary: #FFFFFF;
+    --text-secondary: #B3B3B3;
+    --seat-available: #2E7D32;
+    --seat-selected: #1565C0;
+    --seat-sold: #424242;
+}
+
+.app-layout {
+    min-height: 100vh;
+    background-color: var(--surface);
+    color: var(--text-primary);
+}
+
+/* Browse Movies */
+.browse-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.browse-title {
+    color: var(--primary);
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+}
+
+.browse-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+}
+
+.movie-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+}
+
+@media (max-width: 639px) {
+    .movie-grid { grid-template-columns: 1fr; }
+}
+
+@media (min-width: 640px) and (max-width: 1023px) {
+    .movie-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (min-width: 1024px) {
+    .movie-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.movie-card {
+    background: var(--surface-card);
+    border-radius: 8px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.movie-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.movie-poster {
+    width: 100%;
+    aspect-ratio: 2/3;
+    object-fit: cover;
+    display: block;
+}
+
+.movie-card-info {
+    padding: 0.75rem 1rem;
+}
+
+.movie-card-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+    color: var(--text-primary);
+}
+
+.movie-card-duration {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+}
+
+/* Movie Detail */
+.movie-detail-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.movie-detail-header {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+
+@media (max-width: 639px) {
+    .movie-detail-header {
+        flex-direction: column;
+    }
+}
+
+.movie-detail-poster {
+    width: 300px;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+@media (max-width: 639px) {
+    .movie-detail-poster { width: 100%; }
+}
+
+.movie-detail-info h1 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.movie-detail-info .duration {
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+}
+
+.movie-detail-info .description {
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+.back-link {
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+
+.back-link:hover {
+    color: var(--text-primary);
+}
+
+/* Showtimes */
+.showtimes-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.showtime-date-group {
+    margin-bottom: 1.5rem;
+}
+
+.showtime-date-group h3 {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.75rem;
+    border-bottom: 1px solid #333;
+    padding-bottom: 0.5rem;
+}
+
+.showtime-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.showtime-btn {
+    background: var(--surface-card);
+    border: 1px solid #333;
+    color: var(--text-primary);
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s;
+    text-align: center;
+    min-width: 140px;
+}
+
+.showtime-btn:hover:not(.sold-out) {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.showtime-btn .time {
+    font-size: 1.1rem;
+    font-weight: 600;
+    display: block;
+}
+
+.showtime-btn .room {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.showtime-btn .seats {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+}
+
+.showtime-btn.sold-out {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* Seat Selection */
+.seat-selection-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.show-info {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.show-info h1 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.show-info .details {
+    color: var(--text-secondary);
+}
+
+.screen-indicator {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.screen-bar {
+    width: 60%;
+    height: 6px;
+    background: var(--text-secondary);
+    margin: 0 auto 0.5rem;
+    border-radius: 50%;
+}
+
+.screen-label {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.seat-map {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    overflow-x: auto;
+}
+
+.seat-row {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.row-label {
+    width: 2rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.seat {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px 6px 2px 2px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.7rem;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.1s;
+}
+
+.seat.available {
+    background: var(--seat-available);
+}
+
+.seat.available:hover {
+    transform: scale(1.1);
+}
+
+.seat.selected {
+    background: var(--seat-selected);
+    transform: scale(1.1);
+}
+
+.seat.sold {
+    background: var(--seat-sold);
+    cursor: not-allowed;
+}
+
+.seat-legend {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+}
+
+.legend-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+}
+
+/* Purchase Form */
+.purchase-form {
+    max-width: 400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.purchase-form .summary {
+    text-align: center;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.purchase-form input {
+    background: var(--surface-card);
+    border: 1px solid #444;
+    color: var(--text-primary);
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    font-size: 1rem;
+}
+
+.purchase-form input::placeholder {
+    color: #666;
+}
+
+.purchase-form input:focus {
+    outline: 2px solid var(--primary);
+    border-color: var(--primary);
+}
+
+.purchase-btn {
+    background: var(--primary);
+    color: white;
+    border: none;
+    padding: 0.875rem;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.purchase-btn:hover:not(:disabled) {
+    background: var(--primary-hover);
+}
+
+.purchase-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.error-message {
+    color: #ef5350;
+    text-align: center;
+    padding: 0.75rem;
+    background: rgba(239, 83, 80, 0.1);
+    border-radius: 6px;
+}
+
+/* Confirmation */
+.confirmation {
+    text-align: center;
+    padding: 2rem;
+    background: var(--surface-card);
+    border-radius: 8px;
+    margin-top: 2rem;
+}
+
+.confirmation h2 {
+    color: var(--seat-available);
+    margin-bottom: 1rem;
+}
+
+.confirmation .ticket-list {
+    list-style: none;
+    padding: 0;
+    margin: 1rem 0;
+}
+
+.confirmation .ticket-list li {
+    padding: 0.25rem 0;
+    color: var(--text-secondary);
+}
+
+.confirmation .back-link {
+    display: inline-block;
+    margin-top: 1rem;
+    color: var(--primary);
+    font-weight: 600;
+}

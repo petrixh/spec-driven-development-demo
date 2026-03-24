@@ -2,7 +2,7 @@
 
 **As a** moviegoer, **I want to** see what movies are currently showing **so that** I can decide what to watch.
 
-**Status:** Pending
+**Status:** Implemented
 **Date:** 2026-03-20
 
 ---
