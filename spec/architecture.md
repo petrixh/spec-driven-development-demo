@@ -10,7 +10,7 @@
 - Spring Boot — auto-configuration, embedded Tomcat
 - Java
 - Maven (wrapper included)
-- Database: [e.g., PostgreSQL, H2]
+- Database: H2 (in-memory, mocked data for demo)
 - Routing: Vaadin Flow views use `@Route`. Hilla React views use file-based routing (`src/main/frontend/views/`), not `src/main/frontend/routes.tsx`.
 - Testing: JUnit 5, Vaadin Browserless Tests (`browserless-test-junit6`), Vitest for React views
 
@@ -21,10 +21,10 @@
 ```
 com.example.specdriven/
   Application.java              — Spring Boot entry point
-  [feature-package]/
-    [FeatureView].java          — Vaadin @Route view
-    [FeatureService].java       — Business logic (Spring @Service)
-    [FeatureRepository].java    — Data access (Spring Data)
+  bookreturn/
+    BookReturnView.java         — Vaadin @Route view (scan & process returns)
+    BookReturnService.java      — Business logic (Spring @Service)
+    BookRepository.java         — Data access (Spring Data)
 ```
 
 ---

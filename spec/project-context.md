@@ -17,8 +17,10 @@ In the first version, the librarian inserts the barcode, gets presented by the d
 
 ## 3. Constraints
 
-- [Platform or integration requirement]
-- [Policy or standard]
+- H2 in-memory database with mocked data (no external DB required)
+- Java 17+ runtime
+- No external system integrations — lending data is mocked for demo purposes
+- No formal compliance requirements; standard best practices apply
 
 > For technology stack and application structure details, see [`architecture.md`](architecture.md).
 

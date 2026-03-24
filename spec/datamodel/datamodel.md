@@ -4,4 +4,18 @@
 
 | Entity | Key Fields | Relationships |
 |--------|-----------|---------------|
-| [Entity 1] | [field1, field2] | [Has many Entity2] |
+| Book | id, title, author, isbn, callNumber | Has many LendingRecord |
+| Patron | id, name, patronId, accountBalance | Has many LendingRecord |
+| LendingRecord | id, checkoutDate, dueDate, returnDate, status, lateFee, damageAssessment, notes | Belongs to Book, belongs to Patron |
+
+### Status values for LendingRecord
+
+- `CHECKED_OUT` — book is currently lent out
+- `RETURNED` — book returned on time
+- `RETURNED_LATE` — book returned after due date
+- `RETURNED_DAMAGED` — book returned with damage noted
+
+### Late fee calculation
+
+- $0.25 per day overdue (as shown in mockup)
+- Fee calculated from dueDate to return date

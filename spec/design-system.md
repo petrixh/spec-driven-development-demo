@@ -17,27 +17,36 @@
 
 ## 2. Color Palette
 
-| Token | Value | Usage |
-|-------|-------|-------|
-| [e.g., `--primary`] | [e.g., `#1676F3`] | [Primary actions, links] |
-| [e.g., `--error`] | [e.g., `#E53935`] | [Error states, destructive actions] |
+Use Aura theme defaults. Key semantic colors:
+
+| Token | Usage |
+|-------|-------|
+| `--vaadin-primary-color` | Primary actions (Look up button) |
+| `--vaadin-success-color` | Success states (Return OK button) |
+| `--vaadin-warning-color` | Warning states (Late return, overdue badges) |
+| `--vaadin-error-color` | Error/destructive states (Damaged return button, overdue alerts) |
 
 ---
 
 ## 3. Typography
 
-| Element | Font / Size | Notes |
-|---------|-------------|-------|
-| [Headings] | [e.g., Aura defaults] | [Usage guidance] |
-| [Body text] | [e.g., Aura defaults] | [Usage guidance] |
+Use Aura theme defaults (`--aura-font-size-*` tokens). No custom fonts.
+
+| Element | Token | Notes |
+|---------|-------|-------|
+| Page headings | `--aura-font-size-xl` | Book title, section headers |
+| Labels & captions | `--aura-font-size-s` | Field labels like "PATRON", "ACCOUNT BALANCE" |
+| Body text | Aura default | Author, ISBN, status descriptions |
+| Monospace values | Monospace font | ISBN, call numbers, patron IDs |
 
 ---
 
 ## 4. Spacing & Layout
 
-- [Grid or layout system — e.g., Vaadin VerticalLayout / HorizontalLayout defaults]
-- [Standard spacing units — e.g., Lumo spacing tokens]
-- [Max content width, if any]
+- VerticalLayout as primary container; HorizontalLayout for inline groupings (patron info cards, action buttons)
+- Use `--vaadin-space-*` tokens for consistent spacing
+- Landing view: centered content, max-width ~500px for the scan input area
+- Detail view: max-width ~700px, card-style sections with consistent padding
 
 ---
 
@@ -47,9 +56,12 @@
 
 | Component | When to Use | Notes |
 |-----------|-------------|-------|
-| [e.g., `Button`] | [Primary and secondary actions] | [Use `ButtonVariant.LUMO_PRIMARY` for main CTA] |
-| [e.g., `Grid`] | [Tabular data display] | [Always enable column sorting] |
-| [e.g., `Notification`] | [User feedback] | [Use appropriate position and duration] |
+| `TextField` | Barcode/ISBN input | Placeholder with example ISBN, auto-focus on landing view |
+| `Button` | Actions (Look up, Return OK, Late return, Damaged, Cancel) | Use theme variants for color: primary, success, warning, error |
+| `Select` | Damage assessment dropdown | Options: No damage, Minor damage, Major damage |
+| `Badge` | Status indicators (Overdue, On time) | Color-coded via theme variants |
+| `Notification` | Feedback after processing a return | Success/error variants, appropriate duration |
+| `VerticalLayout` / `HorizontalLayout` | Page structure and card groupings | Card-style sections with border and padding |
 
 ---
 
