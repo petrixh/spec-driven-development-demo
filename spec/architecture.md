@@ -71,5 +71,5 @@ com.example.specdriven/
 - Public views: `@AnonymousAllowed` (React Hilla endpoints, public routes)
 - Admin views: `@RolesAllowed("ADMIN")` (Vaadin Flow views)
 - Login: Vaadin `LoginForm` at `/login`
-- **Forgot password link**: Clicking "Forgot password" on the login form shows the available demo usernames and passwords (e.g., `employee`/`employee`, `manager`/`manager`) so new users can discover how to log in.
+- **"Forgot password" button**: The login form's built-in "Forgot password" button is kept with its default label. Clicking it adds a hint section directly into the login view (not a notification/toast) that lists the available demo usernames and passwords (`employee`/`employee`, `manager`/`manager`).
 - Demo users (in-memory): `employee`/`employee` (EMPLOYEE role), `manager`/`manager` (MANAGER + EMPLOYEE roles)
