@@ -71,3 +71,4 @@ com.example.specdriven/
 - Public views: `@AnonymousAllowed` (React Hilla endpoints, public routes)
 - Admin views: `@RolesAllowed("ADMIN")` (Vaadin Flow views)
 - Login: Vaadin `LoginForm` at `/login`
+- **"Forgot password" link**: Instead of actual password recovery, display the available demo credentials (usernames and passwords) so reviewers can log in. This is a demo app — there is no real password reset flow.
