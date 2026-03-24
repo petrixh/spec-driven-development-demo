@@ -2,7 +2,7 @@
 
 **As a** user sharing the site link on social media, **I want** the shared link to display an attractive preview with title, description, and screenshot **so that** the link looks professional and encourages clicks.
 
-**Status:** Pending
+**Status:** Implemented
 **Date:** 2026-03-19
 
 ---
