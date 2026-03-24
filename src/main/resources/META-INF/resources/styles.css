@@ -1,1 +1,73 @@
-/* Add your styles here */
+/* GreenLedger — Green & White Theme */
+
+html {
+    --aura-accent-color-light: #2E7D32;
+    --aura-accent-color-dark: #4CAF50;
+}
+
+/* Status badges */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px var(--vaadin-padding-s);
+    border-radius: var(--vaadin-radius-s);
+    font-size: var(--aura-font-size-s);
+    font-weight: var(--aura-font-weight-medium);
+}
+
+.badge-pending {
+    background: #FFF3E0;
+    color: #E65100;
+}
+
+.badge-approved {
+    background: #E8F5E9;
+    color: #1B5E20;
+}
+
+.badge-rejected {
+    background: #FFEBEE;
+    color: #B71C1C;
+}
+
+/* Summary cards */
+.summary-card {
+    background: var(--aura-surface-color);
+    border-radius: var(--vaadin-radius-l);
+    padding: var(--vaadin-padding-l);
+    min-width: 200px;
+}
+
+.summary-card .card-title {
+    font-size: var(--aura-font-size-s);
+    color: var(--vaadin-text-color-secondary);
+    margin: 0 0 var(--vaadin-gap-xs) 0;
+}
+
+.summary-card .card-value {
+    font-size: var(--aura-font-size-xl);
+    font-weight: var(--aura-font-weight-semibold);
+    margin: 0;
+    color: #2E7D32;
+}
+
+/* Chart container */
+.chart-container {
+    background: var(--aura-surface-color);
+    border-radius: var(--vaadin-radius-l);
+    padding: var(--vaadin-padding-l);
+}
+
+/* View content padding */
+.view-content {
+    padding: var(--vaadin-padding-l);
+    max-width: 1200px;
+}
+
+/* Receipt image */
+.receipt-image {
+    max-width: 400px;
+    max-height: 400px;
+    border-radius: var(--vaadin-radius-m);
+    border: 1px solid var(--vaadin-border-color-secondary);
+}

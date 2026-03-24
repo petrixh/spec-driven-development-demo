@@ -2,7 +2,7 @@
 
 **As an** employee, **I want to** submit an expense with details and a receipt **so that** I can get reimbursed.
 
-**Status:** Pending
+**Status:** Implemented
 **Date:** 2026-03-23
 
 ---
