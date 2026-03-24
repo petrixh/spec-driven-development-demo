@@ -267,8 +267,8 @@ html {
 }
 
 /* Workload warning row */
-.workload-warning {
-    background: #FFF8E1 !important;
+vaadin-grid::part(workload-warning) {
+    --vaadin-grid-cell-background-color: #FFF8E1;
 }
 
 /* Page header styling */
