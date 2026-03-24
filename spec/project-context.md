@@ -15,6 +15,15 @@ A lightweight, internal Inventory Management application that lets a small wareh
 
 Both roles authenticate via the login page. Role assignment is managed outside the application (e.g., pre-seeded or admin config).
 
+### Demo Credentials
+
+| Username | Password | Role |
+|----------|----------|------|
+| `admin` | `admin` | Warehouse Manager (ADMIN) |
+| `staff` | `staff` | Warehouse Staff (USER) |
+
+The "Forgot password" link on the login page displays these demo credentials in a notification, so users can discover the available accounts without documentation.
+
 ## 3. Constraints
 
 - Internal-only application — no public-facing views required
