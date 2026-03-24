@@ -6,16 +6,19 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.vaadin.flow.component.dependency.StyleSheet;
 import com.vaadin.flow.component.page.AppShellConfigurator;
-import com.vaadin.flow.server.PWA;
+import com.vaadin.flow.server.AppShellSettings;
 
 @SpringBootApplication
 @StyleSheet(Aura.STYLESHEET)
 @StyleSheet("styles.css")
-@PWA(name = "TickTask", shortName = "TickTask", iconPath = "icons/favicon.svg")
 public class Application implements AppShellConfigurator {
+
+    @Override
+    public void configurePage(AppShellSettings settings) {
+        settings.addFavIcon("icon", "icons/favicon.svg", "32x32");
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
-
 }
