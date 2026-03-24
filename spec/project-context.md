@@ -17,12 +17,14 @@ Both roles authenticate via the login page. Role assignment is managed outside t
 
 ### Demo Credentials
 
+For each demo account the password is the same as the username (e.g., `admin` / `admin`).
+
 | Username | Password | Role |
 |----------|----------|------|
 | `admin` | `admin` | Warehouse Manager (ADMIN) |
 | `staff` | `staff` | Warehouse Staff (USER) |
 
-The "Forgot password" link on the login page displays these demo credentials in a notification, so users can discover the available accounts without documentation.
+The login page includes a button labelled "Forgot password". Clicking it adds a visible hint **directly on the login view** (not as a toast/notification) showing the demo credentials, so users can discover the available accounts without documentation.
 
 ## 3. Constraints
 
