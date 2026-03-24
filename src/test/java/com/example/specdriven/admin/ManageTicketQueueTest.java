@@ -4,6 +4,7 @@ import com.example.specdriven.domain.Category;
 import com.example.specdriven.domain.Priority;
 import com.example.specdriven.domain.Status;
 import com.example.specdriven.domain.Ticket;
+import com.example.specdriven.domain.CommentRepository;
 import com.example.specdriven.domain.TicketRepository;
 import com.example.specdriven.domain.User;
 import com.example.specdriven.domain.UserRepository;
@@ -29,10 +30,14 @@ class ManageTicketQueueTest extends SpringBrowserlessTest {
     private TicketRepository ticketRepository;
 
     @Autowired
+    private CommentRepository commentRepository;
+
+    @Autowired
     private UserRepository userRepository;
 
     @BeforeEach
     void setup() {
+        commentRepository.deleteAll();
         ticketRepository.deleteAll();
     }
 
