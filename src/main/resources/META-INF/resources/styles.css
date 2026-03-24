@@ -67,6 +67,17 @@ html {
 }
 
 /* ── Stock Status Badges ── */
+span[theme~="badge"] {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25em 0.75em;
+  border-radius: var(--vaadin-radius-m, 6px);
+  font-size: var(--aura-font-size-s);
+  font-weight: var(--aura-font-weight-semibold);
+  color: var(--vaadin-badge-color, #1E293B);
+  background: var(--vaadin-badge-background, #F1F5F9);
+}
+
 span[theme~="badge"][theme~="success"] {
   --vaadin-badge-color: #16A34A;
   --vaadin-badge-background: #DCFCE7;
