@@ -70,4 +70,5 @@ com.example.specdriven/
 - **Spring Security** with `VaadinSecurityConfigurer`
 - Public views: `@AnonymousAllowed` (React Hilla endpoints, public routes)
 - Admin views: `@RolesAllowed("ADMIN")` (Vaadin Flow views)
-- Login: Vaadin `LoginForm` at `/login`
+- Login: Vaadin `LoginOverlay` at `/login`
+- "Forgot password" link on the login screen shows the available demo usernames and passwords (not an actual password reset flow — this is a demo app)

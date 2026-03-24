@@ -30,3 +30,13 @@ OPEN → IN_PROGRESS → RESOLVED → CLOSED
 - Only agents can change status
 - `RESOLVED` tickets can be reopened (→ `OPEN`) or closed (→ `CLOSED`)
 - `CLOSED` is a terminal state
+
+## Demo Users
+
+Seeded on startup by `DataInitializer`. Shown to the user via the "Forgot password" link on the login screen.
+
+| Name | Email | Password | Role |
+|------|-------|----------|------|
+| Alice Customer | `customer@test.com` | `password` | CUSTOMER |
+| Bob Agent | `agent@test.com` | `password` | ADMIN |
+| Carol Manager | `manager@test.com` | `password` | ADMIN |
