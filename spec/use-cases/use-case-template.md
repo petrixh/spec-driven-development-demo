@@ -7,7 +7,7 @@
 
 **As a** [role/actor], **I want to** [capability] **so that** [business value/benefit].
 
-**Status:** [Draft | Approved | Implemented]
+**Status:** [Draft | Implemented]
 **Date:** [YYYY-MM-DD]
 
 ---
