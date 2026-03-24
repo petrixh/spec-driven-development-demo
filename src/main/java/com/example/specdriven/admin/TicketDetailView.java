@@ -184,7 +184,7 @@ public class TicketDetailView extends VerticalLayout implements HasUrlParameter<
                 commentHeader.add(author, new Span(c.getCreatedDate().format(fmt)));
 
                 Paragraph commentText = new Paragraph(c.getText());
-                commentText.getStyle().set("margin", "var(--vaadin-space-xs) 0 0 0");
+                commentText.getStyle().set("margin", "var(--vaadin-gap-xs) 0 0 0");
 
                 commentCard.add(commentHeader, commentText);
                 commentsSection.add(commentCard);

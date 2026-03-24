@@ -57,7 +57,7 @@ export default function SubmitView() {
   return (
     <div style={{ maxWidth: '600px' }}>
       <h2>Submit a Ticket</h2>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--vaadin-space-m)' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--vaadin-gap-m)' }}>
         <TextField
           label="Title"
           placeholder="Brief summary of your issue"

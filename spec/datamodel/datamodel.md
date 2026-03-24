@@ -33,10 +33,12 @@ OPEN → IN_PROGRESS → RESOLVED → CLOSED
 
 ## Demo Users
 
-Seeded on startup by `DataInitializer`. Shown to the user via the "Forgot password" link on the login screen.
+Seeded on startup by `DataInitializer`. Shown inline on the login view when the user clicks the "Forgot password" button (displayed directly in the view, not as a notification).
+
+Each demo user's password is the same as their email (e.g., `customer@test.com` / `customer@test.com`).
 
 | Name | Email | Password | Role |
 |------|-------|----------|------|
-| Alice Customer | `customer@test.com` | `password` | CUSTOMER |
-| Bob Agent | `agent@test.com` | `password` | ADMIN |
-| Carol Manager | `manager@test.com` | `password` | ADMIN |
+| Alice Customer | `customer@test.com` | `customer@test.com` | CUSTOMER |
+| Bob Agent | `agent@test.com` | `agent@test.com` | ADMIN |
+| Carol Manager | `manager@test.com` | `manager@test.com` | ADMIN |

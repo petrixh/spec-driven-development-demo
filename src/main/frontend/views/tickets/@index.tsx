@@ -57,7 +57,7 @@ export default function TicketsView() {
 
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--vaadin-space-m)' }}>
+      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 'var(--vaadin-gap-m)' }}>
         <h2 style={{ margin: 0 }}>My Tickets</h2>
         <Select
           label="Filter by status"
@@ -73,7 +73,7 @@ export default function TicketsView() {
           style={{ width: '200px' }}
         />
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--vaadin-space-s)' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--vaadin-gap-s)' }}>
         {filtered.map((t) => {
           const pc = priorityColors[t.priority ?? ''] ?? priorityColors.MEDIUM;
           const sc = statusColors[t.status ?? ''] ?? 'var(--resolve-status-closed)';
@@ -85,8 +85,8 @@ export default function TicketsView() {
               style={{ cursor: 'pointer', display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}
             >
               <div>
-                <div style={{ fontWeight: 600, marginBottom: 'var(--vaadin-space-xs)' }}>{t.title}</div>
-                <div className="resolve-meta" style={{ display: 'flex', gap: 'var(--vaadin-space-s)', alignItems: 'center' }}>
+                <div style={{ fontWeight: 600, marginBottom: 'var(--vaadin-gap-xs)' }}>{t.title}</div>
+                <div className="resolve-meta" style={{ display: 'flex', gap: 'var(--vaadin-gap-s)', alignItems: 'center' }}>
                   <span>{t.category}</span>
                   <span>·</span>
                   <Badge label={t.priority ?? ''} bg={pc.bg} color={pc.color} />

@@ -35,7 +35,7 @@ export default function TicketDetailView() {
 
   return (
     <div style={{ maxWidth: '800px' }}>
-      <Button theme="tertiary" onClick={() => navigate('/tickets')} style={{ marginBottom: 'var(--vaadin-space-m)' }}>
+      <Button theme="tertiary" onClick={() => navigate('/tickets')} style={{ marginBottom: 'var(--vaadin-gap-m)' }}>
         ← Back to My Tickets
       </Button>
 
@@ -49,23 +49,23 @@ export default function TicketDetailView() {
           </span>
         </div>
 
-        <div className="resolve-meta" style={{ display: 'flex', gap: 'var(--vaadin-space-m)', marginTop: 'var(--vaadin-space-s)' }}>
+        <div className="resolve-meta" style={{ display: 'flex', gap: 'var(--vaadin-gap-m)', marginTop: 'var(--vaadin-gap-s)' }}>
           <span>Category: {ticket.category}</span>
           <span>Priority: {ticket.priority}</span>
           <span>Created: {ticket.createdDate ? new Date(ticket.createdDate).toLocaleDateString() : ''}</span>
         </div>
 
-        <p style={{ marginTop: 'var(--vaadin-space-m)', lineHeight: 1.6 }}>{ticket.description}</p>
+        <p style={{ marginTop: 'var(--vaadin-gap-m)', lineHeight: 1.6 }}>{ticket.description}</p>
       </div>
 
-      <h3 style={{ marginTop: 'var(--vaadin-space-l)' }}>Comments</h3>
+      <h3 style={{ marginTop: 'var(--vaadin-gap-l)' }}>Comments</h3>
       {(!ticket.comments || ticket.comments.length === 0) ? (
         <p className="resolve-meta">No comments yet.</p>
       ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--vaadin-space-s)' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--vaadin-gap-s)' }}>
           {ticket.comments.map((c) => (
             <div key={c.id} className="resolve-card">
-              <div className="resolve-meta" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 'var(--vaadin-space-xs)' }}>
+              <div className="resolve-meta" style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 'var(--vaadin-gap-xs)' }}>
                 <strong style={{ color: 'inherit' }}>{c.authorName}</strong>
                 <span>{c.createdDate ? new Date(c.createdDate).toLocaleString() : ''}</span>
               </div>

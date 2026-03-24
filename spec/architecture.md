@@ -71,4 +71,4 @@ com.example.specdriven/
 - Public views: `@AnonymousAllowed` (React Hilla endpoints, public routes)
 - Admin views: `@RolesAllowed("ADMIN")` (Vaadin Flow views)
 - Login: Vaadin `LoginOverlay` at `/login`
-- "Forgot password" link on the login screen shows the available demo usernames and passwords (not an actual password reset flow — this is a demo app)
+- A "Forgot password" button on the login screen reveals the available demo usernames and passwords inline on the login view itself (not as a notification or popup — this is a demo app, not a real password-reset flow). The button must be labeled "Forgot password" (not "Show demo credentials" or similar).

@@ -9,7 +9,6 @@ import com.vaadin.flow.component.html.H2;
 import com.vaadin.flow.component.html.H3;
 import com.vaadin.flow.component.html.Span;
 import com.vaadin.flow.component.orderedlayout.FlexLayout;
-import com.vaadin.flow.component.orderedlayout.HorizontalLayout;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.PageTitle;
 import com.vaadin.flow.router.Route;
@@ -25,6 +24,8 @@ public class DashboardView extends VerticalLayout {
     public DashboardView(TicketService ticketService) {
         setPadding(true);
         setSpacing(true);
+        setMaxWidth("1200px");
+        getStyle().set("margin", "0 auto");
 
         add(new H2("Dashboard"));
 
@@ -37,7 +38,7 @@ public class DashboardView extends VerticalLayout {
         FlexLayout cards = new FlexLayout();
         cards.setWidthFull();
         cards.setFlexWrap(FlexLayout.FlexWrap.WRAP);
-        cards.getStyle().set("gap", "var(--vaadin-space-m)");
+        cards.getStyle().set("gap", "var(--vaadin-gap-m)");
 
         cards.add(
                 createCard("Open", String.valueOf(openCount), "var(--resolve-status-open)"),
@@ -48,18 +49,21 @@ public class DashboardView extends VerticalLayout {
         add(cards);
 
         // Breakdown tables
-        HorizontalLayout tables = new HorizontalLayout();
+        FlexLayout tables = new FlexLayout();
         tables.setWidthFull();
-        tables.setSpacing(true);
+        tables.setFlexWrap(FlexLayout.FlexWrap.WRAP);
+        tables.getStyle().set("gap", "var(--vaadin-gap-m)");
 
         Map<Category, Long> byCategory = ticketService.countNonClosedByCategory();
         Map<Priority, Long> byPriority = ticketService.countNonClosedByPriority();
 
-        tables.add(createBreakdownTable("By Category", byCategory, Category.values()));
-        tables.add(createBreakdownTable("By Priority", byPriority, Priority.values()));
-        tables.setFlexGrow(1, tables.getComponentAt(0));
-        tables.setFlexGrow(1, tables.getComponentAt(1));
+        Div categoryTable = createBreakdownTable("By Category", byCategory, Category.values());
+        Div priorityTable = createBreakdownTable("By Priority", byPriority, Priority.values());
 
+        categoryTable.getStyle().set("flex", "1 1 300px");
+        priorityTable.getStyle().set("flex", "1 1 300px");
+
+        tables.add(categoryTable, priorityTable);
         add(tables);
     }
 
@@ -82,25 +86,19 @@ public class DashboardView extends VerticalLayout {
         labelSpan.addClassName("resolve-meta");
         labelSpan.getStyle()
                 .set("display", "block")
-                .set("margin-top", "var(--vaadin-space-xs)");
+                .set("margin-top", "var(--vaadin-gap-xs)");
 
         card.add(valueSpan, labelSpan);
         return card;
     }
 
-    private <E extends Enum<E>> VerticalLayout createBreakdownTable(String title, Map<E, Long> data, E[] allValues) {
-        VerticalLayout table = new VerticalLayout();
-        table.setPadding(false);
-        table.setSpacing(false);
+    private <E extends Enum<E>> Div createBreakdownTable(String title, Map<E, Long> data, E[] allValues) {
+        Div wrapper = new Div();
+        wrapper.addClassName("resolve-card");
 
-        table.add(new H3(title));
-
-        Div tableDiv = new Div();
-        tableDiv.getStyle()
-                .set("background", "var(--resolve-card-bg)")
-                .set("border-radius", "var(--resolve-card-radius)")
-                .set("border", "1px solid var(--resolve-border-color)")
-                .set("overflow", "hidden");
+        H3 heading = new H3(title);
+        heading.getStyle().set("margin", "0 0 var(--vaadin-gap-s) 0");
+        wrapper.add(heading);
 
         for (E value : allValues) {
             long count = data.getOrDefault(value, 0L);
@@ -108,7 +106,8 @@ public class DashboardView extends VerticalLayout {
             row.getStyle()
                     .set("display", "flex")
                     .set("justify-content", "space-between")
-                    .set("padding", "var(--vaadin-space-s) var(--vaadin-space-m)")
+                    .set("gap", "var(--vaadin-gap-m)")
+                    .set("padding", "var(--vaadin-gap-s) 0")
                     .set("border-bottom", "1px solid var(--resolve-border-light)");
 
             Span nameSpan = new Span(value.name().replace("_", " "));
@@ -116,10 +115,9 @@ public class DashboardView extends VerticalLayout {
             countSpan.getStyle().set("font-weight", "600");
 
             row.add(nameSpan, countSpan);
-            tableDiv.add(row);
+            wrapper.add(row);
         }
 
-        table.add(tableDiv);
-        return table;
+        return wrapper;
     }
 }

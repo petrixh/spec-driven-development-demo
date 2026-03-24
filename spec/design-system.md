@@ -72,7 +72,7 @@ The palette is built around a trustworthy blue primary, with semantic colors for
 ## 4. Spacing & Layout
 
 - Use Vaadin `VerticalLayout` and `HorizontalLayout` as primary layout components
-- Use `--vaadin-space-*` tokens for spacing (`xs`, `s`, `m`, `l`, `xl`)
+- Use `--vaadin-gap-*` tokens for spacing (`xs`, `s`, `m`, `l`, `xl`) and `--vaadin-radius-*` tokens for border radius (`s`, `m`, `l`)
 - Admin views: max content width of `1200px`, centered
 - Dashboard cards: equal-width grid using `FlexLayout` or CSS grid
 - Forms: max width `600px` to keep fields readable
