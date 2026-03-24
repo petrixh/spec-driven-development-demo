@@ -36,7 +36,7 @@
 ## 4. Spacing & Layout
 
 - [Grid or layout system — e.g., Vaadin VerticalLayout / HorizontalLayout defaults]
-- [Standard spacing units — e.g., Lumo spacing tokens]
+- [Standard spacing units — e.g., `--vaadin-spacing-*` tokens]
 - [Max content width, if any]
 
 ---
@@ -47,7 +47,7 @@
 
 | Component | When to Use | Notes |
 |-----------|-------------|-------|
-| [e.g., `Button`] | [Primary and secondary actions] | [Use `ButtonVariant.LUMO_PRIMARY` for main CTA] |
+| [e.g., `Button`] | [Primary and secondary actions] | [Use primary variant for main CTA] |
 | [e.g., `Grid`] | [Tabular data display] | [Always enable column sorting] |
 | [e.g., `Notification`] | [User feedback] | [Use appropriate position and duration] |
 

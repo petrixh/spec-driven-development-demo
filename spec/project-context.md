@@ -23,5 +23,6 @@
 
 - [Spec README](README.md) — process overview and workflow
 - [Architecture](architecture.md) — technology stack and application structure
+- [Design System](design-system.md) — theme, component usage, and visual standards
 - [Use Case Template](use-cases/use-case-template.md) — template for feature specifications
-- [Verification](verification.md) — visual verification checklists
+- [Skills](skills/) — implementation, testing, and visual verification guides

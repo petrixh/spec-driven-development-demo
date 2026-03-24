@@ -29,34 +29,7 @@ com.example.specdriven/
 
 ---
 
-## 3. Testing
-
-- **Browserless Tests**: Vaadin Browserless Testing (`SpringBrowserlessTest`)
-  - Tests live in `src/test/java/`, mirroring the main package structure
-  - Extend `SpringBrowserlessTest`, annotate with `@SpringBootTest`
-  - Use `@WithMockUser(roles = "ADMIN")` for admin views
-  - Use `@WithAnonymousUser` for access control tests
-  - Use `navigate(ViewClass.class)` to render views
-  - Use `$(ComponentClass.class)` to query components, `test(component)` to interact
-- **React View Tests**: Vitest with React Testing Library
-  - Tests live in `src/test/frontend/`, mirroring the view structure
-  - Mock `@BrowserCallable` endpoint calls
-  - Test component rendering, user interactions, and navigation
-  - Run via `npx vitest run`
-- **Service Tests**: JUnit tests for Spring `@Service` classes
-  - Tests live in `src/test/java/`, same as browserless tests
-  - Annotate with `@SpringBootTest`, autowire the service
-  - Test business rules, validation, and data access
-  - Endpoints (`@BrowserCallable`) typically delegate to services — test the service, not the endpoint
-- **Test Coverage Requirements**:
-  - React views: Vitest view tests
-  - Vaadin Flow views: Browserless view tests
-  - Services: JUnit service tests
-- **Visual Verification**: Playwright MCP during development (not automated)
-
----
-
-## 4. UIState Management
+## 3. UIState Management
 
 - **Signals** are the primary mechanism for managing UI state
 - **Non-shared signals** for standard per-user UI state (e.g., form values, selection state, view-local data)
@@ -65,7 +38,7 @@ com.example.specdriven/
 
 ---
 
-## 5. Security & Admin
+## 4. Security & Admin
 
 - **Spring Security** with `VaadinSecurityConfigurer`
 - Public views: `@AnonymousAllowed` (React Hilla endpoints, public routes)
