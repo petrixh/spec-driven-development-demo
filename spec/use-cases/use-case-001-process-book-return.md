@@ -88,4 +88,4 @@ Two states within a single Vaadin Flow view:
 
 | Route | Access | Notes |
 |-------|--------|-------|
-| `/` | authenticated | Vaadin @Route — single view with landing and processing states |
+| `/` | public (`@AnonymousAllowed`) | Vaadin @Route — single view with landing and processing states |

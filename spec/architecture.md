@@ -25,6 +25,8 @@ com.example.specdriven/
     BookReturnView.java         — Vaadin @Route view (scan & process returns)
     BookReturnService.java      — Business logic (Spring @Service)
     BookRepository.java         — Data access (Spring Data)
+    PatronRepository.java       — Data access (Spring Data)
+    LendingRecordRepository.java — Data access (Spring Data)
 ```
 
 ---

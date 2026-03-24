@@ -19,6 +19,7 @@ Status: **Pending** (not yet implemented) or **Implemented**
 | `project-context.md` | Vision, problem, users, scope, risks | First — before anything else |
 | `architecture.md` | Technology stack and application structure | After project context is filled in |
 | `datamodel/datamodel.md` | Entity definitions and relationships | When adding data-driven features |
+| `design-system.md` | Theme, component usage, and visual standards | When building or reviewing UI |
 | `use-cases/use-case-template.md` | Template for individual feature specs | Copy per feature as `use-case-NNN-short-name.md` |
 | `verification.md` | Visual verification checklists (Playwright MCP) | During and after implementation |
 
