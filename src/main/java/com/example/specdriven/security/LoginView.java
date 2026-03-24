@@ -3,6 +3,7 @@ package com.example.specdriven.security;
 import com.vaadin.flow.component.html.H1;
 import com.vaadin.flow.component.html.Paragraph;
 import com.vaadin.flow.component.login.LoginForm;
+import com.vaadin.flow.component.notification.Notification;
 import com.vaadin.flow.component.orderedlayout.FlexComponent;
 import com.vaadin.flow.component.orderedlayout.VerticalLayout;
 import com.vaadin.flow.router.BeforeEnterEvent;
@@ -25,6 +26,11 @@ public class LoginView extends VerticalLayout implements BeforeEnterObserver {
         setJustifyContentMode(FlexComponent.JustifyContentMode.CENTER);
 
         loginForm.setAction("login");
+        loginForm.addForgotPasswordListener(event -> {
+            Notification.show(
+                    "Demo accounts — admin / admin (Manager) · staff / staff (Staff)",
+                    10000, Notification.Position.MIDDLE);
+        });
 
         Paragraph tagline = new Paragraph("git stash for your warehouse.");
         tagline.addClassName("tagline");
