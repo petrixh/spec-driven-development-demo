@@ -51,6 +51,16 @@ body {
     color: #6B7D8D;
 }
 
+.credentials-hint {
+    font-size: var(--aura-font-size-s);
+    color: #6B7D8D;
+    text-align: center;
+    padding: var(--vaadin-space-s) var(--vaadin-space-m);
+    background-color: #EBF3F8;
+    border-radius: var(--vaadin-border-radius);
+    margin-top: var(--vaadin-space-s);
+}
+
 /* Content area */
 .content-view {
     max-width: 1200px;
