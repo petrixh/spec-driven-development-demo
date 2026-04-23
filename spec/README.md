@@ -13,6 +13,7 @@ Status lifecycle: **Draft** → **Approved** → **Implemented**
 | `architecture.md` | Technology stack and application structure | After project context is filled in |
 | `datamodel/datamodel.md` | Entity definitions and relationships | When adding data-driven features |
 | `use-cases/use-case-template.md` | Template for individual feature specs | Copy per feature as `use-case-NNN-short-name.md` |
+| `design.md` | Shared visual components, design tokens, and responsive rules | Before implementing any UI |
 | `verification.md` | Visual verification checklists (Playwright MCP) | During and after implementation |
 
 ## Workflow
@@ -20,5 +21,6 @@ Status lifecycle: **Draft** → **Approved** → **Implemented**
 1. **Define context** — Fill in `project-context.md` with problem, vision, scope, and constraints.
 2. **Outline architecture** — Fill in `architecture.md` with tech stack and application structure.
 3. **Specify features** — Copy `use-cases/use-case-template.md` once per feature.
-4. **Implement** — Build each use case, referencing its spec for acceptance criteria.
-5. **Verify** — Follow `verification.md` checklists for each implemented use case.
+4. **Review design assets** — Read `design.md` for shared visual rules, then check the design screenshots and `design/design-system.md` for screen-specific details.
+5. **Implement** — Build each use case, referencing its spec for acceptance criteria.
+6. **Verify** — Follow `verification.md` checklists for each implemented use case.
