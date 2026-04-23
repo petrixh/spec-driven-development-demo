@@ -1,1 +1,507 @@
-/* Add your styles here */
+/* ===== WARM AMBER DARK THEME ===== */
+
+html {
+  background-color: #0f0f0f;
+  color: #fafafa;
+  font-family: Inter, system-ui, -apple-system, sans-serif;
+}
+
+/* --- Layout --- */
+.page-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* --- Browse Page --- */
+.browse-header {
+  padding: 24px 0 0;
+}
+
+.browse-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fafafa;
+  margin: 0;
+}
+
+.browse-subtitle {
+  font-size: 13px;
+  color: #737373;
+  margin: 4px 0 16px;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid #2a2a2a;
+  margin-bottom: 16px;
+}
+
+.filter-btn {
+  padding: 10px 14px;
+  background: transparent;
+  color: #737373;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  user-select: none;
+}
+
+.filter-btn:hover {
+  color: #a3a3a3;
+}
+
+.filter-btn.active {
+  color: #f59e0b;
+  border-bottom-color: #f59e0b;
+}
+
+.ticket-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding-bottom: 24px;
+}
+
+@media (min-width: 480px) {
+  .ticket-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 768px) {
+  .page-container {
+    max-width: 960px;
+    padding: 0 40px;
+  }
+
+  .ticket-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .filter-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+}
+
+/* --- Ticket Card --- */
+.ticket-card {
+  background: #1a1a1a;
+  border-radius: 14px;
+  padding: 16px;
+  border: 1px solid #2a2a2a;
+  border-left-width: 3px;
+  cursor: pointer;
+  transition: background 0.2s;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-height: 100px;
+}
+
+.ticket-card:hover {
+  background: #222222;
+}
+
+.ticket-card.mode-bus { border-left-color: #f59e0b; }
+.ticket-card.mode-train { border-left-color: #fb923c; }
+.ticket-card.mode-metro { border-left-color: #fbbf24; }
+.ticket-card.mode-ferry { border-left-color: #a3e635; }
+
+.ticket-card-icon {
+  font-size: 18px;
+  margin-bottom: 4px;
+}
+
+.ticket-card-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fafafa;
+  margin-bottom: 2px;
+}
+
+.ticket-card-price {
+  font-size: 22px;
+  font-weight: 800;
+  margin-top: auto;
+}
+
+.ticket-card-price.mode-bus { color: #f59e0b; }
+.ticket-card-price.mode-train { color: #fb923c; }
+.ticket-card-price.mode-metro { color: #fbbf24; }
+.ticket-card-price.mode-ferry { color: #a3e635; }
+
+/* --- Badges --- */
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 8px;
+  margin-right: 6px;
+  margin-bottom: 8px;
+}
+
+.badge-mode {
+  border-width: 1px;
+  border-style: solid;
+}
+
+.badge-mode.bus {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border-color: rgba(245, 158, 11, 0.25);
+}
+
+.badge-mode.train {
+  background: rgba(251, 146, 60, 0.15);
+  color: #fb923c;
+  border-color: rgba(251, 146, 60, 0.25);
+}
+
+.badge-mode.metro {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.25);
+}
+
+.badge-mode.ferry {
+  background: rgba(163, 230, 53, 0.15);
+  color: #a3e635;
+  border-color: rgba(163, 230, 53, 0.25);
+}
+
+.badge-type {
+  background: #222222;
+  color: #a3a3a3;
+  border: 1px solid #2a2a2a;
+}
+
+/* --- Detail Page --- */
+.detail-card {
+  background: #1a1a1a;
+  border-radius: 18px;
+  padding: 24px;
+  border: 1px solid #2a2a2a;
+}
+
+.detail-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fafafa;
+  margin: 0 0 8px;
+}
+
+.detail-price {
+  font-size: 28px;
+  font-weight: 800;
+  color: #fafafa;
+  margin-bottom: 24px;
+}
+
+.detail-price-unit {
+  font-size: 14px;
+  font-weight: 400;
+  color: #525252;
+}
+
+.subtotal-box {
+  background: #0f0f0f;
+  border-radius: 14px;
+  padding: 16px;
+  border: 1px solid #2a2a2a;
+  margin-bottom: 24px;
+}
+
+.subtotal-label {
+  font-size: 12px;
+  color: #737373;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.subtotal-value {
+  font-size: 32px;
+  font-weight: 800;
+  color: #f59e0b;
+}
+
+/* --- Section Headers --- */
+.section-header {
+  font-size: 11px;
+  font-weight: 600;
+  color: #737373;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+/* --- Checkout --- */
+.summary-card,
+.payment-card {
+  background: #1a1a1a;
+  border-radius: 14px;
+  padding: 18px;
+  border: 1px solid #2a2a2a;
+}
+
+.summary-card {
+  margin-bottom: 16px;
+}
+
+.summary-total {
+  font-size: 24px;
+  font-weight: 800;
+  color: #f59e0b;
+}
+
+/* --- Expiration / CVV side-by-side --- */
+.payment-row-inline {
+  display: flex;
+  gap: 12px;
+}
+
+.payment-row-inline > * {
+  flex: 1;
+}
+
+/* --- Confirmation --- */
+.success-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #000;
+  margin: 0 auto 12px;
+}
+
+.success-heading {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fafafa;
+  text-align: center;
+  margin: 0 0 4px;
+}
+
+.success-subtitle {
+  font-size: 14px;
+  color: #737373;
+  text-align: center;
+  margin: 0 0 24px;
+}
+
+.confirmation-code-box {
+  border-radius: 14px;
+  padding: 22px;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(217,119,6,0.06));
+  border: 1px solid rgba(245,158,11,0.25);
+  margin-bottom: 16px;
+}
+
+.confirmation-code-label {
+  font-size: 11px;
+  color: #737373;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+}
+
+.confirmation-code-value {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fafafa;
+  word-break: break-all;
+}
+
+.details-list {
+  background: #1a1a1a;
+  border-radius: 14px;
+  padding: 18px;
+  border: 1px solid #2a2a2a;
+}
+
+.details-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #1f1f1f;
+}
+
+.details-row:last-child {
+  border-bottom: none;
+}
+
+.details-row-label {
+  font-size: 13px;
+  color: #737373;
+}
+
+.details-row-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fafafa;
+}
+
+/* --- Back Link --- */
+.back-link {
+  background: none;
+  border: none;
+  color: #f59e0b;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 16px 0;
+  display: block;
+}
+
+.back-link:hover {
+  color: #d97706;
+}
+
+/* --- Responsive Layout Containers --- */
+.detail-layout {
+  display: block;
+}
+
+.checkout-layout {
+  display: block;
+}
+
+.confirmation-container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.summary-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.summary-icon-box.mode-bus { background: rgba(245, 158, 11, 0.1); }
+.summary-icon-box.mode-train { background: rgba(251, 146, 60, 0.1); }
+.summary-icon-box.mode-metro { background: rgba(251, 191, 36, 0.1); }
+.summary-icon-box.mode-ferry { background: rgba(163, 230, 53, 0.1); }
+
+/* --- Vaadin Component Overrides --- */
+
+/* --- Buttons --- */
+vaadin-button[theme~="primary"] {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #000000;
+  font-weight: 700;
+  border-radius: 12px;
+  min-height: 48px;
+  font-size: 15px;
+}
+
+vaadin-button[theme~="primary"]:hover {
+  background: linear-gradient(135deg, #d97706, #b45309);
+}
+
+vaadin-button[theme~="tertiary"] {
+  color: #f59e0b;
+  font-weight: 500;
+}
+
+vaadin-button[theme~="secondary"] {
+  border: 1px solid rgba(245,158,11,0.25);
+  background: transparent;
+  color: #f59e0b;
+  font-weight: 700;
+  border-radius: 12px;
+  min-height: 48px;
+}
+
+/* --- Text Fields --- */
+vaadin-text-field,
+vaadin-integer-field,
+vaadin-password-field {
+  --vaadin-input-field-background: #0f0f0f;
+  --vaadin-input-field-border-color: #2a2a2a;
+  --vaadin-input-field-border-width: 1.5px;
+  --vaadin-input-field-border-radius: 10px;
+  --vaadin-input-field-height: 44px;
+}
+
+vaadin-text-field[focused],
+vaadin-integer-field[focused] {
+  --vaadin-input-field-border-color: #f59e0b;
+}
+
+vaadin-text-field::part(label),
+vaadin-integer-field::part(label) {
+  font-size: 12px;
+  font-weight: 600;
+  color: #737373;
+}
+
+/* --- Integer Field as Quantity Stepper --- */
+vaadin-integer-field[class~="quantity-stepper"] {
+  width: 144px;
+}
+
+vaadin-integer-field[class~="quantity-stepper"]::part(decrease-button),
+vaadin-integer-field[class~="quantity-stepper"]::part(increase-button) {
+  width: 48px;
+  height: 48px;
+  color: #f59e0b;
+}
+
+vaadin-integer-field[class~="quantity-stepper"]::part(input-field) {
+  font-size: 20px;
+  font-weight: 800;
+  text-align: center;
+  background: #0f0f0f;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+}
+
+/* --- Vaadin default overrides for dark theme --- */
+vaadin-dialog-overlay [part="overlay"] {
+  background: #1a1a1a;
+}
+
+/* Fix for Vaadin default background */
+app-layout {
+  background-color: #0f0f0f;
+}
+
+/* Tab component overrides */
+vaadin-tabs [role="tab"] {
+  background: transparent;
+  color: #737373;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 10px 14px;
+  border: none;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+vaadin-tabs [role="tab"][selected] {
+  color: #f59e0b;
+  border-bottom-color: #f59e0b;
+}
+
+vaadin-tabs [role="tab"]:hover {
+  color: #a3a3a3;
+}

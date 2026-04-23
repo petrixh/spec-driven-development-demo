@@ -36,13 +36,13 @@
 
 ## Acceptance Criteria
 
-- [ ] Browse page loads and displays all seeded tickets as cards in a grid
-- [ ] Filter buttons for All, Bus, Train, Metro, and Ferry are visible
-- [ ] Selecting a mode filter shows only tickets for that mode
-- [ ] Selecting "All" shows all tickets
-- [ ] Each card shows ticket name, transit mode, ticket type, and price
-- [ ] Tapping a card navigates to the ticket detail page (UC-002)
-- [ ] Layout is responsive and usable on mobile screens
+- [x] Browse page loads and displays all seeded tickets as cards in a grid
+- [x] Filter buttons for All, Bus, Train, Metro, and Ferry are visible
+- [x] Selecting a mode filter shows only tickets for that mode
+- [x] Selecting "All" shows all tickets
+- [x] Each card shows ticket name, transit mode, ticket type, and price
+- [x] Tapping a card navigates to the ticket detail page (UC-002) at /ticket/{id}
+- [x] Layout is responsive and usable on mobile screens
 
 ---
 
