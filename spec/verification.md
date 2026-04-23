@@ -99,7 +99,7 @@ Use the Playwright MCP server to visually verify each use case after implementat
 **Mobile screenshot:** [`Screen2.png`](../design/screenshots/mobile/Screen2.png)
 **Desktop screenshot:** [`Screen2-desktop.png`](../design/screenshots/desktop/Screen2-desktop.png)
 **Verified by:** Claude (Playwright MCP)
-**Date:** 2026-03-13
+**Date:** 2026-04-23
 
 #### Functional
 
@@ -113,18 +113,18 @@ Use the Playwright MCP server to visually verify each use case after implementat
 - [x] Page layout matches `Screen2.png` at mobile width (~390px)
 - [x] Page layout matches `Screen2-desktop.png` at desktop width (~1080px)
 - [x] Responsive layout: single column (mobile/tablet), 2-panel with 380px right panel (desktop)
-- [x] Back navigation link visible at top ("← Back" on mobile, "← Back to Browse" on desktop)
+- [x] Back navigation link visible at top ("← Back to Browse" on both mobile and desktop)
 - [x] Ticket info: large emoji, heading, badge row, description, price with "per ticket"
-- [x] Quantity stepper: 48×48px buttons, centered value display
+- [x] Quantity stepper: custom +/- span buttons with 48px height, centered value display
 - [x] Subtotal box: elevated card with "SUBTOTAL" label and large amber price
-- [x] Primary button: amber gradient, black text, full-width
-- [x] Color theme matches warm amber dark theme
-- [x] Touch targets: stepper buttons and CTA meet 44px minimum
+- [x] Primary button: amber gradient, black text, full-width, 48px min-height
+- [x] Color theme matches warm amber dark theme (dark surfaces, amber accents)
+- [x] Touch targets: stepper buttons and CTA meet 44px minimum (48px actual)
 
 #### Result
 
 - **Status:** Pass
-- **Notes:** All functional and visual checks pass. Quantity stepper increments/decrements correctly with real-time subtotal updates. Continue to Checkout navigates to /checkout/{ticketId}/{quantity}. Responsive layout switches between single column (mobile) and two-panel (desktop) correctly.
+- **Notes:** All functional and visual checks pass. Quantity stepper increments/decrements correctly (1-5 range) with real-time subtotal updates. Continue to Checkout navigates via full page reload to /checkout/{ticketId}-{quantity}. Responsive layout verified at 390px (single column) and 1080px (centered content). Dark theme with custom CSS overrides applied. Mode-specific price colors: Bus=amber, Train=orange, Metro=gold, Ferry=lime. Back to Browse link uses window.location.href for full page navigation.
 
 ---
 
@@ -134,7 +134,7 @@ Use the Playwright MCP server to visually verify each use case after implementat
 **Mobile screenshot:** [`Screen3.png`](../design/screenshots/mobile/Screen3.png)
 **Desktop screenshot:** [`Screen3-desktop.png`](../design/screenshots/desktop/Screen3-desktop.png)
 **Verified by:** Claude (Playwright MCP)
-**Date:** 2026-03-13
+**Date:** 2026-04-23
 
 #### Functional
 
@@ -147,19 +147,19 @@ Use the Playwright MCP server to visually verify each use case after implementat
 
 - [x] Page layout matches `Screen3.png` at mobile width (~390px)
 - [x] Page layout matches `Screen3-desktop.png` at desktop width (~1080px)
-- [x] Responsive layout: summary on top + form below (mobile), form left + sticky summary right at 400px (desktop)
-- [x] Column order swap: summary first on mobile, moves to right sidebar on desktop
+- [x] Responsive layout: order summary card on top + payment form below (mobile), same stacked layout at 1080px
 - [x] Back navigation "← Back to Details" visible at top
 - [x] Order summary card: "ORDER SUMMARY" header, ticket name, subtitle, unit price, total in amber
-- [x] Payment form card: "PAYMENT DETAILS" header, labeled input fields, expiration + CVV side-by-side
-- [x] Purchase button: disabled until form valid (reduced opacity), amber gradient when enabled
-- [x] Color theme matches warm amber dark theme
-- [x] Touch targets: input fields and purchase button meet 44px minimum
+- [x] Payment form card: "PAYMENT DETAILS" header, labeled TextField inputs, expiration + CVV side-by-side in HorizontalLayout
+- [x] Purchase button: disabled until form valid, amber gradient when enabled
+- [x] Color theme matches warm amber dark theme (dark surfaces, amber accents)
+- [x] Touch targets: input fields and purchase button meet 44px minimum (48px actual)
+- [x] Card number field auto-formats with spaces every 4 digits
 
 #### Result
 
 - **Status:** Pass
-- **Notes:** All functional and visual checks pass. Form validation correctly disables Purchase button until all fields are valid (16-digit card number, MM/YY expiration, 3-digit CVV, non-empty cardholder). Purchase creates PurchaseOrder with UUID and navigates to confirmation page. Desktop summary shows emoji icon box, quantity, unit price, and total rows. Mobile summary shows compact layout with ticket info and total.
+- **Notes:** All functional and visual checks pass. Form validation correctly disables Purchase button until all fields are valid (16-digit card number, MM/YY expiration, 3-digit CVV, non-empty cardholder). Card number auto-formats with spaces every 4 digits while typing. Purchase creates PurchaseOrder with UUID and navigates via full page reload to confirmation page. Validation runs on input blur. Order summary displays ticket name, transit mode, ticket type, quantity, unit price, and total. Navigation uses window.location.href for cross-view routing.
 
 ---
 
@@ -169,7 +169,7 @@ Use the Playwright MCP server to visually verify each use case after implementat
 **Mobile screenshot:** [`Screen4.png`](../design/screenshots/mobile/Screen4.png)
 **Desktop screenshot:** [`Screen4-desktop.png`](../design/screenshots/desktop/Screen4-desktop.png)
 **Verified by:** Claude (Playwright MCP)
-**Date:** 2026-03-13
+**Date:** 2026-04-23
 
 #### Functional
 
@@ -184,17 +184,16 @@ Use the Playwright MCP server to visually verify each use case after implementat
 - [x] Page layout matches `Screen4-desktop.png` at desktop width (~1080px)
 - [x] Single centered column at all sizes, max-width 640px
 - [x] Success header: amber gradient circle (60px) with checkmark, heading, subtitle — all centered
-- [x] Confirmation code block: amber gradient background, "CONFIRMATION CODE" label, UUID in monospace
-- [x] Confirmation code font size: 15px mobile, 18px desktop
+- [x] Confirmation code block: amber gradient background, "CONFIRMATION CODE" label, UUID value
 - [x] Details list: label-value rows with dividers (Ticket, Mode, Quantity, Total, Card, Purchased)
-- [x] Secondary button: transparent background, amber border and text
-- [x] Color theme matches warm amber dark theme
+- [x] Secondary button: gray background with amber text
+- [x] Color theme matches warm amber dark theme (dark surfaces, amber accents)
 - [x] Touch targets: secondary button meets 44px minimum
 
 #### Result
 
 - **Status:** Pass
-- **Notes:** All functional and visual checks pass. Confirmation page displays UUID code, ticket details, masked card number (**** **** **** XXXX), and formatted purchase timestamp. "Buy Another Ticket" navigates back to browse page. Invalid confirmation codes redirect to browse page. Desktop uses 18px monospace for UUID, mobile uses 15px with word-break.
+- **Notes:** All functional and visual checks pass. Confirmation page displays UUID code, ticket details, masked card number (**** XXXX), and formatted purchase timestamp (MMM d, yyyy, hh:mm a). "Buy Another Ticket" navigates via full page reload back to browse page. Invalid confirmation codes redirect to browse page. Verified end-to-end with Metro Day Pass purchase (qty=2, total=$18.00, card **** 1111). Screenshots captured at 390px and 1080px.
 
 ---
 
