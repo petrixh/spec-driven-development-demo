@@ -153,6 +153,36 @@ vaadin-integer-field[class~="quantity-stepper"]::part(input-field) {
   letter-spacing: 1px;
 }
 
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 32px;
+}
+
+.nav-link {
+  background: none;
+  border: 1px solid transparent;
+  color: #737373;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 4px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 28px;
+}
+
+.nav-link:hover {
+  color: #a3a3a3;
+}
+
+.nav-link.active {
+  color: #f59e0b;
+  border-color: #f59e0b;
+  font-weight: 600;
+}
+
 @media (min-width: 768px) {
   .desktop-nav {
     display: flex;
@@ -216,7 +246,7 @@ vaadin-integer-field[class~="quantity-stepper"]::part(input-field) {
 
 .ticket-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: 1fr 1fr;
   gap: 12px;
   padding-bottom: 24px;
 }
@@ -229,12 +259,6 @@ vaadin-integer-field[class~="quantity-stepper"]::part(input-field) {
 
 .checkout-summary { order: 0; margin-bottom: 16px; }
 .checkout-form { order: 1; }
-
-@media (min-width: 480px) {
-  .ticket-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-}
 
 @media (min-width: 768px) {
   .page-container {
@@ -508,7 +532,7 @@ vaadin-integer-field[class~="quantity-stepper"]::part(input-field) {
   font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
   font-size: 15px;
   font-weight: 700;
-  color: #fafafa;
+  color: #f59e0b;
   word-break: break-all;
 }
 
@@ -674,6 +698,13 @@ vaadin-text-field::part(input-field) {
   max-width: 640px;
   margin: 0 auto;
   padding-top: 20px;
+}
+
+.summary-ticket-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 4px;
 }
 
 .summary-icon-box {

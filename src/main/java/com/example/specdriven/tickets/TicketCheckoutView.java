@@ -54,7 +54,23 @@ public class TicketCheckoutView extends VerticalLayout implements BeforeEnterObs
         Span brand = new Span("QUICK TRANSIT");
         brand.addClassName("nav-brand");
         nav.add(brand);
+        nav.add(buildNavLinks("checkout"));
         return nav;
+    }
+
+    private Div buildNavLinks(String active) {
+        Div links = new Div();
+        links.addClassName("nav-links");
+        String[] labels = {"Browse", "Detail", "Checkout", "Confirmation"};
+        String[] keys   = {"browse", "detail", "checkout", "confirmation"};
+        for (int i = 0; i < labels.length; i++) {
+            NativeButton link = new NativeButton(labels[i]);
+            link.addClassName("nav-link");
+            if (keys[i].equals(active)) link.addClassName("active");
+            if ("browse".equals(keys[i])) link.addClickListener(e -> UI.getCurrent().navigate(TicketBrowseView.class));
+            links.add(link);
+        }
+        return links;
     }
 
     private Component buildContent() {
@@ -96,24 +112,37 @@ public class TicketCheckoutView extends VerticalLayout implements BeforeEnterObs
         header.addClassName("section-header");
         header.setText("Order Summary");
 
-        String subtitle = ticket.getTransitMode().displayName() + " · "
-                + ticket.getTicketType().displayName() + " · Qty: " + quantity;
+        // Icon + name/subtitle row
+        Div ticketRow = new Div();
+        ticketRow.addClassName("summary-ticket-row");
 
+        Div iconBox = new Div();
+        iconBox.addClassNames("summary-icon-box", "mode-" + ticket.getTransitMode().cssClass());
+        iconBox.setText(ticket.getTransitMode().emoji());
+
+        Div nameBlock = new Div();
+        nameBlock.getStyle().set("flex", "1");
         Div nameEl = new Div();
-        nameEl.getStyle().set("font-size", "15px").set("font-weight", "700").set("color", "#fafafa").set("margin-bottom", "4px");
+        nameEl.getStyle().set("font-size", "15px").set("font-weight", "700").set("color", "#fafafa").set("margin-bottom", "2px");
         nameEl.setText(ticket.getName());
-
         Div subtitleEl = new Div();
-        subtitleEl.getStyle().set("font-size", "13px").set("color", "#737373").set("margin-bottom", "12px");
-        subtitleEl.setText(subtitle);
+        subtitleEl.getStyle().set("font-size", "12px").set("color", "#737373");
+        subtitleEl.setText(ticket.getTransitMode().displayName() + " · " + ticket.getTicketType().displayName());
+        nameBlock.add(nameEl, subtitleEl);
 
+        ticketRow.add(iconBox, nameBlock);
+
+        Div divider = new Div();
+        divider.getStyle().set("border-top", "1px solid #2a2a2a").set("margin", "12px 0");
+
+        Div quantityRow = buildSummaryRow("Quantity", String.valueOf(quantity));
         Div unitPriceRow = buildSummaryRow("Unit Price", String.format("$%.2f", ticket.getPrice()));
 
         Div totalRow = new Div();
         totalRow.getStyle().set("display", "flex").set("justify-content", "space-between").set("align-items", "center").set("margin-top", "12px").set("padding-top", "12px").set("border-top", "1px solid #2a2a2a");
 
         Div totalLabel = new Div();
-        totalLabel.getStyle().set("font-size", "13px").set("color", "#a3a3a3");
+        totalLabel.getStyle().set("font-size", "14px").set("font-weight", "600").set("color", "#a3a3a3");
         totalLabel.setText("Total");
 
         java.math.BigDecimal total = ticket.getPrice().multiply(java.math.BigDecimal.valueOf(quantity));
@@ -121,7 +150,7 @@ public class TicketCheckoutView extends VerticalLayout implements BeforeEnterObs
         totalValue.addClassName("summary-total");
 
         totalRow.add(totalLabel, totalValue);
-        card.add(header, nameEl, subtitleEl, unitPriceRow, totalRow);
+        card.add(header, ticketRow, divider, quantityRow, unitPriceRow, totalRow);
         return card;
     }
 

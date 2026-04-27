@@ -33,7 +33,23 @@ public class TicketBrowseView extends VerticalLayout {
         Span brand = new Span("QUICK TRANSIT");
         brand.addClassName("nav-brand");
         nav.add(brand);
+        nav.add(buildNavLinks("browse"));
         return nav;
+    }
+
+    private Div buildNavLinks(String active) {
+        Div links = new Div();
+        links.addClassName("nav-links");
+        String[] labels = {"Browse", "Detail", "Checkout", "Confirmation"};
+        String[] keys   = {"browse", "detail", "checkout", "confirmation"};
+        for (int i = 0; i < labels.length; i++) {
+            NativeButton link = new NativeButton(labels[i]);
+            link.addClassName("nav-link");
+            if (keys[i].equals(active)) link.addClassName("active");
+            if ("browse".equals(keys[i])) link.addClickListener(e -> UI.getCurrent().navigate(TicketBrowseView.class));
+            links.add(link);
+        }
+        return links;
     }
 
     private Component buildContent() {
