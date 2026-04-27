@@ -1,1 +1,576 @@
-/* Add your styles here */
+/* ===== WARM AMBER DARK THEME ===== */
+
+html {
+  --lumo-base-color: #0f0f0f;
+  --lumo-tint-5pct: #1a1a1a;
+  --lumo-tint-10pct: #222222;
+  --lumo-tint-20pct: #2a2a2a;
+  --lumo-tint-30pct: #333333;
+  --lumo-tint-40pct: #444444;
+  --lumo-tint-50pct: #555555;
+  --lumo-shade-5pct: rgba(0, 0, 0, 0.1);
+  --lumo-shade-10pct: rgba(0, 0, 0, 0.2);
+  --lumo-shade-20pct: rgba(0, 0, 0, 0.3);
+
+  --lumo-primary-color: #f59e0b;
+  --lumo-primary-color-50pct: rgba(245, 158, 11, 0.5);
+  --lumo-primary-color-10pct: rgba(245, 158, 11, 0.1);
+  --lumo-primary-text-color: #f59e0b;
+  --lumo-primary-contrast-color: #000000;
+
+  --lumo-header-text-color: #fafafa;
+  --lumo-body-text-color: #a3a3a3;
+  --lumo-secondary-text-color: #737373;
+  --lumo-tertiary-text-color: #525252;
+  --lumo-disabled-text-color: #404040;
+
+  --lumo-error-color: #f87171;
+  --lumo-error-text-color: #f87171;
+
+  --lumo-success-color: #4ade80;
+  --lumo-success-text-color: #4ade80;
+
+  --lumo-border-radius-m: 10px;
+  --lumo-border-radius-l: 14px;
+
+  --lumo-space-xs: 4px;
+  --lumo-space-s: 8px;
+  --lumo-space-m: 12px;
+  --lumo-space-l: 16px;
+  --lumo-space-xl: 24px;
+
+  --lumo-font-family: Inter, system-ui, -apple-system, sans-serif;
+  --lumo-font-size-xxs: 11px;
+  --lumo-font-size-xs: 12px;
+  --lumo-font-size-s: 13px;
+  --lumo-font-size-m: 14px;
+  --lumo-font-size-l: 18px;
+  --lumo-font-size-xl: 22px;
+  --lumo-font-size-xxl: 28px;
+
+  --transit-accent: #f59e0b;
+  --transit-accent-hover: #d97706;
+  --transit-surface-bg: #0f0f0f;
+  --transit-surface-card: #1a1a1a;
+  --transit-surface-elevated: #222222;
+  --transit-border: #2a2a2a;
+  --transit-border-subtle: #1f1f1f;
+  --transit-mode-bus: #f59e0b;
+  --transit-mode-train: #fb923c;
+  --transit-mode-metro: #fbbf24;
+  --transit-mode-ferry: #a3e635;
+
+  background-color: var(--transit-surface-bg);
+  color: var(--lumo-header-text-color);
+}
+
+body {
+  background-color: #0f0f0f;
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* --- Buttons --- */
+vaadin-button[theme~="primary"] {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: #000000;
+  font-weight: 700;
+  border-radius: 12px;
+  min-height: 48px;
+  font-size: 15px;
+  --lumo-button-size: 48px;
+}
+
+vaadin-button[theme~="primary"]:hover {
+  background: linear-gradient(135deg, #d97706, #b45309);
+}
+
+vaadin-button[theme~="tertiary"] {
+  color: var(--transit-accent);
+  font-weight: 500;
+}
+
+/* --- Text Fields --- */
+vaadin-text-field,
+vaadin-integer-field,
+vaadin-password-field {
+  --vaadin-input-field-background: var(--transit-surface-bg);
+  --vaadin-input-field-border-color: var(--transit-border);
+  --vaadin-input-field-border-width: 1.5px;
+  --vaadin-input-field-border-radius: 10px;
+  --vaadin-input-field-height: 44px;
+}
+
+vaadin-text-field[focused],
+vaadin-integer-field[focused] {
+  --vaadin-input-field-border-color: var(--transit-accent);
+}
+
+vaadin-text-field::part(label),
+vaadin-integer-field::part(label) {
+  font-size: 12px;
+  font-weight: 600;
+  color: #737373;
+}
+
+/* --- Quantity Stepper --- */
+vaadin-integer-field[class~="quantity-stepper"] {
+  width: 144px;
+}
+
+vaadin-integer-field[class~="quantity-stepper"]::part(decrease-button),
+vaadin-integer-field[class~="quantity-stepper"]::part(increase-button) {
+  width: 48px;
+  height: 48px;
+  color: var(--transit-accent);
+}
+
+vaadin-integer-field[class~="quantity-stepper"]::part(input-field) {
+  font-size: 20px;
+  font-weight: 800;
+  text-align: center;
+  background: var(--transit-surface-bg);
+  border: 1px solid var(--transit-border);
+  border-radius: 12px;
+}
+
+/* --- Desktop Nav Bar --- */
+.desktop-nav {
+  display: none;
+  background: #1a1a1a;
+  border-bottom: 1px solid #2a2a2a;
+  padding: 0 40px;
+  height: 52px;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.nav-brand {
+  font-size: 15px;
+  font-weight: 800;
+  color: #f59e0b;
+  letter-spacing: 1px;
+}
+
+@media (min-width: 768px) {
+  .desktop-nav {
+    display: flex;
+  }
+}
+
+/* --- Page Container --- */
+.page-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 16px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* --- Browse Page --- */
+.browse-header {
+  padding: 24px 0 0;
+}
+
+.browse-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fafafa;
+  margin: 0;
+}
+
+.browse-subtitle {
+  font-size: 13px;
+  color: #737373;
+  margin: 4px 0 16px;
+}
+
+.filter-bar {
+  display: flex;
+  gap: 0;
+  border-bottom: 1px solid #2a2a2a;
+  margin-bottom: 16px;
+}
+
+.filter-btn {
+  padding: 10px 14px;
+  background: transparent;
+  color: #737373;
+  font-size: 13px;
+  font-weight: 600;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  color: #a3a3a3;
+}
+
+.filter-btn.active {
+  color: #f59e0b;
+  border-bottom-color: #f59e0b;
+}
+
+.ticket-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding-bottom: 24px;
+}
+
+@media (min-width: 480px) {
+  .ticket-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 768px) {
+  .page-container {
+    max-width: 960px;
+    padding: 0 40px;
+  }
+
+  .ticket-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .filter-btn {
+    padding: 10px 20px;
+    font-size: 14px;
+  }
+
+  .detail-layout {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 32px;
+  }
+
+  .checkout-layout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 32px;
+  }
+
+  .checkout-summary-sticky {
+    position: sticky;
+    top: 24px;
+  }
+
+  .confirmation-container {
+    max-width: 640px;
+    margin: 0 auto;
+    padding-top: 48px;
+  }
+
+  .confirmation-code-value {
+    font-size: 18px;
+  }
+}
+
+/* --- Ticket Card --- */
+.ticket-card {
+  background: #1a1a1a;
+  border-radius: 14px;
+  padding: 16px;
+  border: 1px solid #2a2a2a;
+  border-left-width: 3px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.ticket-card:hover {
+  background: #222222;
+}
+
+.ticket-card.mode-bus { border-left-color: #f59e0b; }
+.ticket-card.mode-train { border-left-color: #fb923c; }
+.ticket-card.mode-metro { border-left-color: #fbbf24; }
+.ticket-card.mode-ferry { border-left-color: #a3e635; }
+
+.ticket-card-icon {
+  font-size: 18px;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.ticket-card-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fafafa;
+  margin-bottom: 4px;
+}
+
+.ticket-card-price {
+  font-size: 22px;
+  font-weight: 800;
+}
+
+.ticket-card-price.mode-bus { color: #f59e0b; }
+.ticket-card-price.mode-train { color: #fb923c; }
+.ticket-card-price.mode-metro { color: #fbbf24; }
+.ticket-card-price.mode-ferry { color: #a3e635; }
+
+/* --- Badges --- */
+.badge {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 8px;
+}
+
+.badge-mode {
+  border-width: 1px;
+  border-style: solid;
+}
+
+.badge-mode.bus {
+  background: rgba(245, 158, 11, 0.15);
+  color: #f59e0b;
+  border-color: rgba(245, 158, 11, 0.25);
+}
+
+.badge-mode.train {
+  background: rgba(251, 146, 60, 0.15);
+  color: #fb923c;
+  border-color: rgba(251, 146, 60, 0.25);
+}
+
+.badge-mode.metro {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+  border-color: rgba(251, 191, 36, 0.25);
+}
+
+.badge-mode.ferry {
+  background: rgba(163, 230, 53, 0.15);
+  color: #a3e635;
+  border-color: rgba(163, 230, 53, 0.25);
+}
+
+.badge-type {
+  background: #222222;
+  color: #a3a3a3;
+  border: 1px solid #2a2a2a;
+}
+
+/* --- Detail Page --- */
+.detail-card {
+  background: #1a1a1a;
+  border-radius: 18px;
+  padding: 24px;
+  border: 1px solid #2a2a2a;
+}
+
+.detail-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fafafa;
+  margin: 0 0 8px;
+}
+
+.detail-price {
+  font-size: 28px;
+  font-weight: 800;
+  color: #fafafa;
+  margin-bottom: 24px;
+}
+
+.detail-price-unit {
+  font-size: 14px;
+  font-weight: 400;
+  color: #525252;
+}
+
+.subtotal-box {
+  background: #0f0f0f;
+  border-radius: 14px;
+  padding: 16px;
+  border: 1px solid #2a2a2a;
+  margin-bottom: 24px;
+}
+
+.subtotal-label {
+  font-size: 12px;
+  color: #737373;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.subtotal-value {
+  font-size: 32px;
+  font-weight: 800;
+  color: #f59e0b;
+}
+
+/* --- Section Headers --- */
+.section-header {
+  font-size: 11px;
+  font-weight: 600;
+  color: #737373;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 12px;
+}
+
+/* --- Checkout --- */
+.summary-card,
+.payment-card {
+  background: #1a1a1a;
+  border-radius: 14px;
+  padding: 18px;
+  border: 1px solid #2a2a2a;
+}
+
+.summary-card {
+  margin-bottom: 16px;
+}
+
+.summary-total {
+  font-size: 24px;
+  font-weight: 800;
+  color: #f59e0b;
+}
+
+.payment-row-inline {
+  display: flex;
+  gap: 12px;
+}
+
+.payment-row-inline > * {
+  flex: 1;
+}
+
+/* --- Confirmation --- */
+.success-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #d97706, #f59e0b);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: #000;
+  margin: 0 auto 12px;
+}
+
+.success-heading {
+  font-size: 22px;
+  font-weight: 800;
+  color: #fafafa;
+  text-align: center;
+  margin: 0 0 4px;
+}
+
+.success-subtitle {
+  font-size: 14px;
+  color: #737373;
+  text-align: center;
+  margin: 0 0 24px;
+}
+
+.confirmation-code-box {
+  border-radius: 14px;
+  padding: 22px;
+  text-align: center;
+  background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(217,119,6,0.06));
+  border: 1px solid rgba(245,158,11,0.25);
+  margin-bottom: 16px;
+}
+
+.confirmation-code-label {
+  font-size: 11px;
+  color: #737373;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 8px;
+}
+
+.confirmation-code-value {
+  font-family: 'SF Mono', 'Fira Code', 'Courier New', monospace;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fafafa;
+  word-break: break-all;
+}
+
+.details-list {
+  background: #1a1a1a;
+  border-radius: 14px;
+  padding: 18px;
+  border: 1px solid #2a2a2a;
+}
+
+.details-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #1f1f1f;
+}
+
+.details-row:last-child {
+  border-bottom: none;
+}
+
+.details-row-label {
+  font-size: 13px;
+  color: #737373;
+}
+
+.details-row-value {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fafafa;
+}
+
+/* --- Back Link --- */
+.back-link {
+  background: none;
+  border: none;
+  color: #f59e0b;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 16px 0;
+  display: block;
+}
+
+.back-link:hover {
+  color: #d97706;
+}
+
+/* --- Layout Containers --- */
+.detail-layout {
+  display: block;
+}
+
+.checkout-layout {
+  display: block;
+}
+
+.confirmation-container {
+  max-width: 640px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+.summary-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  flex-shrink: 0;
+}
+
+.summary-icon-box.mode-bus { background: rgba(245, 158, 11, 0.1); }
+.summary-icon-box.mode-train { background: rgba(251, 146, 60, 0.1); }
+.summary-icon-box.mode-metro { background: rgba(251, 191, 36, 0.1); }
+.summary-icon-box.mode-ferry { background: rgba(163, 230, 53, 0.1); }
