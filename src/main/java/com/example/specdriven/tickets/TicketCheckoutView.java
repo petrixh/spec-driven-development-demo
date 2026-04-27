@@ -83,7 +83,7 @@ public class TicketCheckoutView extends VerticalLayout implements HasUrlParamete
         Div mainContainer = new Div();
         mainContainer.addClassName("page-container");
 
-        Span backLink = new Span("\u2190 Back to Details");
+        Span backLink = new Span("\u2190 Back");
         backLink.addClassName("back-link");
         backLink.addClickListener(e -> {
             if (ticket != null && ticket.getId() != null) {
@@ -102,7 +102,10 @@ public class TicketCheckoutView extends VerticalLayout implements HasUrlParamete
         H1 title = new H1("Checkout");
         title.addClassName("browse-title");
 
-        mainContainer.add(backLink, title);
+        Div contentWrapper = new Div();
+        contentWrapper.addClassName("checkout-content");
+
+        mainContainer.add(backLink, title, contentWrapper);
         add(mainContainer);
         setSizeFull();
     }
@@ -117,7 +120,7 @@ public class TicketCheckoutView extends VerticalLayout implements HasUrlParamete
 
         mainContainer.removeAll();
 
-        Span backLink = new Span("\u2190 Back to Details");
+        Span backLink = new Span("\u2190 Back");
         backLink.addClassName("back-link");
         backLink.addClickListener(e -> {
             if (ticket != null && ticket.getId() != null) {
@@ -136,12 +139,15 @@ public class TicketCheckoutView extends VerticalLayout implements HasUrlParamete
         H1 title = new H1("Checkout");
         title.addClassName("browse-title");
 
-        mainContainer.add(backLink, title);
+        Div contentWrapper = new Div();
+        contentWrapper.addClassName("checkout-content");
+
+        mainContainer.add(backLink, title, contentWrapper);
 
         Div summaryCard = buildOrderSummaryCard(quantity);
         Div paymentCard = buildPaymentCard(quantity);
 
-        mainContainer.add(summaryCard, paymentCard);
+        contentWrapper.add(paymentCard, summaryCard);
     }
 
     private Div buildOrderSummaryCard(Integer quantity) {
@@ -151,11 +157,22 @@ public class TicketCheckoutView extends VerticalLayout implements HasUrlParamete
         Span header = new Span("ORDER SUMMARY");
         header.addClassName("section-header");
 
+        String totalStr = formatPrice(ticket.getPrice().multiply(BigDecimal.valueOf(quantity)));
+
         Span ticketName = new Span(ticket.getName());
         ticketName.getStyle().set("font-size", "15px");
         ticketName.getStyle().set("font-weight", "700");
         ticketName.getStyle().set("color", "#fafafa");
-        ticketName.getStyle().set("display", "block");
+
+        orderTotal.addClassName("summary-total");
+        orderTotal.setText(totalStr);
+
+        HorizontalLayout titleRow = new HorizontalLayout(ticketName, orderTotal);
+        titleRow.setAlignItems(FlexLayout.Alignment.BASELINE);
+        titleRow.setSpacing(true);
+        titleRow.setPadding(false);
+        titleRow.getStyle().set("width", "100%");
+        titleRow.getStyle().set("justify-content", "space-between");
 
         String modeName = ticket.getTransitMode().name().charAt(0) + ticket.getTransitMode().name().substring(1).toLowerCase();
         String typeName = ticket.getTicketType().name().replaceAll("_", " ");
@@ -172,23 +189,7 @@ public class TicketCheckoutView extends VerticalLayout implements HasUrlParamete
         unitPrice.getStyle().set("margin-bottom", "12px");
         unitPrice.getStyle().set("display", "block");
 
-        Span totalLabel = new Span("Total");
-        totalLabel.getStyle().set("font-size", "15px");
-        totalLabel.getStyle().set("font-weight", "600");
-        totalLabel.getStyle().set("color", "#a3a3a3");
-
-        orderTotal.addClassName("summary-total");
-        orderTotal.setText(formatPrice(ticket.getPrice().multiply(BigDecimal.valueOf(quantity))));
-
-        HorizontalLayout totalRow = new HorizontalLayout(totalLabel, orderTotal);
-        totalRow.addClassName("summary-total-row");
-        totalRow.setAlignItems(FlexLayout.Alignment.BASELINE);
-        totalRow.setSpacing(true);
-        totalRow.setPadding(false);
-        totalRow.getStyle().set("margin-top", "12px");
-        totalRow.getStyle().set("justify-content", "space-between");
-
-        card.add(header, ticketName, subtitle, unitPrice, totalRow);
+        card.add(header, titleRow, subtitle, unitPrice);
         return card;
     }
 

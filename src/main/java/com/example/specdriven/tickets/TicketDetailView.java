@@ -72,19 +72,14 @@ public class TicketDetailView extends VerticalLayout implements HasUrlParameter<
         Div mainContainer = new Div();
         mainContainer.addClassName("page-container");
 
-        Span backLink = new Span("\u2190 Back to Browse");
+        Span backLink = new Span("\u2190 Back");
         backLink.addClassName("back-link");
         backLink.addClickListener(e -> UI.getCurrent().navigate(""));
 
-        Div infoCard = new Div();
-        infoCard.addClassName("detail-card");
-        infoCard.addClassName("detail-info");
+        Div contentWrapper = new Div();
+        contentWrapper.addClassName("detail-content");
 
-        Div purchaseCard = new Div();
-        purchaseCard.addClassName("detail-card");
-        purchaseCard.addClassName("detail-quantity");
-
-        mainContainer.add(backLink, infoCard, purchaseCard);
+        mainContainer.add(backLink, contentWrapper);
         add(mainContainer);
         setSizeFull();
     }
@@ -102,9 +97,14 @@ public class TicketDetailView extends VerticalLayout implements HasUrlParameter<
         mainContainer.removeAll();
 
         // Back link
-        Span backLink = new Span("\u2190 Back to Browse");
+        Span backLink = new Span("\u2190 Back");
         backLink.addClassName("back-link");
         backLink.addClickListener(e -> UI.getCurrent().navigate(""));
+
+        Div contentWrapper = new Div();
+        contentWrapper.addClassName("detail-content");
+
+        mainContainer.add(backLink, contentWrapper);
 
         // Ticket info card
         Div infoCard = new Div();
@@ -154,7 +154,7 @@ public class TicketDetailView extends VerticalLayout implements HasUrlParameter<
         Span price = new Span(formatPrice(ticket.getPrice()));
         price.getStyle().set("font-size", "28px");
         price.getStyle().set("font-weight", "800");
-        price.getStyle().set("color", getModeColor(ticket.getTransitMode()));
+        price.getStyle().set("color", "#fafafa");
 
         Span priceUnit = new Span("per ticket");
         priceUnit.getStyle().set("font-size", "14px");
@@ -211,7 +211,7 @@ public class TicketDetailView extends VerticalLayout implements HasUrlParameter<
 
         purchaseCard.add(quantityLabel, stepper, subtotalBox, checkoutBtn);
 
-        mainContainer.add(backLink, infoCard, purchaseCard);
+        contentWrapper.add(infoCard, purchaseCard);
         updateSubtotal();
     }
 

@@ -1,9 +1,32 @@
 /* ===== WARM AMBER DARK THEME ===== */
 
 html {
+  /* ===== Lumo theme CSS custom properties for dark theme ===== */
+  --lumo-base-color: #0f0f0f;
+  --lumo-header-text-color: #fafafa;
+  --lumo-body-text-color: #a3a3a3;
+  --lumo-secondary-text-color: #737373;
+  --lumo-tertiary-text-color: #525252;
+  --lumo-disabled-text-color: #404040;
+  --lumo-primary-color: #f59e0b;
+  --lumo-primary-color-50pct: rgba(245, 158, 11, 0.5);
+  --lumo-primary-color-10pct: rgba(245, 158, 11, 0.1);
+  --lumo-primary-text-color: #f59e0b;
+  --lumo-primary-contrast-color: #000000;
+  --lumo-error-color: #f87171;
+  --lumo-error-text-color: #f87171;
+  --lumo-success-color: #4ade80;
+  --lumo-success-text-color: #4ade80;
+  --lumo-border-radius-m: 10px;
+  --lumo-border-radius-l: 14px;
+  --lumo-font-family: Inter, system-ui, -apple-system, sans-serif;
+
+  /* Text color on host element cascades into shadow DOM */
   background-color: #0f0f0f;
   color: #fafafa;
   font-family: Inter, system-ui, -apple-system, sans-serif;
+  /* Force light scheme for form controls to prevent dark theme auto-styling */
+  color-scheme: light;
 }
 
 /* --- Layout --- */
@@ -23,6 +46,7 @@ html {
   font-weight: 800;
   color: #fafafa;
   margin: 0;
+  margin-bottom: 4px;
 }
 
 .browse-subtitle {
@@ -36,6 +60,7 @@ html {
   gap: 0;
   border-bottom: 1px solid #2a2a2a;
   margin-bottom: 16px;
+  overflow-x: auto;
 }
 
 .filter-btn {
@@ -49,6 +74,7 @@ html {
   cursor: pointer;
   transition: all 0.2s;
   user-select: none;
+  white-space: nowrap;
 }
 
 .filter-btn:hover {
@@ -153,25 +179,26 @@ html {
   border-style: solid;
 }
 
-.badge-mode.bus {
+/* Fixed: class names are mode-bus, mode-train, etc. (not just bus, train) */
+.badge-mode.mode-bus {
   background: rgba(245, 158, 11, 0.15);
   color: #f59e0b;
   border-color: rgba(245, 158, 11, 0.25);
 }
 
-.badge-mode.train {
+.badge-mode.mode-train {
   background: rgba(251, 146, 60, 0.15);
   color: #fb923c;
   border-color: rgba(251, 146, 60, 0.25);
 }
 
-.badge-mode.metro {
+.badge-mode.mode-metro {
   background: rgba(251, 191, 36, 0.15);
   color: #fbbf24;
   border-color: rgba(251, 191, 36, 0.25);
 }
 
-.badge-mode.ferry {
+.badge-mode.mode-ferry {
   background: rgba(163, 230, 53, 0.15);
   color: #a3e635;
   border-color: rgba(163, 230, 53, 0.25);
@@ -189,6 +216,34 @@ html {
   border-radius: 18px;
   padding: 24px;
   border: 1px solid #2a2a2a;
+}
+
+/* Detail page layout - desktop two-column */
+.detail-page .detail-info {
+  margin-bottom: 16px;
+}
+
+.detail-page .detail-quantity {
+  margin-bottom: 24px;
+}
+
+@media (min-width: 768px) {
+  .detail-page .detail-content {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .detail-page .detail-info {
+    margin-bottom: 0;
+  }
+
+  .detail-page .detail-quantity {
+    margin-bottom: 0;
+    position: sticky;
+    top: 24px;
+  }
 }
 
 .detail-title {
@@ -224,6 +279,8 @@ html {
   color: #737373;
   text-transform: uppercase;
   letter-spacing: 1px;
+  margin-bottom: 4px;
+  display: block;
 }
 
 .subtotal-value {
@@ -261,6 +318,22 @@ html {
   color: #f59e0b;
 }
 
+/* Checkout two-column layout on desktop */
+@media (min-width: 768px) {
+  .checkout-page .checkout-content {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 32px;
+    align-items: start;
+  }
+
+  .checkout-page .summary-card {
+    margin-bottom: 0;
+    position: sticky;
+    top: 24px;
+  }
+}
+
 /* --- Expiration / CVV side-by-side --- */
 .payment-row-inline {
   display: flex;
@@ -291,6 +364,7 @@ html {
   color: #fafafa;
   text-align: center;
   margin: 0 0 4px;
+  display: block;
 }
 
 .success-subtitle {
@@ -298,6 +372,7 @@ html {
   color: #737373;
   text-align: center;
   margin: 0 0 24px;
+  display: block;
 }
 
 .confirmation-code-box {
@@ -315,6 +390,7 @@ html {
   text-transform: uppercase;
   letter-spacing: 1.5px;
   margin-bottom: 8px;
+  display: block;
 }
 
 .confirmation-code-value {
@@ -323,6 +399,7 @@ html {
   font-weight: 700;
   color: #fafafa;
   word-break: break-all;
+  display: block;
 }
 
 .details-list {
@@ -379,6 +456,16 @@ html {
   display: block;
 }
 
+/* Checkout content wrapper - stacks on mobile */
+.checkout-content {
+  display: block;
+}
+
+/* Detail content wrapper - stacks on mobile */
+.detail-content {
+  display: block;
+}
+
 .confirmation-container {
   max-width: 640px;
   margin: 0 auto;
@@ -422,7 +509,8 @@ vaadin-button[theme~="tertiary"] {
   font-weight: 500;
 }
 
-vaadin-button[theme~="secondary"] {
+vaadin-button[theme~="secondary"],
+vaadin-button.secondary {
   border: 1px solid rgba(245,158,11,0.25);
   background: transparent;
   color: #f59e0b;
@@ -431,7 +519,7 @@ vaadin-button[theme~="secondary"] {
   min-height: 48px;
 }
 
-/* --- Text Fields --- */
+/* --- Text Fields --- FIX: Text visibility on dark background --- */
 vaadin-text-field,
 vaadin-integer-field,
 vaadin-password-field {
@@ -440,6 +528,9 @@ vaadin-password-field {
   --vaadin-input-field-border-width: 1.5px;
   --vaadin-input-field-border-radius: 10px;
   --vaadin-input-field-height: 44px;
+  --vaadin-input-field-text-color: #fafafa;
+  /* Prevent Lumo dark scheme from overriding our colors */
+  color: #fafafa;
 }
 
 vaadin-text-field[focused],
@@ -452,6 +543,20 @@ vaadin-integer-field::part(label) {
   font-size: 12px;
   font-weight: 600;
   color: #737373;
+}
+
+/* FIX: Target slotted input elements directly with highest specificity */
+vaadin-text-field input,
+vaadin-integer-field input {
+  color: #fafafa !important;
+  caret-color: #fafafa !important;
+}
+
+/* FIX: Shadow DOM input-field part - text color, light scheme for form controls */
+vaadin-text-field::part(input-field),
+vaadin-integer-field::part(input-field) {
+  color: #fafafa;
+  color-scheme: light;
 }
 
 /* --- Integer Field as Quantity Stepper --- */
@@ -473,6 +578,7 @@ vaadin-integer-field[class~="quantity-stepper"]::part(input-field) {
   background: #0f0f0f;
   border: 1px solid #2a2a2a;
   border-radius: 12px;
+  color: #fafafa !important;
 }
 
 /* --- Vaadin default overrides for dark theme --- */

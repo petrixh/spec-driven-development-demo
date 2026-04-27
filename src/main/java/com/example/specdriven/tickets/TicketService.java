@@ -17,7 +17,7 @@ public class TicketService {
     public List<Ticket> getAllTickets() {
         return ticketRepository.findAll().stream()
                 .sorted(java.util.Comparator.comparing(Ticket::getTransitMode)
-                        .thenComparing(Ticket::getName))
+                        .thenComparing(Ticket::getName, java.util.Comparator.reverseOrder()))
                 .toList();
     }
 

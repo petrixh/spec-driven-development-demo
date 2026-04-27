@@ -182,6 +182,6 @@ public class TicketBrowseView extends VerticalLayout implements HasUrlParameter<
     }
 
     private String formatPrice(BigDecimal price) {
-        return price.setScale(2, RoundingMode.HALF_UP).toString();
+        return "$" + price.setScale(2, RoundingMode.HALF_UP).toString();
     }
 }
