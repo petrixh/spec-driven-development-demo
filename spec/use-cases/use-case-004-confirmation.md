@@ -36,14 +36,14 @@
 
 ## Acceptance Criteria
 
-- [ ] Confirmation page displays a success message
-- [ ] Ticket name, transit mode, ticket type, quantity, and total price are shown
-- [ ] Last 4 digits of the credit card are displayed
-- [ ] Purchase date and time are displayed
-- [ ] UUID confirmation code is prominently displayed
-- [ ] "Buy Another Ticket" button navigates back to the browse page (UC-001)
-- [ ] Navigating directly to the confirmation page without a valid purchase redirects to browse
-- [ ] Layout is responsive and usable on mobile screens
+- [x] Confirmation page displays a success message
+- [x] Ticket name, transit mode, ticket type, quantity, and total price are shown
+- [x] Last 4 digits of the credit card are displayed
+- [x] Purchase date and time are displayed
+- [x] UUID confirmation code is prominently displayed
+- [x] "Buy Another Ticket" button navigates back to the browse page (UC-001)
+- [x] Navigating directly to the confirmation page without a valid purchase redirects to browse
+- [x] Layout is responsive and usable on mobile screens
 
 ---
 

@@ -14,3 +14,4 @@ src/main/frontend/generated/
 vite.generated.ts
 .playwright-mcp/
 .opencode/
+images/

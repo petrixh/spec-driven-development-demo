@@ -35,13 +35,13 @@
 
 ## Acceptance Criteria
 
-- [ ] Detail page displays ticket name, transit mode, ticket type, description, and unit price
-- [ ] Quantity selector defaults to 1
-- [ ] Quantity cannot go below 1 or above 5
-- [ ] Subtotal updates in real time when quantity changes
-- [ ] "Continue to Checkout" button navigates to the checkout page (UC-003) passing ticket and quantity
-- [ ] A back link or button allows returning to the browse page
-- [ ] Layout is responsive and usable on mobile screens
+- [x] Detail page displays ticket name, transit mode, ticket type, description, and unit price
+- [x] Quantity selector defaults to 1
+- [x] Quantity cannot go below 1 or above 5
+- [x] Subtotal updates in real time when quantity changes
+- [x] "Continue to Checkout" button navigates to the checkout page (UC-003) passing ticket and quantity
+- [x] A back link or button allows returning to the browse page
+- [x] Layout is responsive and usable on mobile screens
 
 ---
 

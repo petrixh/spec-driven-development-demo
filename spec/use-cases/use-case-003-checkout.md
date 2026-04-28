@@ -38,14 +38,14 @@
 
 ## Acceptance Criteria
 
-- [ ] Order summary displays ticket name, transit mode, ticket type, quantity, unit price, and total
-- [ ] Credit card form has fields: cardholder name, card number, expiration (MM/YY), and CVV
-- [ ] "Purchase" button is disabled until all fields are filled with valid formats
-- [ ] Submitting the form creates a PurchaseOrder record in the database
-- [ ] Only the last 4 digits of the card number are persisted
-- [ ] After successful purchase, navigates to the confirmation page (UC-004)
-- [ ] A back link or button allows returning to the detail page (ticket ID retained in URL for navigation)
-- [ ] Layout is responsive and usable on mobile screens
+- [x] Order summary displays ticket name, transit mode, ticket type, quantity, unit price, and total
+- [x] Credit card form has fields: cardholder name, card number, expiration (MM/YY), and CVV
+- [x] "Purchase" button is disabled until all fields are filled with valid formats
+- [x] Submitting the form creates a PurchaseOrder record in the database
+- [x] Only the last 4 digits of the card number are persisted
+- [x] After successful purchase, navigates to the confirmation page (UC-004)
+- [x] A back link or button allows returning to the detail page (ticket ID retained in URL for navigation)
+- [x] Layout is responsive and usable on mobile screens
 
 ---
 
