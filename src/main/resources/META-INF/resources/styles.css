@@ -1,1 +1,138 @@
-/* Add your styles here */
+/* Landing layout */
+.landing-layout {
+    text-align: center;
+}
+
+.barcode-icon {
+    font-size: var(--aura-font-size-xl);
+    letter-spacing: 2px;
+    opacity: 0.6;
+}
+
+.helper-text {
+    color: var(--vaadin-text-color-secondary);
+}
+
+.status-text {
+    color: var(--vaadin-text-color-secondary);
+    font-size: var(--aura-font-size-s);
+}
+
+/* Processing layout */
+.processing-title {
+    font-size: var(--aura-font-size-xl);
+    font-weight: var(--aura-font-weight-semibold);
+}
+
+/* Status badges */
+.badge-overdue,
+.badge-ontime {
+    display: inline-block;
+    padding: 2px var(--vaadin-padding-s);
+    border-radius: var(--vaadin-radius-m);
+    font-size: var(--aura-font-size-s);
+    font-weight: var(--aura-font-weight-medium);
+}
+
+.badge-overdue {
+    background: color-mix(in srgb, var(--aura-red) 15%, transparent);
+    color: var(--aura-red-text);
+}
+
+.badge-ontime {
+    background: color-mix(in srgb, var(--aura-green) 15%, transparent);
+    color: var(--aura-green-text);
+}
+
+/* Info cards */
+.info-card {
+    border: 1px solid var(--vaadin-border-color-secondary);
+    border-radius: var(--vaadin-radius-l);
+    padding: var(--vaadin-padding-m);
+    width: 100%;
+    background: var(--vaadin-background-color);
+}
+
+.card-label {
+    font-size: var(--aura-font-size-s);
+    color: var(--vaadin-text-color-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card-value {
+    font-size: var(--aura-font-size-xl);
+    font-weight: var(--aura-font-weight-semibold);
+    margin-top: var(--vaadin-gap-xs);
+}
+
+.book-title {
+    margin-top: 0;
+}
+
+.mono-value {
+    font-family: monospace;
+    font-weight: var(--aura-font-weight-semibold);
+}
+
+/* Overdue banner */
+.overdue-banner {
+    background: color-mix(in srgb, var(--aura-red) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--aura-red) 40%, transparent);
+    border-radius: var(--vaadin-radius-l);
+    padding: var(--vaadin-padding-m);
+    width: 100%;
+}
+
+.overdue-text {
+    font-weight: var(--aura-font-weight-semibold);
+    color: var(--aura-red-text);
+}
+
+.fee-display {
+    text-align: right;
+}
+
+.fee-amount {
+    font-size: var(--aura-font-size-xl);
+    font-weight: var(--aura-font-weight-semibold);
+    color: var(--aura-red-text);
+}
+
+.fee-rate {
+    font-size: var(--aura-font-size-s);
+    color: var(--vaadin-text-color-secondary);
+}
+
+/* On-time banner */
+.ontime-banner {
+    background: color-mix(in srgb, var(--aura-green) 10%, transparent);
+    border: 1px solid color-mix(in srgb, var(--aura-green) 40%, transparent);
+    border-radius: var(--vaadin-radius-l);
+    padding: var(--vaadin-padding-m);
+    width: 100%;
+}
+
+/* Patron row — side by side on desktop, stacked on mobile */
+.patron-row {
+    display: flex;
+    gap: var(--vaadin-gap-m);
+    width: 100%;
+}
+
+.patron-row > .info-card {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Return OK button */
+.return-ok-button {
+    margin-top: var(--vaadin-gap-m);
+}
+
+/* Mobile responsive — stack cards vertically */
+@media (max-width: 640px) {
+    .patron-row {
+        flex-direction: column;
+    }
+}

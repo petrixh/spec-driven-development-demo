@@ -12,3 +12,12 @@
 node_modules/
 src/main/frontend/generated/
 vite.generated.ts
+
+# Playwright MCP runtime artifacts
+.playwright-mcp/
+
+# Crash dumps
+core.*
+
+# Verification screenshots (kept locally, not committed)
+verification-*.png
