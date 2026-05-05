@@ -19,5 +19,6 @@ vite.generated.ts
 # Crash dumps
 core.*
 
-# Verification screenshots (kept locally, not committed)
-verification-*.png
+# Stray verification screenshots in the repo root (kept locally, not committed).
+# Curated screenshots inside verification/ are tracked.
+/verification-*.png
