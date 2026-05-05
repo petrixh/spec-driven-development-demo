@@ -71,7 +71,50 @@ Every use case must have UI tests before it is considered implemented. See `arch
 
 > Copy this section for each use case. Name it: **UC-[NNN]: [Feature Title]**
 
-### UC-[NNN]: [Feature Title]
+### UC-001: Process Book Return
+
+**Use case spec:** [`use-case-001-process-book-return.md`](use-cases/use-case-001-process-book-return.md)
+**Verified by:** Claude
+**Date:** 2026-03-24
+
+#### Automated Tests
+
+- [x] Test class exists and all tests pass (`./mvnw test`)
+  - `BookReturnViewTest` — 5 browserless view tests
+  - `BookReturnServiceTest` — 7 service tests
+- [x] Acceptance criteria covered by tests
+- [x] Business rule edge cases tested (invalid ISBN, no active record, overdue fee calc, per-book rate)
+
+#### Functional
+
+- [x] Main flow works end-to-end as described in the spec
+- [x] All business rules are enforced (BR-01, BR-02, BR-03, BR-04)
+- [x] All acceptance criteria pass
+- [x] Error/edge cases handled appropriately
+
+#### Visual
+
+- [x] Page layout matches expectations (verified against mockups at 1920x1080)
+- [x] Spacing and padding are consistent — no doubled or missing padding from nested layouts
+- [x] Interactive elements respond correctly (hover, focus, click)
+- [x] Loading states and transitions are smooth
+- [x] Responsive at mobile and desktop widths — patron/account cards stack vertically on mobile (375px)
+
+#### Contrast & Readability
+
+- [x] All text is clearly readable against its background
+- [x] Card/panel titles and values are both visible (not swallowed by background)
+- [x] Status badges and colored indicators have sufficient contrast (red overdue badge, green on-time badge)
+- [x] Elements using theme CSS variables render correctly in the active color scheme
+
+#### Result
+
+- **Status:** Pass
+- **Notes:** All flows verified at desktop (1920x1080) and mobile (375x812) via Playwright MCP. Screenshots saved as `verification-*.png`.
+
+---
+
+### UC-[NNN]: [Feature Title] (Template)
 
 **Use case spec:** [`use-case-NNN-name.md`](use-cases/use-case-NNN-name.md)
 **Verified by:** [Name/Agent]

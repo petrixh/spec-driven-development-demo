@@ -6,7 +6,7 @@
 
 **As a** librarian, **I want to** scan a returned book's barcode and see its details **so that** I can process the return quickly and accurately.
 
-**Status:** Pending
+**Status:** Implemented
 **Date:** 2026-03-24
 
 ---
